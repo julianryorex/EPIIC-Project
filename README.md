@@ -6,6 +6,8 @@ The Customized Online Aggregation and Summarization Tool for Environmental Raste
 ## Tools to follow the project
 Since we are using an Agile Software Developmement Cycle, we built a <a href="https://trello.com/b/PMgDugQn/esof-423-epiic">Trello Board</a> to clearly showcase our sprint backlog. 
 
+Our Product Backlog and Burndown chart are on <a href="https://drive.google.com/drive/folders/1LpbdXXvM87ijJrofRyG-sicKnggFeYwI?usp=sharing">Google Drive</a>.
+
 ## Overview of Project
 The project consists of rearchitecting the COASTER system. Since it is still in early development, there are many paths we can take to improve the system. We can either: 
 * concentrate on rearchitecting the database and how data is stored and processed
