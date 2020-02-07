@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from "react-router-dom";
 
 function Header() {
     return (
@@ -12,10 +12,13 @@ function Header() {
 
 function Banner() {
     return (
-      <nav className="banner navbar-expand-lg navbar navbar-dark bg-dark sticky-top">
-        <a className="navbar-brand mb-0 h1" href="#">
-          EPIIC
-        </a>
+      <nav className="banner navbar-expand-md navbar navbar-dark bg-dark sticky-top">
+        <li>
+          <NavLink className="navbar-brand mb-0 h1" to="/">
+            EPIIC Project
+          </NavLink>
+          <span className="sr-only">(current)</span>
+        </li>
         <button
           className="navbar-toggler"
           type="button"
@@ -29,15 +32,16 @@ function Banner() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <a className="nav-item nav-link active" href="#">
-              Home <span className="sr-only">(current)</span>
-            </a>
-            <a className="nav-item nav-link" href="#">
-              About
-            </a>
-            <a className="nav-item nav-link" href="#">
-              Contact
-            </a>
+            <li>
+              <NavLink className="nav-item nav-link" to="/about">
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-item nav-link" to="/contact">
+                Contact
+              </NavLink>
+            </li>
           </div>
         </div>
       </nav>
