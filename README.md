@@ -28,3 +28,7 @@ Here are some of the following tasks in order to satisfy our project requirement
 * Implement an interface to capture/validate input parameters.
 * Build process to retrieve data from identified data source using specified input parameters.
 * Implement machanism to provide retrieved data to user.
+
+## Structure of Project
+Since we are using React as our front-end framework and most likely Express as our back-end framework, everything client/front-end related files will live in the client directory. Same thing goes for server/back-end files in the backend diectory. 
+Documentation related files will live under the docs directory and same thing goes for the build files and testing related files into the build and test directories, respectively.
