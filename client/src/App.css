@@ -24,6 +24,10 @@
   color: white;
 }
 
+.App-clock {
+  background-color: pink; 
+}
+
 .App-link {
   color: #61dafb;
 }
