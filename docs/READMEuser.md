@@ -1,4 +1,3 @@
-# EPIIC Project for Yellowstone Ecological Research Center (YERC)
 # User Documentation
 
 ## Introduction
@@ -15,3 +14,5 @@ Due to the time length of this project, we have decided to expand the current da
 
 ## Current Features
 None yet, we are on our zero-feature release. We look forward to adding much more to this section.
+
+(more to come...)

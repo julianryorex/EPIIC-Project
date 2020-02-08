@@ -1,4 +1,3 @@
-# EPIIC Project for Yellowstone Ecological Research Center (YERC)
 # Developer Documentation
 
 ## Introduction
@@ -34,3 +33,6 @@ Here are some of the following tasks in order to satisfy our project requirement
 ## Structure of Project
 Since we are using React as our front-end framework and most likely Express as our back-end framework, everything client/front-end related files will live in the client directory. Same thing goes for server/back-end files in the backend diectory. 
 Documentation related files will live under the docs directory and same thing goes for the build files and testing related files into the build and test directories, respectively.
+
+
+(more to come...)
