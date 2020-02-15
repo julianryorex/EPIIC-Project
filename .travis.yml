@@ -4,6 +4,7 @@ node_js:
 
 cache: npm
 
+before_script: cd client
 script:
 - npm test
 - npm run build
