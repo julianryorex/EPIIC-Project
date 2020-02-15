@@ -1,11 +1,17 @@
 language: node_js
 node_js:
-- 13.5.0
+  - 13.5.0
 
 cache: npm
 
+branches:
+  only:
+    - master
+    - dev
+
 before_script: cd client
-script:
+
+script: # once we have test scripts
 # - npm test
 # - npm run build
 
