@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 13.5.0
 
-cache: npm
+cache: npm # we can take this off sometimes to see if it builds without the cache
 
 branches:
   only:
@@ -11,7 +11,12 @@ branches:
 
 before_script: cd client
 
-script: # once we have test scripts
+script: skip # once we have test scripts
 # - npm test
 # - npm run build
+
+
+# deploy:
+# we will eventually have a deploy hook so that it pushes everything to production
+# 
 
