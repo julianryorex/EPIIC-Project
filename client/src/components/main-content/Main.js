@@ -3,20 +3,10 @@ import './main.css';
 
 function Main() {
   return (
-<<<<<<< HEAD
     <div id="content">
       <div id="form">
         <DatasetForm />
       </div>
-=======
-    <div id="construction">
-      <h1>
-        Webpage Under Construction!
-      </h1>
-      <h3>
-        More info here at our <a href="https://github.com/julianryorex/EPIIC-Project">GitHub!</a>
-      </h3>
->>>>>>> 2c0137d32c57e83878c7f1ca24aa74cee81942d2
     </div>
   );
 }
