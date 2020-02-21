@@ -1,6 +1,6 @@
 /*
-Full script can be found here: 
-https://code.earthengine.google.com/?scriptPath=users%2Fgibbedboy%2FGPMv6_Test%3ANASA_GPM_L3_IMERG_V06
+Full script can be found here:
+https://code.earthengine.google.com/?scriptPath=users%2Fgibbedboy%2FGPMv6_Test%3AGPMv6%20Testing
 Not sure how to get running on REACT yet.
 */
 var ee = require('@google/earthengine');
