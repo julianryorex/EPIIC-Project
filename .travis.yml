@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - 13.5.0
+
+cache: npm # we can take this off sometimes to see if it builds without the cache
+
+branches:
+  only:
+    - master
+    - dev
+
+before_script: cd client
+
+script: skip # once we have test scripts
+# - npm test
+# - npm run build
+
+
+# deploy:
+# we will eventually have a deploy hook so that it pushes everything to production
+# if: branch = master # only want to deploy if we are pushing to master and not dev
+

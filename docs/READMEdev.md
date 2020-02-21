@@ -1,0 +1,38 @@
+# Developer Documentation
+
+## Project Technologies
+
+We are using React JS as our frontend framework for our website. By using a component based approach to design the web app, it permits us to reuse certain components for multiple pages, and updating a certain component will propagate throughout the system. Also, converting the web app to a mobile platform would be seamless thanks to React Native.\
+More to come for our backend technologies. (We are thinking about using Express JS as our backend framework.\
+Data for this project will be stored in a NoSQL Database, which integrates nicely with our backend framework. Since the data we are storing is in a Raster/GeoTiff format, we may need to convert these files to JSON. This conversion will be done with a Python script.
+
+## Getting Started
+
+To get started with this project, clone <a href="https://github.com/julianryorex/EPIIC-Project">this repository</a> to a local directory (You will need Node Package Manager (npm) installed on your local machine). Since we used create-react-app to initialize this project, many dependencies come with it. On top of that, we are also using external dependencies for this project. In order to download these, navigate from the root directory into the client directory.\
+When inside, run the command <code>npm install</code>. This will use the package.json file located in the client folder and download all of the required dependencies.\
+Once all the dependencies are installed, you are ready to run the web app! Navigate to the client directory if you are already not in there. From there run the command <code>npm start</code>. This will start up the node environment where all of the javascript will be compiled and run. This should open up a tab on a browser to showcase the web app. If not, you can go to it by typing <a href ="<https://localhost/3000>">https://localhost/3000</a>.
+
+## Layout of the Project
+
+### Frontend
+
+Our frontend files are all located inside the client directory. Inside you will find an images directory with all necessary images and ressources for the web app. If you have run through the "Getting Started" step above and installed all dependencies, you should also see a node_modules directory. This is listed in the .gitignore file so it will not be part of any commit.\
+ Under, you shall find a public and src directory. Public possesses the index.html file (the markdown for the website) and the src is where all the React lives in. The layout of the src directory should not change, unless new directories are put in place. All new components should live in the components folder, with an additional component folder and a capitalized component.js file inside it. Please respect this format for clarity.
+
+### Backend
+
+Since our backend is not quite set yet, we are still figuring out its structure. Any backend related files should exist in the backend folder located in the root directory.
+
+### Building the Project
+
+Any build related files should live in the build directory. We do not have any files in there yet.
+
+### Documentation
+
+In the docs directory, there should be all the documentation for this project (including this file). Please add documentation whever possible! The more docs the better!
+
+### Testing
+
+All testing related files should exist under the test directory. We are using <a href="https://travis-ci.org/">Travis CI</a> for continuous integration, so all .yaml files should be in test.
+
+(more to come...)

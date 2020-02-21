@@ -20,5 +20,5 @@ function Banner() {
     </nav>
   );
 }
-
+ 
 export default Footer;
