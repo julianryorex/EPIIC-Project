@@ -46,7 +46,18 @@ Map.addLayer(gainImage.updateMask(gainImage),
             {palette: ['0000FF']}, 
             'Gain');
 */
-            
+
 var gsw = ee.Image('JRC/GSW1_0/GlobalSurfaceWater');
 var occurrence = gsw.select('occurrence');
-Map.addLayer(occurrence);
+  
+var VIS_OCCURRENCE = {
+  min:0,
+  max:100,
+  palette: ['red', 'blue']
+};
+
+Map.addLayer({
+  eeObject: occurrence.updateMask(occurrence.divide(100)),
+  name: "Water Occurrence (1984-2015)",
+  visParams: VIS_OCCURRENCE
+});
