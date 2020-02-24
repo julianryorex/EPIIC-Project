@@ -83,7 +83,7 @@ Most of the two points above are now inconsequential with Google Earth Engine do
   - Tells us what type of data the band is measuring with. Int, Float, etc.
 - **dimensions**
   - The size of the image band in pixels [x,y]
-- **min** & **max** 
+- **min** & **max**
   - Minimum and Maximum values of the metric the band is measuring. Useful when visualizing the image into something that is useful.
 
 It doesn't seem that the units of measurement are often included in the band metadata, and so that information is best found on the datasets corresponding Earth Engine Data Catalog page.
@@ -98,4 +98,3 @@ It doesn't seem that the units of measurement are often included in the band met
   - ALGORITHM_VERSION, AlgorithmID
 - Coordinates that encompass the image
   - Lat_Max, Lon_Min
-  
