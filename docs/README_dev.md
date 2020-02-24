@@ -8,9 +8,9 @@ Data for this project will be stored in a NoSQL Database, which integrates nicel
 
 ## Getting Started
 
-To get started with this project, clone <a href="https://github.com/julianryorex/EPIIC-Project">this repository</a> to a local directory (You will need Node Package Manager (npm) installed on your local machine). Since we used create-react-app to initialize this project, many dependencies come with it. On top of that, we are also using external dependencies for this project. In order to download these, navigate from the root directory into the client directory.\
-When inside, run the command <code>npm install</code>. This will use the package.json file located in the client folder and download all of the required dependencies.\
-Once all the dependencies are installed, you are ready to run the web app! Navigate to the client directory if you are already not in there. From there run the command <code>npm start</code>. This will start up the node environment where all of the javascript will be compiled and run. This should open up a tab on a browser to showcase the web app. If not, you can go to it by typing <a href ="<https://localhost/3000>">https://localhost/3000</a>.
+To get started with this project, clone this [repository](https://github.com/julianryorex/EPIIC-Project) to a local directory (You will need Node Package Manager (npm) installed on your local machine). Since we used create-react-app to initialize this project, many dependencies come with it. On top of that, we are also using external dependencies for this project. In order to download these, navigate from the root directory into the client directory.\
+When inside, run the command `npm install`.This will use the package.json file located in the client folder and download all of the required dependencies.\
+Once all the dependencies are installed, you are ready to run the web app! Navigate to the client directory if you are already not in there. From there run the command `npm start`. This will start up the node environment where all of the javascript will be compiled and run. This should open up a tab on a browser to showcase the web app. If not, you can go to it by typing [`https://localhost/3000`](https://localhost/3000).
 
 ## Layout of the Project
 
@@ -33,6 +33,6 @@ In the docs directory, there should be all the documentation for this project (i
 
 ### Testing
 
-All testing related files should exist under the test directory. We are using <a href="https://travis-ci.org/">Travis CI</a> for continuous integration, so all .yaml files should be in test.
+All testing related files should exist under the test directory. We are using [Travis CI](https://travis-ci.org/) for continuous integration, so all .yaml files should be in test.
 
 (more to come...)
