@@ -3,6 +3,7 @@
 The specifications upon receiving this project were extremely vague, so creating a project specification form was believed to be the best choice for both the client and the developers. The client has since presented most of the requirements via email, so this would be a reiteration of that along with some unanswered and lingering questions. 
 
 ## Content
+
 - **Data Acquisition**
 - **Data Transformation**
 - **User Interface**
@@ -19,11 +20,13 @@ Using API requests, download/query necessary data (weather, MODIS, LandSAT) from
 At the current moment it seems like querying the public datasets through their API for the necessary data sounds like an adequate method for our data acquisition process. It would depend on the number of queries it will send per day. Once the system is put in place, we shall test (if enough time), whether an API call would suffice. We will proceed with development assuming that the response time is reasonable. 
 
 _Additional Information:_ 
+
 - One of our developers is looking into using the Google Earth Engine for data Acquisition. In order to use this API, the user must have a google account. We will probably ask the user to log into their google account in order to retrieve this information. If we want to eliminate this step, we shall use the YERC google account to extract the data from Google's Database and store it in YERC's own Microsoft Azure's database. 
 - Using Amphora's data hub would be a great way to spread the public data to users interested users, although storing and testing the data on their servers may be time consuming. For this reason, we will aim to either query the necessary dataset, or download it to YERC's CosmoDB. 
 - Google Earth Engine's online playground and documentation uses Javascript to query their APIs. Knowing that and taking into account that we are utilizing a MERN stack for our Web App, data extracting will occur in the backend of our system using Javascript. 
 
 **TLDR:**
+
 - Using Google Earth Engine API to aquire public weather datasets (will expand datasets once implemented)
 - Leaning towards API requests instead of acquiring the raw data and storing it in CosmoDB.
 - Will further need to test whether response time for API calls are adequate.
@@ -42,18 +45,20 @@ Transform data if Google Earth Engine does not output the wanted format. Transfo
 If Google Earth Engine's output format aligns with the format of YERC's EPIIC Center and Amphora, this step is somewhat unecessary. If we do end up using other public datasets, we may need to implement a data transformation sub-system as well. Performance will play a large role in how we approach this problem.
 
 _Additional Information:_ 
+
 - One of the developers was looking into querying only the metadata (which is a subset of the queried dataset) which may help with performance.
 - Once the data is processed and transformed to a specific format, we may want to store those results so that the next query with the same parameters would be fetched from the CosmoDB instead of being processed again by YERC's server. This idea may save processing costs while boosting request performance. We can potentially develop an algorithm that searches first if the requested data is saved in the database; if it is (or if the request is a subset of the stored data), we would simply extract the information from there instead of the query. Of course, big decisions like such must first be tested.
 
 ## User Interface
 
 **Goal:**
-Implement a clean modern User Interface to capture/validate input parameters for data acquisition. 
+Implement a clean modern User Interface to capture/validate input parameters for data acquisition.
 
 **Requirements:**
  Have a clean simple dashboard that takes parameters as user input. The dash would ressemble [COASTER](http://www.coasterdata.net/)'s website but with a more modern look and less features (as the project scope for now is only weather/climate data). 
 
 **Notes:**
+
 - the user interface is built using React.js. All developers are new to using this technology so there will be a slight learning curve at the beginning of the project. 
 - The frontend must integrate seamlessly with the backend. The backend is built using express.js.
 
