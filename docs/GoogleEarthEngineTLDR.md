@@ -1,12 +1,14 @@
 # GeoTIFFs and Google Earth Engine TL;DR
 
-Google's Earth Engine (henceforth EE), is a cloud based geospatial processing platform. It can access a large number of publicly available databases for processing, drawing primarily from Landsat. It currently utilizes python or javascript to make request to Google's servers to process the requests. For the EPIIC project, we will be focusing on the javascript API.
+Google's Earth Engine (henceforth EE), is a cloud based geospatial processing platform. It can access a large number of publicly available databases for processing, drawing primarily from Landsat. It currently utilizes python or javascript to make request to Google's servers to process the requests. For the EPIIC project, we will be focusing on the javascript API. As a fun drinking game, count the times metadata is used.
 
 ## Contents
 - **Google Earth Engine**
   - **First Steps**
   - **JS API**
 - **GeoTIFF** 
+
+# Google Earth Engine
 
 ## First Steps
 You can find these steps in a more verbose and comprehensive manner via Google's very good documentation: <https://developers.google.com/earth-engine/getstarted>.
@@ -20,52 +22,66 @@ You can find these steps in a more verbose and comprehensive manner via Google's
 - Full documentation of the API can be found here: <https://developers.google.com/earth-engine/api_docs>.
   - The in-browser editor also has a built in documentation browser on the left.
 
+## Foundational Structures
+- **ee.Image**
+  - This is the basic EE raster image, and what we draw data from. Contains *bands*, which are often various layers to depict the metadata, such as IR imagery, or false color photos. They also frequently contain additional metadata.
+  - Some images may contain other metadata properties such as: Date, Cloud Cover, Orientation
+  - To extract just the data from the bands, we would use the `Image.select();` function.
+  - `print` commands work well as usual for troubleshooting
+    - `print(imageName);` to get all the info
+    - `print(imageName.select(nonListObj));` to just get a certain band's information
+- **ee.ImageCollection**
+  - This a a stack of Image objects. Not very useful on its own, you will usually have to filter, sort, or excise parts out the entire stack to get something workable, otherwise you are dealing with excessive amounts of processes.
+  - `ImageCollection.filter(ee.Filter(arg))` will weed out anything that doesn't fit into the corresponding filter you enter in. This can be nested ontop of itself many times to obtain finer results. These are implicity ANDed together.
+    ```javascript
+    var collection = ee.ImageCollection('imageCollectionName')
+    .filter(ee.Filter.(filterArgs))
+    .filter(ee.Filter.eq(filterArgs2))
+    .filterDate('2019-01-01', '2020-01-01');
+    ```
+- **ee.Map**
+  - In the web IDE, this object is what you end up pasting all the processed data onto, and exporting. There can be quite a bit of image visualization wizardry to make the raw data more readable before you put everything on the map.
+  - `Map.addLayer(args)` is what you'll use to show the image on the UI.
+
+# GeoTIFF (Gtiff)
+A kind of TIFF file that allows georeferencing data to be imbedded as metadata into the TIFF container. The kind of GeoTIFF we are interested in is Cloud Optimized GeoTIFF (COG). Cog allows us to more easily access aforemention georeferencing data without having to download entire TIFF file first, which tends to be enormous. It accomplishes this through GET range requests.
+
+This means for every COG that's organized differently, we'd have to find the bit range the data we want to access, and send a GET request for that particular range. This is usually predictable, but is onerous to implement.
+
+Thankfully Google Earth Engine allows us to bypass that completely, and makes accessing that metadata extremely easy. Refer to the JS API functions above.
+
+## Metadata
+GDAL is usally the client based software to read GeoTIFFs, and the relevent tags recognized by that software are:
+- `GEO_METADATA`
+  - This is where all the officially recognized georeferencing tags are embedded, following the XML-encoded instance documents prepared using 19139-based schema
+- `TIFFTAG_GDAL_METADATA ASCII`
+  - This is a MISC tag, where misfit tags go. These non-standard metadata items are stored into a PAM .aux.xml file
+
+Most of the two points above are now inconsequential with Google Earth Engine doing the heavy lifting. However there are metadata tags that are commonly found in most databases.
+
+## Common Band metadata tags
+- **id**
+  - The band's name, and ideally, tells us what the band is measuring.
+- **crs**
+  - Coordinate Reference System. This tells us what CRS is being used on this particular image. Can be returned using `Image.projection()`
+- **crs_Transform**
+  - Using the previously mentioned CRS, tells us the coordinates this particular band is focused on. Also returned by `Image.projection()`
+- **data_type**
+  - Tells us what type of data the band is measuring with. Int, Float, etc.
+- **dimensions**
+  - The size of the image band in pixels [x,y]
+- **min** & **max** 
+  - Minimum and Maximum values of the metric the band is measuring. Useful when visualizing the image into something that is useful.
+
+It doesn't seem that the units of measurement are often included in the band metadata, and so that information is best found on the datasets corresponding Earth Engine Data Catalog page.
 
 
-_Additional Information:_ 
-- One of our developers is looking into using the Google Earth Engine for data Acquisition. In order to use this API, the user must have a google account. We will probably ask the user to log into their google account in order to retrieve this information. If we want to eliminate this step, we shall use the YERC google account to extract the data from Google's Database and store it in YERC's own Microsoft Azure's database. 
-- Using Amphora's data hub would be a great way to spread the public data to users interested users, although storing and testing the data on their servers may be time consuming. For this reason, we will aim to either query the necessary dataset, or download it to YERC's CosmoDB. 
-- Google Earth Engine's online playground and documentation uses Javascript to query their APIs. Knowing that and taking into account that we are utilizing a MERN stack for our Web App, data extracting will occur in the backend of our system using Javascript. 
-
-**TLDR:**
-- Using Google Earth Engine API to aquire public weather datasets (will expand datasets once implemented)
-- Leaning towards API requests instead of acquiring the raw data and storing it in CosmoDB.
-- Will further need to test whether response time for API calls are adequate.
-- Google Earth Engine playground and Docs use Javascript, so we are too.
-- Amphora sounds like a great way to expand this project, but due to limited time we will most likely not pursue its implementation.
-
-## Data Transformation
-
-**Goal** 
-Transform the acquired data to a readable/storable format by users/databases respectively. (Format that suits Amphora and YERC's EPIIC Center).
-
-**Requirements:**
-Transform data if Google Earth Engine does not output the wanted format. Transforming GeoTiff format to either timeseries data or whatever format the user wants. If storing this data, converting to JSON or GeoJSON may be necessary. 
-
-**Notes:**
-If Google Earth Engine's output format aligns with the format of YERC's EPIIC Center and Amphora, this step is somewhat unecessary. If we do end up using other public datasets, we may need to implement a data transformation sub-system as well. Performance will play a large role in how we approach this problem.
-
-_Additional Information:_ 
-- One of the developers was looking into querying only the metadata (which is a subset of the queried dataset) which may help with performance.
-- Once the data is processed and transformed to a specific format, we may want to store those results so that the next query with the same parameters would be fetched from the CosmoDB instead of being processed again by YERC's server. This idea may save processing costs while boosting request performance. We can potentially develop an algorithm that searches first if the requested data is saved in the database; if it is (or if the request is a subset of the stored data), we would simply extract the information from there instead of the query. Of course, big decisions like such must first be tested.
-
-## User Interface
-
-**Goal:**
-Implement a clean modern User Interface to capture/validate input parameters for data acquisition. 
-
-**Requirements:**
- Have a clean simple dashboard that takes parameters as user input. The dash would ressemble [COASTER](http://www.coasterdata.net/)'s website but with a more modern look and less features (as the project scope for now is only weather/climate data). 
-
-**Notes:**
-- the user interface is built using React.js. All developers are new to using this technology so there will be a slight learning curve at the beginning of the project. 
-- The frontend must integrate seamlessly with the backend. The backend is built using express.js.
-
-## Other
-
-If there are any questions or necessary modifications for this project feel free to contact YERC or the developers. This project is open-sourced and the GitHub repository is linked [here](https://github.com/julianryorex/EPIIC-Project). Feel free to open issues or submit pull requests.
-
-
-
-
+## Common Image metadata tags
+*Note that not all images will carry useful metadata outside of their bands, and are very specific to that particular dataset. Outlined here isn't the tag name, but rather what those tags usually represent.*
+- Date image was taken
+  - DATE_ACQUIRED, GenerationDateTime
+- Algorithm used to process the image
+  - ALGORITHM_VERSION, AlgorithmID
+- Coordinates that encompass the image
+  - Lat_Max, Lon_Min
 
