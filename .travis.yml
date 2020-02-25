@@ -7,7 +7,7 @@ cache: npm # we can take this off sometimes to see if it builds without the cach
 branches:
   only:
     - master
-    - dev
+   # - dev
 
 before_script: cd client
 
