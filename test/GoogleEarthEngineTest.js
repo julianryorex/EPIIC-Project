@@ -5,6 +5,7 @@ Not sure how to get running on REACT yet.
 */
 var ee = require('@google/earthengine');
 
+
 // GPM V6 on 2020-1-01, in Bozeman
 var bozemanPoint = ee.Geometry.Point(111, 45);
 
