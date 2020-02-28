@@ -4,8 +4,38 @@
     Will eventually need date strings input from user. For now using placeholders.
 */
 
+// Load client library.
 var ee = require('@google/earthengine');
 
+// Initialize client library and run analysis.
+var initialize = function() {
+    ee.initialize(null, null, function() {
+      precipitation.determinePrecipt();
+    }, function(e) {
+      console.error('Initialization error: ' + e);
+    });
+};
+  
+// Authenticate using an OAuth pop-up.
+ee.data.authenticateViaOauth(YOUR_CLIENT_ID, initialize, function(e) {
+    console.error('Authentication error: ' + e);
+}, null, function() {
+    ee.data.authenticateViaPopup(initialize);
+});
+
+// // Authenticate using one (but not both) of the methods below.
+// ee.data.authenticateViaOauth(YOUR_CLIENT_ID);
+// ee.data.authenticateViaPrivateKey(YOUR_PRIVATE_KEY);
+
+// ee.initialize();
+
+// // Run an Earth Engine script.
+// var image = new ee.Image('srtm90_v4');
+// image.getMap({min: 0, max: 1000}, function(map) {
+//   console.log(map);
+// });
+
+// Analysis function
 function determinePrecipt(/* StartDate, EndDate */){
     var boundingBox = ee.Geometry.Rectangle([-114.3837890625, 43.4611329335764, -107.407470703125, 54709399579075]);
     var boundsFilter = ee.Filter.bounds(boundingBox);
@@ -59,4 +89,7 @@ function determinePrecipt(/* StartDate, EndDate */){
     region: boundingBox
     });
 }
+
+
+
 
