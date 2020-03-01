@@ -1,5 +1,8 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { Route, NavLink, Link } from "react-router-dom";
+
+import About from "../../About.js"
+import Contact from "../../Contact.js"
 
 function Header() {
     return (
@@ -14,7 +17,7 @@ function Banner() {
     return (
       <nav className="banner navbar-expand-md navbar navbar-dark bg-dark sticky-top">
         <li>
-          <NavLink className="navbar-brand mb-0 h1" to="/">
+          <NavLink className="navbar-brand mb-0 h1" to="/Main">
             EPIIC Project
           </NavLink>
           <span className="sr-only">(current)</span>
@@ -33,14 +36,10 @@ function Banner() {
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
             <li>
-              <NavLink className="nav-item nav-link" to="/about">
-                About
-              </NavLink>
+              <Link to="/About">About</Link>>
             </li>
             <li>
-              <NavLink className="nav-item nav-link" to="/contact">
-                Contact
-              </NavLink>
+              <Link to="/Contact">Contact</Link>
             </li>
           </div>
         </div>

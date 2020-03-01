@@ -1,17 +1,17 @@
 #content {
     height: 50vh;
-<<<<<<< HEAD
     padding: 20px; 
+    min-height: 100%; 
+    margin: 0 10% 0 10%; 
 }
-=======
-    /* margin: 0px; */
-    
->>>>>>> 2c0137d32c57e83878c7f1ca24aa74cee81942d2
-
-
 
 label{
     margin: 0px; 
+}
+
+#topform{
+    width: 20%; 
+    margin: 0 40% 0 40%; 
 }
 
 #formleft{
@@ -61,6 +61,7 @@ input[type=submit]{
     position: absolute;
     width: 100%;
     padding-top: 10px;
+    flex: none; 
 }
   
 
