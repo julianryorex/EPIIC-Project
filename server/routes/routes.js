@@ -3,7 +3,7 @@ let router = express.Router();
 
 const auth = require('./authenticate');
 const googleEarth = require('./googleEarth');
-const googleEarthTest = require("./googleEarthTest");
+const googleEarthTest = require("./googleEarthTest"); // testing
 
 
 // routes to the various paths
