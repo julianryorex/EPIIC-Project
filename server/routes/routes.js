@@ -1,16 +1,18 @@
 const express = require("express");
 let router = express.Router();
 
-var auth = require('./authenticate');
-var googleEarth = require('./googleEarth');
+const auth = require('./authenticate');
+const googleEarth = require('./googleEarth');
+const googleEarthTest = require("./googleEarthTest");
 
 
 // routes to the various paths
 router.use("/auth", auth);
 router.use("/google-earth-data", googleEarth);
+router.use("/google-earth-data-test", googleEarthTest); // use this path from front end to request data from API
 
 
-// http://localhost:5000
+// http://localhost:5000/api
 router.get('/', (req, res) => {
     // need an api doc page here
     res.send("Currently in routes.js. Welcome to EPIIC Center's new API! Docs are still in the works...\n");
