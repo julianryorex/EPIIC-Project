@@ -5,8 +5,9 @@ class DatasetForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {dataset: 'AMSR-E',
-                    startDate : '',
-                    endDate : ''};
+                    startDate : '', // eventually use moment.js for dates.
+					endDate : ''};
+					
       this.commonChange = this.commonChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -17,42 +18,35 @@ class DatasetForm extends React.Component {
       });
     }
   
-	// the setState is not working for some reason....
-	// will look into it
     handleSubmit(event) {
 		event.preventDefault();
-
-		fetch(
-			`/api/google-earth-data-test?startDate=${this.state.startDate}&endDate=${this.state.endDate}`,
-			{method: 'GET'}
-		).then(res => res.json())
-		.then(data => {
-			console.log(`Data: ${data}`);
-			this.setState( { 
-				startDate : data.startDate,
-				endDate : data.endDate
-			});
-			console.log(`New changes: ${this.state.startDate} and ${this.state.endDate}`);
-		});
+		this.callAPI();
 		
-    	alert(`Upon submission, startDate is ${this.state.startDate} and endDate is ${this.state.endDate}`);
-    	
+		
 	}
 	
-	// callAPI() {
-	// 	fetch(
-	// 		`/api/google-earth-data-test?startDate=${this.startDate}&endDate=${this.endDate}`,
-	// 		{ method: "GET" }
-	// 	).then(res => res.json())
-	// 			.then(data => {
-	// 				this.setState({
-	// 					startDate: data.startDate,
-	// 					endDate: data.endDate
-	// 				});
-	// 				console.log("Done");
-	// 			}
-	// 				)	
-	// }
+	callAPI() {
+		fetch(
+			`/api/google-earth-data-test?startDate=${this.state.startDate}&endDate=${this.state.endDate}`,
+			{ method: "GET" }
+		)
+			.then(res => res.json())
+			.then(data => {
+				console.log(`Setting new states...`);
+				this.setState({
+					startDate: data.startDate,
+					endDate: data.endDate
+				});
+				console.log(
+					`New changes: ${this.state.startDate} and ${this.state.endDate}`
+				);
+			})
+			.then(() => {
+				alert(
+					`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}`
+				);
+			});
+	}
 
 
     componentDidMount() {
