@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 const routes = require("./routes/routes");
 app.use(express.json());
-// app.use(express.urlencoded({extended: false}));
 
 
 // add api routes here
@@ -16,7 +15,7 @@ app.use(cors())
 app.use('/api', routes);
 
 app.get('/', (req,res) => {
-    res.json()
+    res.json({"msg": "welcome to our backend server."});
 });
 
 

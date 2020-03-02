@@ -17,21 +17,52 @@ class DatasetForm extends React.Component {
       });
     }
   
+	// the setState is not working for some reason....
+	// will look into it
     handleSubmit(event) {
-      alert('You chose dataset ' + this.state.dataset);
-      console.log(`Upon submission, startDate is ${this.state.startDate} and endDate is ${this.state.endDate}`);
-      event.preventDefault();
-    }
+		event.preventDefault();
+
+		fetch(
+			`/api/google-earth-data-test?startDate=${this.state.startDate}&endDate=${this.state.endDate}`,
+			{method: 'GET'}
+		).then(res => res.json())
+		.then(data => {
+			console.log(`Data: ${data}`);
+			this.setState( { 
+				startDate : data.startDate,
+				endDate : data.endDate
+			});
+			console.log(`New changes: ${this.state.startDate} and ${this.state.endDate}`);
+		});
+		
+    	alert(`Upon submission, startDate is ${this.state.startDate} and endDate is ${this.state.endDate}`);
+    	
+	}
+	
+	// callAPI() {
+	// 	fetch(
+	// 		`/api/google-earth-data-test?startDate=${this.startDate}&endDate=${this.endDate}`,
+	// 		{ method: "GET" }
+	// 	).then(res => res.json())
+	// 			.then(data => {
+	// 				this.setState({
+	// 					startDate: data.startDate,
+	// 					endDate: data.endDate
+	// 				});
+	// 				console.log("Done");
+	// 			}
+	// 				)	
+	// }
+
 
     componentDidMount() {
-      fetch(`/api/google-earth-data-test?startDate=${this.startDate}&endDate=${this.endDate}`, 
-        {method: "GET"})
-      .then(res => res.json()
-      .then(data => this.setState({startDate : data.startDate,
-                                endDate : data.endDate}
-      )));
+    //   fetch(`/api/google-earth-data-test?startDate=${this.startDate}&endDate=${this.endDate}`, 
+    //     {method: "GET"})
+    //   .then(res => res.json()
+    //   .then(data => this.setState({startDate : data.startDate,
+    //                             endDate : data.endDate}
+    //   )));
 
-      
     }
   
     render() {
@@ -40,14 +71,14 @@ class DatasetForm extends React.Component {
 				<label className="datasetdropdown">
 					<span>Choose Dataset: </span>
 					<select
-            id="dataset"
+            			id="dataset"
 						value={this.state.value}
 						onChange={this.commonChange}
 					>
 						<option value="AMSR">AMSR-E</option>
-						<option value="CASA">CASA_1km</option>
-						<option value="CASA">CASA_10km</option>
-						<option value="CASA">CASA_500km</option>
+						<option value="CASA-1">CASA_1km</option>
+						<option value="CASA-10">CASA_10km</option>
+						<option value="CASA-500">CASA_500km</option>
 					</select>
 				</label>
 				<div id="topform">
@@ -66,7 +97,7 @@ class DatasetForm extends React.Component {
 						onChange={this.commonChange}
 					/>
 				</div>
-				<div id="formleft">
+				{/* <div id="formleft">
 					<label className="k-form-field">
 						<span>Upper Left Corner</span>
 						<input className="k-textbox" placeholder="Latitude" />
@@ -96,7 +127,7 @@ class DatasetForm extends React.Component {
 						<option value="oranges">All Years</option>
 						<option value="peaches">Per Year</option>
 					</select>
-				</div>
+				</div> */}
 				<input type="submit" value="Submit" />
 			</form>
 		);
