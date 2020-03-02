@@ -35,13 +35,15 @@ function Banner() {
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div className="navbar-nav">
-					<li>
+					<li className="text-decoration-none">
 						<NavLink className="nav-item nav-link" to="/About">
 							About
 						</NavLink>
 					</li>
-					<li>
-						<NavLink className="nav-item nav-link" to="/Contact">Contact</NavLink>
+					<li className="text-decoration-none">
+						<NavLink className="nav-item nav-link" to="/Contact">
+							Contact
+						</NavLink>
 					</li>
 				</div>
 			</div>

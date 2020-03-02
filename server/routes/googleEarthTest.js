@@ -2,10 +2,6 @@ const express = require("express");
 const app = express();
 
 
-// app.get("/", (req, res) => {
-// 	res.send("Inside googleEarthTest.js file.\n");
-// });
-
 
 app.get("/", (req, res) => {
 	const data = {

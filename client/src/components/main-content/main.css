@@ -4,11 +4,6 @@
     min-height: 100%; 
     margin: 0 10% 0 10%; 
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 63ab91cf6ef24b0010aa4286dd57d5e2d24fa470
 
 label{
     margin: 0px; 
@@ -61,13 +56,13 @@ input[type=submit]{
     margin-top: 50px; 
 }
 
-.footer {
+/* .footer {
     bottom: 0; 
     position: absolute;
     width: 100%;
     padding-top: 10px;
     flex: none; 
-}
+} */
   
 
   
