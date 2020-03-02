@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 		endDate: req.query.endDate + " changed"
 	};
     res.json(data);
-    console.log("Received data in backend and sent data back to frontend.");
+    console.log("Received data in backend and sent data back to frontend.\n");
     // send this data to google earth engine
 
 });
