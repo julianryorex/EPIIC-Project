@@ -17,11 +17,28 @@ Once all the dependencies are installed, you are ready to run the web app! Navig
 ### Frontend
 
 Our frontend files are all located inside the client directory. Inside you will find an images directory with all necessary images and ressources for the web app. If you have run through the "Getting Started" step above and installed all dependencies, you should also see a node_modules directory. This is listed in the .gitignore file so it will not be part of any commit.\
- Under, you shall find a public and src directory. Public possesses the index.html file (the markdown for the website) and the src is where all the React lives in. The layout of the src directory should not change, unless new directories are put in place. All new components should live in the components folder, with an additional component folder and a capitalized component.js file inside it. Please respect this format for clarity.
+Under, you shall find a public and src directory. Public possesses the index.html file (the markdown for the website) and the src is where all the React lives in. The layout of the src directory should not change, unless new directories are put in place. All new components should live in the components folder, with an additional component folder and a capitalized component.js file inside it. Please respect this format for clarity.
 
 ### Backend
 
-Since our backend is not quite set yet, we are still figuring out its structure. Any backend related files should exist in the backend folder located in the root directory.
+All backend files are stored inside the server directory at the root. Here is a quick visual overview of the backend structure:
+
+```
+server
+│   node_modules
+│   .gitignore
+│   app.js
+│   package.json
+│   package-lock.json
+│───routes
+    └───authenticate.js
+    └───googleEarth.js
+    └───googleEarthTest.js
+    └───routes.js
+```
+
+In order to get all backend dependencies, navigate to the server directory and run `npm install`. All dependencies will be installed using the package.json file.
+The main backend file is `app.js`; everything will be run through there. For scalability purposes, all routes for  api calls are located in `routes`. All HTTP requests are handled in that directory. You can access the main RESTful api page by sending an HTTP GET request to `http://localhost:5000/api`.
 
 ### Building the Project
 

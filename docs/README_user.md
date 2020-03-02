@@ -18,6 +18,4 @@ Due to the time length of this project, we have decided to expand the current da
 
 ## Current Features
 
-None yet, we are on our zero-feature release. We look forward to adding much more to this section.
-
-(more to come...)
+The only functional feature at the current moment is to send an HTTP GET request from the homepage, taking in parameters, and sending that data to our backend server. The transfered data will then be processed by our google earth engine script, which will eventually call the Google Earth API for the necessary data. Once received, the Google API will send back a confirmation and the user can then download the requested data through their Google Drive.
