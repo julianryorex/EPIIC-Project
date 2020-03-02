@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch} from "react-router-dom"
 
 import Header from './components/header/Header';
 import Main from "./components/main-content/Main";
-import Footer from "./components/footer/footer.js";
+import Footer from "./components/footer/Footer";
 import About from "./About.js";
 import Contact from "./Contact.js";
 import './App.css';

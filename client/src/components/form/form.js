@@ -2,6 +2,7 @@ import React from 'react';
 import '../main-content/main.css';
 
 class DatasetForm extends React.Component {
+
     constructor(props) {
       super(props);
       this.state = {dataset: 'AMSR-E',
@@ -19,10 +20,8 @@ class DatasetForm extends React.Component {
     }
   
     handleSubmit(event) {
-		event.preventDefault();
+		event.preventDefault(); // prevents page from reloading
 		this.callAPI();
-		
-		
 	}
 	
 	callAPI() {
@@ -38,7 +37,7 @@ class DatasetForm extends React.Component {
 					endDate: data.endDate
 				});
 				console.log(
-					`New changes: ${this.state.startDate} and ${this.state.endDate}`
+					`New changes: '${this.state.startDate}' and '${this.state.endDate}'`
 				);
 			})
 			.then(() => {
@@ -50,12 +49,6 @@ class DatasetForm extends React.Component {
 
 
     componentDidMount() {
-    //   fetch(`/api/google-earth-data-test?startDate=${this.startDate}&endDate=${this.endDate}`, 
-    //     {method: "GET"})
-    //   .then(res => res.json()
-    //   .then(data => this.setState({startDate : data.startDate,
-    //                             endDate : data.endDate}
-    //   )));
 
     }
   
