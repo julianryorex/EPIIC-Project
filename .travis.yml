@@ -7,14 +7,13 @@ cache: npm # we can take this off sometimes to see if it builds without the cach
 branches:
   only:
     - master
-   # - dev
+    - dev
 
-before_script: cd client
 
 script:
-  - npm install
-# - npm test
+  - cd client && npm install
   - npm run build
+  - cd ../server && npm install
 
 
 # deploy:
