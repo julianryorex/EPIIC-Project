@@ -1,8 +1,10 @@
 #content {
-    height: 50vh;
-    padding: 20px; 
+    top: 55px; 
+    margin-top: 40px; 
+    bottom: 90px; 
+    height: auto; 
+    width: 100%;
     min-height: 100%; 
-    margin: 0 10% 0 10%; 
 }
 
 label{
@@ -13,6 +15,7 @@ label{
     width: 20%; 
     margin: 0 40% 0 40%; 
 }
+
 
 #formleft{
     float: left;
@@ -49,11 +52,8 @@ label{
     margin: 5px 0px 5px 0px; 
   }
 
-input[type=submit]{
-    width: 80%; 
-    margin: 20px; 
-    width: 50%; 
-    margin-top: 50px; 
+[type=submit]{
+    margin-top: 20px; 
 }
 
 .footer {

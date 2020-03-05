@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment'; 
 import '../main-content/main.css';
 
 class DatasetForm extends React.Component {
@@ -50,7 +51,8 @@ class DatasetForm extends React.Component {
 
     componentDidMount() {
 
-    }
+	}
+	
   
     render() {
       return (
@@ -69,19 +71,27 @@ class DatasetForm extends React.Component {
 					</select>
 				</label>
 				<div id="topform">
+					<span>Date 1</span>
 					<input
 						type="text"
 						className="k-textbox"
 						id="startDate"
-						placeholder="Date 1"
+						data-parse="date"
+						placeholder="MM/DD/YYYY"
+						pattern="\d{2}\/\d{2}/\d{4}"
 						onChange={this.commonChange}
+						required
 					/>
+					<span>Date 2</span>
 					<input
 						type="text"
 						className="k-textbox"
 						id="endDate"
-						placeholder="Date 2"
+						data-parse="date"
+						placeholder="MM/DD/YYYY"
+						pattern="\d{2}\/\d{2}/\d{4}"
 						onChange={this.commonChange}
+						required
 					/>
 				</div>
 				{/* <div id="formleft">
