@@ -1,5 +1,5 @@
 import React from 'react';
-import Moment from 'react-moment'; 
+// import Moment from 'react-moment'; 
 import '../main-content/main.css';
 
 class DatasetForm extends React.Component {
@@ -58,7 +58,7 @@ class DatasetForm extends React.Component {
       return (
 			<form onSubmit={this.handleSubmit}>
 				<label className="datasetdropdown">
-					<span>Choose Dataset: </span>
+					<span>Choose Dataset:</span>
 					<select
             			id="dataset"
 						value={this.state.value}
