@@ -9,6 +9,7 @@ var ee = require('@google/earthengine');
 
 // Initialize client library and run analysis.
 var initialize = function() {
+    
     ee.initialize(null, null, function() {
       precipitation.determinePrecipt();
     }, function(e) {
