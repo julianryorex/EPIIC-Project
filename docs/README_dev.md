@@ -40,6 +40,16 @@ server
 In order to get all backend dependencies, navigate to the server directory and run `npm install`. All dependencies will be installed using the package.json file.
 The main backend file is `app.js`; everything will be run through there. For scalability purposes, all routes for  api calls are located in `routes`. All HTTP requests are handled in that directory. You can access the main RESTful api page by sending an HTTP GET request to `http://localhost:5000/api`.
 
+### UML Diagrams of Project
+
+Here is a Component Diagram of the current Web Application. One one use case has been implemented and more are in the works.
+
+![Component Diagram](./componentDiagram.jpg)
+
+In order to understand a basic use case, a sequence diagram is attached below. Descriptions of design choices can also be found below.
+
+![Component Diagram](./sequenceDiagram.jpg)
+
 ### Building the Project
 
 Any build related files should live in the build directory. We do not have any files in there yet.
@@ -50,6 +60,6 @@ In the docs directory, there should be all the documentation for this project (i
 
 ### Testing
 
-All testing related files should exist under the test directory. We are using [Travis CI](https://travis-ci.org/) for continuous integration, so all .yaml files should be in test.
+All testing related files should exist under the test directory. We are using [Travis CI](https://travis-ci.org/) for continuous integration, so all .yml files should be in test.
 
 (more to come...)
