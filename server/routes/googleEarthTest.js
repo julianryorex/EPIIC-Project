@@ -22,7 +22,21 @@ app.get("/", (req, res) => {
 	};
 
 
-	// Retrieves client_id.json, parses it, and returns the client ID.
+	
+
+	// Authenticate using an OAuth pop-up using existing credentials.
+	ee.data.authenticateViaOauth(client_id, determinePrecipt(req.query.startDate, req.query.endDate), function(e) {
+		console.error('Authentication errorrrrrrr: ' + e);
+	}, null, onFailedLogin());
+
+	res.json(data);
+	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);
+	// send this data to google earth engine
+
+});
+
+
+// Retrieves client_id.json, parses it, and returns the client ID.
 	function returnClientId(){
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
@@ -73,16 +87,5 @@ app.get("/", (req, res) => {
 			region: boundingBox
 		});
 	}
-
-	// Authenticate using an OAuth pop-up using existing credentials.
-	ee.data.authenticateViaOauth(client_id, determinePrecipt(req.query.startDate, req.query.endDate), function(e) {
-		console.error('Authentication error: ' + e);
-	}, null, onFailedLogin());
-
-	res.json(data);
-	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);
-	// send this data to google earth engine
-
-});
 
 module.exports = app;
