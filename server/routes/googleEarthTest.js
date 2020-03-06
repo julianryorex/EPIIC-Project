@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
-var client_id = require('./client_id.json')
 var ee = require('@google/earthengine');
+// This is highly unsecure, and a workaround until things are fixed
+var client_id = "683180324319-3q2lk30hu7qao76g6squdcfpi6s7joe0.apps.googleusercontent.com";
 
 app.get("/", (req, res) => {
 
@@ -20,17 +21,34 @@ app.get("/", (req, res) => {
 		endDate: req.query.endDate + " changed"
 	};
 
+
+	// Retrieves client_id.json, parses it, and returns the client ID.
+	function returnClientId(){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var c_id = JSON.parse(this.responseText);
+			// document.getElementById("googleEarthTest").innerHTML = c_id.client_id;
+			// client_id = c_id.client_id;
+			return c_id.client_id;
+			}
+		};
+		xmlhttp.open("GET", "client_id.json", true);
+		xmlhttp.send();
+	}
 	
 	// Prompts the user to log in, if the initial authentication failed.
-	var onFailedLogin = function() {
+	function onFailedLogin(){
 		ee.data.authenticateViaPopup(function() {
 			determinePrecipt(req.query.startDate, req.query.endDate);
 		});
-	};
+	}
 	
 	// Analysis function
 	function determinePrecipt(StartDate, EndDate){
+		// init Earth Engine
 		ee.initialize();
+
 		var boundingBox = ee.Geometry.Rectangle([-114.3837890625, 43.4611329335764, -107.407470703125, 54709399579075]);
 		var boundsFilter = ee.Filter.bounds(boundingBox);
 
@@ -56,8 +74,10 @@ app.get("/", (req, res) => {
 		});
 	}
 
-	// Attempt to authenticate using existing credentials.
-	ee.data.authenticate(client_id, determinePrecipt(req.query.startDate, req.query.endDate), null, null, onFailedLogin);
+	// Authenticate using an OAuth pop-up using existing credentials.
+	ee.data.authenticateViaOauth(client_id, determinePrecipt(req.query.startDate, req.query.endDate), function(e) {
+		console.error('Authentication error: ' + e);
+	}, null, onFailedLogin());
 
 	res.json(data);
 	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);
