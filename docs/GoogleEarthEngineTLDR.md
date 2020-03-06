@@ -43,9 +43,9 @@ You can find these steps in a more verbose and comprehensive manner via Google's
 
     ```javascript
     var collection = ee.ImageCollection('imageCollectionName')
-    .filter(ee.Filter.(filterArgs))
-    .filter(ee.Filter.eq(filterArgs2))
-    .filterDate('2019-01-01', '2020-01-01');
+      .filter(ee.Filter.(filterArgs))
+      .filter(ee.Filter.eq(filterArgs2))
+      .filterDate('2019-01-01', '2020-01-01');
     ```
 
 - **ee.Map**

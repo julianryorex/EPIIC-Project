@@ -69,7 +69,7 @@ app.get("/", (req, res) => {
 		Export.image.toDrive({
 			image: precip,
 			description: 'Precipitation',
-			scale: 100,
+			scale: 1000,
 			region: boundingBox
 		});
 	}
