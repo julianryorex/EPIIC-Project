@@ -48,7 +48,7 @@ Here is a Component Diagram of the current Web Application. One one use case has
 
 In order to understand a basic use case, a sequence diagram is attached below. Descriptions of design choices can also be found below.
 
-![Component Diagram](./sequenceDiagram.jpg)
+![Sequence Diagram](./sequenceDiagram.jpg)
 
 ### Building the Project
 
