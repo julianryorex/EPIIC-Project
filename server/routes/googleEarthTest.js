@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 		// Make a composite image out of the filtered set, and mask out anything above a certain amount.
 		var precip = dataset.select('precipitationCal').mosaic();
 		var mask = precip.lt(10);
-		var precipitation = precip.updateMask(mask);
+		var precip = precip.updateMask(mask);
 
 		// Create a geometry representing an export region.
 		var geometry = ee.Geometry.Rectangle([116.2621, 39.8412, 116.4849, 40.01236]);
