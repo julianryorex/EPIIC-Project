@@ -27,7 +27,7 @@ class DatasetForm extends React.Component {
 	
 	callAPI() {
 		fetch(
-			`http://localhost:5000/api/google-test?startDate=${this.state.startDate}&endDate=${this.state.endDate}`,
+			`http://localhost:8080/api/google-test?startDate=${this.state.startDate}&endDate=${this.state.endDate}`,
 			{ method: "GET" }
 		)
 			.then(res => res.json())
