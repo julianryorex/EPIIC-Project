@@ -30,6 +30,7 @@ There are several ways that OAuth2 can be implemented for a Google App. For our 
 2. Service Accounts
     - This is an account that belongs to the application, rather then a user. Allows anyone to use the application, not just someone with an EE account.
     - It identifies itself using a private key .json file. It obviously contains sensitive information.
+    - This account needs to be white-listed by Google before it can be used to verify and use APIs.
 
 For the interim, we will be implementing the Client Side Authentication, as it is relatively simpler, and requires less setup.
 
@@ -47,9 +48,57 @@ Earth Engine already has API calls to handle the nitty gritty of passing these t
 
 - Thankfully EE allows us to bypass most of this through two function calls that automate most of the the above.
 
+### Service Account APIs
+
+- ``ee.data.authenticateViaPrivateKey()``
+
+    Server-side authentication to allow access to the Earth Engine APIs. No human interaction necessary! Authentication Tokens will be refreshed as needed. This function has to be called before ``ee.initialize()``. We can also manually check & call for tokens via: ``ee.data.getAuthToken()`` and ``ee.data.refreshAuthToken()``
+
+    ```javascript
+    ee.data.authenticateViaPrivateKey(
+        privateKey,     // JSON content of private key
+        success,        // What to do on a successful authentication
+        error,          // What to do on a failed authentication, passing an error message
+        extraScopes     // Extra OAuth scopes to request, usually null
+    );
+    ```
+- A typical service side authentication looks like this:
+
+    ```javascript
+    const ee = require('@google/earthengine');
+
+    // Private key, in `.json` format, for an Earth Engine service account.
+    const PRIVATE_KEY = require('./privatekey.json');
+    const PORT = process.env.PORT || 3000;
+
+    console.log('Authenticating server-side EE API calls via private key...');
+
+    ee.data.authenticateViaPrivateKey(
+        PRIVATE_KEY,
+        () => {
+        console.log('Authentication succeeded.');
+        ee.initialize(
+            null, null,
+            () => {
+                console.log('Successfully initialized the EE client library.');
+                app.listen(PORT);
+                console.log(`Listening on port ${PORT}`);
+            },
+            (err) => {
+                console.log(err);
+                console.log(
+                    `Service account not made and/or approved.`);
+            });
+        },
+        (err) => {
+        console.log(err);
+        });
+    ```
+
+### Client Side Authentication APIs
 - ``ee.data.authenticateViaOauth()``
 
-    This is what you initially use to attempt authorization. Definately call this function before doing ``ee.initialize``.
+    This is what you initially use to attempt authorization. Definately call this function before doing ``ee.initialize()``.
 
     ```javascript
     ee.data.authenticateViaOauth(

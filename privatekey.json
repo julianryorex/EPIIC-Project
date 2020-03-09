@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "yerc-epiic-270317",
+  "private_key_id": "6e5fda2e73d2f3a147cdcb562428cb327362ece0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFVweT4xt+kZ2I\nrzanY15F6aDgM7EIcfK2KHFTz/FdusfQoih9vFiCY309dPcfLkiYYoQMfEX+95ao\nGvY9T7WbhyIMzQGl7dni27vDt0aVr/alFgNGj8KKZHB/VIi8dT1wFqBy+v1UNZn6\nyuXWCSH1HtiKmHwHRrug7bFMOea32J2DyPWpTDXh2yLt2ZtX1Cm4Jq09D1mpThZg\nyHIJ3K1EiDwJBULqvyVsc/YXOm5AmHZtkIn5Wl87QLKrUOnGR8lWV5i93tnkNPWd\nEguN7xwPe/QGPy/CF3F+EgTn97HJAPfx2PgFWD2UovpRTISHFkN3YH95q9SU4qt9\nc1rC98DvAgMBAAECggEAUVdJptIeY6HW6t+56e4iDjQ6HSABcUcysZXi/JaCWU2j\njiJBCW7Ilto2Zc4gDIix4Kn+3vych3d7cIhIhkYkR9rAFMGt07zCKmnDL+2MGSgi\nRLLZn8yi9hNncXyhLfkvXVPeR/af1AWSFhdq/Dngdt6DiEFJImCr9y3yfkaBjLZy\nDxL2nS0z3HsCVvcTyBvpWLIYQhnmlNj/GFMtcgLHQJpUbol38jqF1L5LC9TTSEZ+\njw0hh9F0+7k69aGZ9z2J/LPQpw/C7Hmgxxgjn7v7GneDPIJmfedt1P1RgX8bfEvV\nz8TFuhIB9N+x2XfVqkI75tyLGXYVrZ8naDUGi6JanQKBgQDiA/rfTP1PI+yIUSG7\nwUr44vVqjdSovETIl9/X/nh2zJlGFIQPNaBm1J0WG4NBD+Rbjg+0Q1mNX9XbDimT\nNx0w1BCUEVB5LEjR9REzh9mKcL/Y6IRKtemJUX5Fjw6Yhzfk74vaYT2s+zEXQo8a\ntugf6oOjLXZRps5jOFu/LgrpkwKBgQDfhSi/44KI9oweXONwvJ8AfHUegBwA8fff\nNjwF37OY0brDNVmqSIubp5MGALYDuUtASWxLDqTfoAZK0bh4AkfEilDJEQZQy5dF\nzIIs9dSlK8uFzORjfPZ5qDk4jUcnzzacM+uwrwTNHna3zKglcT5ApwThle59zRZo\n2PaVaS50tQKBgEF/RcRQW1gD4Rff6xat/TwDCXvHfkknxgcbfBLr+5zxzbkxWNPP\nhpxGIP+3GWJRaKvfj0199wWxMBg7EnFHF35+9g7ytY9n9fJiQoncZH5qDi6dsziz\nXuocY6tkuaYaCWiewriWVXk7kg5bi30CZGJbY6p2EkO3QzgdrPjKLv9hAoGBAJOx\nQQPKKO6nOl61sfNELyv7EMhejiJxv/9VrsOS1PEdY/Koxd6moNjxGUzWG27KeNa5\nrTzLKFY7Pu0hNmrV1uYfHtI81Zd9by9HupxKs3+QOKLoh+DVKWepqGWdtG6xlLwR\n8qKEgv+mKXu5V0GmWiQOOEN29mdZpH0TH5wKLBAhAoGAbL1vwnTjEiyVIFc34Hx2\nvcsUyIcOvSCyRJRY76dx8Hvm1164iACCULZpeFGp4a9HjTFgtIMy/LxOa9f6pfJl\nld1poBmc5gzhuoCu8p+detb/NNMd9u/VRTKlP4nq/ybXy3Y9+dNi98d5VqwKGtpG\nP10VdKdfTqNI8qEAlFDrs68=\n-----END PRIVATE KEY-----\n",
+  "client_email": "yerc-earthengine@yerc-epiic-270317.iam.gserviceaccount.com",
+  "client_id": "101127763986744293313",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/yerc-earthengine%40yerc-epiic-270317.iam.gserviceaccount.com",
+  "api_key": "AIzaSyDxIS0m2KBQC82PwKz57wO2RWzDnzdJiYg"
+}

@@ -1,11 +1,8 @@
 const express = require("express");
 const app = express();
 var ee = require('@google/earthengine');
-// This is highly unsecure, and a workaround until things are fixed
-var client_id = "683180324319-3q2lk30hu7qao76g6squdcfpi6s7joe0.apps.googleusercontent.com";
 
 app.get("/", (req, res) => {
-
 	if (
 		Object.keys(req.query).length < 2 ||
 		Object.keys(req.query).length > 2) {
@@ -21,13 +18,10 @@ app.get("/", (req, res) => {
 		endDate: req.query.endDate + " changed"
 	};
 
-
-	
-
-	// Authenticate using an OAuth pop-up using existing credentials.
-	ee.data.authenticateViaOauth(client_id, determinePrecipt(req.query.startDate, req.query.endDate), function(e) {
-		console.error('Authentication errorrrrrrr: ' + e);
-	}, null, onFailedLogin());
+	// // Authenticate using an OAuth pop-up using existing credentials.
+	// ee.data.authenticateViaOauth(client_id, determinePrecipt(req.query.startDate, req.query.endDate), function(e) {
+	// 	console.error('Authentication errorrrrrrr: ' + e);
+	// }, null, onFailedLogin());
 
 	res.json(data);
 	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);
@@ -35,7 +29,8 @@ app.get("/", (req, res) => {
 
 });
 
-
+// Commenting out all this authentication Google stuff to make deploying easier
+/*
 // Retrieves client_id.json, parses it, and returns the client ID.
 	function returnClientId(){
 		var xmlhttp = new XMLHttpRequest();
@@ -87,5 +82,5 @@ app.get("/", (req, res) => {
 			region: boundingBox
 		});
 	}
-
+*/
 module.exports = app;
