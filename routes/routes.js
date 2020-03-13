@@ -4,10 +4,11 @@ let router = express.Router();
 const auth = require('./authenticate');
 const googleEarth = require('./googleEarth');
 const googleEarthTest = require("./googleEarthTest"); // testing
+const getBandData = require("./getBandData"); // testing
 
 
 // routes to the various paths
-router.use("/auth", authenticate);
+router.use("/auth", auth);
 router.use("/google-earth-data", googleEarth);
 router.use("/google-test", googleEarthTest); // use this path from front end to request data from API
 router.use("/get-band-data", getBandData);

@@ -6,8 +6,7 @@
 const express = require("express");
 const app = express();
 var ee = require('@google/earthengine');
-const PRIVATE_KEY = require('./privatekey.json');
-const PORT = process.env.PORT || 5000;
+// const PRIVATE_KEY = require('./privatekey.json');
 
 app.get("/", (req, res) => {
 	res.send("Inside authenticate.js file.\n");
