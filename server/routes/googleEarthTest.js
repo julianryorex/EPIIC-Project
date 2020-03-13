@@ -18,11 +18,6 @@ app.get("/", (req, res) => {
 		endDate: req.query.endDate + " changed"
 	};
 
-	// // Authenticate using an OAuth pop-up using existing credentials.
-	// ee.data.authenticateViaOauth(client_id, determinePrecipt(req.query.startDate, req.query.endDate), function(e) {
-	// 	console.error('Authentication errorrrrrrr: ' + e);
-	// }, null, onFailedLogin());
-
 	res.json(data);
 	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);
 	// send this data to google earth engine
@@ -30,51 +25,28 @@ app.get("/", (req, res) => {
 });
 
 // Commenting out all this authentication Google stuff to make deploying easier
-/*
-// Retrieves client_id.json, parses it, and returns the client ID.
-	function returnClientId(){
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var c_id = JSON.parse(this.responseText);
-			// document.getElementById("googleEarthTest").innerHTML = c_id.client_id;
-			// client_id = c_id.client_id;
-			return c_id.client_id;
-			}
-		};
-		xmlhttp.open("GET", "client_id.json", true);
-		xmlhttp.send();
-	}
-	
-	// Prompts the user to log in, if the initial authentication failed.
-	function onFailedLogin(){
-		ee.data.authenticateViaPopup(function() {
-			determinePrecipt(req.query.startDate, req.query.endDate);
-		});
-	}
-	
-	// Analysis function
-	function determinePrecipt(StartDate, EndDate){
+/*	
+	// Precipitation Analysis function
+	function determinePrecipt(StartDate, EndDate, xMin, yMin, xMax, yMax){
 		// init Earth Engine
 		ee.initialize();
 
-		var boundingBox = ee.Geometry.Rectangle([-114.3837890625, 43.4611329335764, -107.407470703125, 54709399579075]);
 		var boundsFilter = ee.Filter.bounds(boundingBox);
+		var boundingBox = ee.Geometry.Rectangle([xMin, yMin, xMax, yMax]);
 
-		// Init 1st image composite (1st Week of Jan, 2019)
+		// Init 1st image composite
 		var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
-			.filterBounds(boundingBox)
-			.filter(ee.Filter.date(StartDate, EndDate));
+						.filterBounds(boundingBox)
+						.filter(ee.Filter.date(StartDate, EndDate)
+						.select('precipitationCal');
+						);
 
 		// Make a composite image out of the filtered set, and mask out anything above a certain amount.
-		var precip = dataset.select('precipitationCal').mosaic();
+		var precip = dataset.mosaic();
 		var mask = precip.lt(10);
 		var precip = precip.updateMask(mask);
 
-		// Create a geometry representing an export region.
-		var geometry = ee.Geometry.Rectangle([116.2621, 39.8412, 116.4849, 40.01236]);
-
-		// Export the image, specifying scale and region.
+		// Export the Gtiff, specifying scale and region.
 		Export.image.toDrive({
 			image: precip,
 			description: 'Precipitation',

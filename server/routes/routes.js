@@ -7,10 +7,10 @@ const googleEarthTest = require("./googleEarthTest"); // testing
 
 
 // routes to the various paths
-router.use("/auth", auth);
+router.use("/auth", authenticate);
 router.use("/google-earth-data", googleEarth);
 router.use("/google-test", googleEarthTest); // use this path from front end to request data from API
-
+router.use("/get-band-data", getBandData);
 
 // http://localhost:5000/api
 router.get('/', (req, res) => {

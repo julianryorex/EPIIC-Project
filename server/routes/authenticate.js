@@ -1,39 +1,47 @@
+/*
+	Planning on using this as a full fledged authentication backend script to completely check all authentication 
+*/
+
+
 const express = require("express");
 const app = express();
 var ee = require('@google/earthengine');
+const PRIVATE_KEY = require('./privatekey.json');
+const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
 	res.send("Inside authenticate.js file.\n");
-	
-// Commenting out all this authentication Google stuff to make deploying easier
-/*
-	// Authenticates via a service account
-	ee.data.authenticateViaPrivateKey('privatekey.json');
-	ee.initialize();
-*/	
+	// Commenting out all this authentication Google stuff to make deploying easier
+	/*
+	console.log('Authenticating server-side EE API calls via private key...');
+
+	ee.data.authenticateViaPrivateKey(
+		PRIVATE_KEY,
+		() => {
+		console.log('Authentication succeeded!');
+		// Attempt to initialize Earth Engine.
+		ee.initialize(
+			null, null,
+			// On a successful initialize
+			() => {
+				console.log('Successfully initialized the EE client library.');
+				app.listen(PORT);
+				console.log(`Listening on port ${PORT}`);
+			},
+			// On a failure to initialize
+			(err) => {
+				console.log(err);
+				console.log(
+					`Initialization failed.`);
+			});
+		},
+		// When the authentication failed.
+		(err) => {
+		console.log(err);
+		console.log('Authentication failed');
+		});
+	});
+	*/
 });
 
-
-// Commenting out all this authentication Google stuff to make deploying easier
-/*
-// Retrieves client_id.json, parses it, and returns the client ID.
-function returnClientId(){
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		var c_id = JSON.parse(this.responseText);
-		// document.getElementById("googleEarthTest").innerHTML = c_id.client_id;
-		// client_id = c_id.client_id;
-		return c_id.client_id;
-		}
-	};
-	xmlhttp.open("GET", "client_id.json", true);
-	xmlhttp.send();
-}
-
-// Prompts the user to log in, if the initial authentication failed.
-var onFailedLogin = function() {
-	ee.data.authenticateViaPopup();
-};
-*/
 module.exports = app;
