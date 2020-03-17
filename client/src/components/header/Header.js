@@ -21,8 +21,8 @@ function Banner() {
 				<img
 					src="//static1.squarespace.com/static/5c08491db10598331390f84a/t/5c0ff31a575d1fa8aa95d76d/1584398124749/?format=1500w"
 					alt="YERC"
-					width="90"
-					height="60"
+					width="80"
+					height="50"
 				></img>
 				&nbsp;&nbsp;EPIIC Project
 			</NavLink>
