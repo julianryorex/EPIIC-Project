@@ -14,17 +14,17 @@ function Header() {
 function Banner() {
     return (
 		<nav className="banner navbar-expand-md navbar navbar-dark bg-dark sticky-top">
-			{/* <a class="navbar-brand" href="#"> // for YERC
-				<img className='logo'
-					src="https://images.squarespace-cdn.com/content/v1/5c08491db10598331390f84a/1548706026875-9D52X7YA5B7CSSXEERD1/ke17ZwdGBToddI8pDm48kFwLpwhcqxzfNuBZPTq0g3kUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dkPRDYBYuFCljTJGkxECrqXbelgZhhOaZvxWxj4cwWJiCjLISwBs8eEdxAxTptZAUg/favicon.ico"
-					alt=""
-				/>
-			</a> */}
 			<NavLink
 				className="text-decoration-none navbar-brand mb-0 h1"
 				to="/"
 			>
-				EPIIC Project
+				<img
+					src="//static1.squarespace.com/static/5c08491db10598331390f84a/t/5c0ff31a575d1fa8aa95d76d/1584398124749/?format=1500w"
+					alt="YERC"
+					width="90"
+					height="60"
+				></img>
+				&nbsp;&nbsp;EPIIC Project
 			</NavLink>
 			<span className="sr-only">(current)</span>
 			<button

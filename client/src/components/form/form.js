@@ -7,7 +7,7 @@ class DatasetForm extends React.Component {
       super(props);
       this.state = {
 			dataset: "AMSR-E",
-			startDate: "", // eventually use moment.js for dates.
+			startDate: "", 
 			endDate: ""
 		};
 					
@@ -65,9 +65,6 @@ class DatasetForm extends React.Component {
 						value={this.state.value}
 						onChange={this.commonChange}
 					>
-						<option disabled selected>
-							Dataset
-						</option>
 						<option value="AMSR">AMSR-E</option>
 						<option value="CASA-1">CASA_1km</option>
 						<option value="CASA-10">CASA_10km</option>
@@ -80,7 +77,6 @@ class DatasetForm extends React.Component {
 						<span>Date 1:&nbsp;&nbsp;</span>
 						<input
 							type="date"
-							id="startDate"
 							data-parse="date"
 							onChange={this.commonChange}
 							required
@@ -90,14 +86,19 @@ class DatasetForm extends React.Component {
 						<span>Date 2:&nbsp;&nbsp;</span>
 						<input
 							type="date"
-							id="endDate"
 							data-parse="date"
 							onChange={this.commonChange}
 							required
 						/>
 					</div>
 				</div>
-				<button type="submit" value="Submit" className="btn btn-outline-secondary">Submit</button>
+				<button
+					type="submit"
+					value="Submit"
+					className="btn btn-outline-secondary"
+				>
+					Submit
+				</button>
 				{/* <input type="submit"  /> */}
 			</form>
 		);

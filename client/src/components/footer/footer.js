@@ -16,6 +16,7 @@ function Banner() {
 	return (
 		<nav className="footer bg-dark text-white text-center">
 			<p>Work in Progress by: Julian, Michaela, and Norman...</p>
+			<p>Powered by <a id="YERC-footer" href="https://www.yellowstoneresearch.org/">YERC</a>.</p>
 			<Clock />
 		</nav>
 	);

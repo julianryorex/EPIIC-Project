@@ -7,7 +7,17 @@
   padding: 0;
   min-width: 100%;
   position: relative;
-  min-height: 100vh;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+#YERC-footer {
+  color: white;
+}
+#YERC-footer:hover {
+ font-weight: bold;
 }
 
 
