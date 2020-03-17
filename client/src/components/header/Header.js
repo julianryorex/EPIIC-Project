@@ -6,7 +6,7 @@ function Header() {
     return (
     	<div>
     		<Banner />   
-			</div>
+		</div>
     );
 }
 
@@ -22,7 +22,7 @@ function Banner() {
 			</a> */}
 			<NavLink
 				className="text-decoration-none navbar-brand mb-0 h1"
-				to="/Main"
+				to="/"
 			>
 				EPIIC Project
 			</NavLink>

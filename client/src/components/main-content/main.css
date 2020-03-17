@@ -11,46 +11,6 @@ label{
     margin: 0px; 
 }
 
-#topform{
-    width: 20%; 
-    margin: 0 40% 0 40%; 
-}
-
-
-#formleft{
-    float: left;
-    width: 300px;
-    height: 200px;
-    margin: 20px;  
-    margin-left: 200px; 
-    text-align: left;  
-}
-
-.k-textbox{
-    width: 100%; 
-    margin: 5px 0px 5px 0px; 
-}
-
-#formright{
-    float: right; 
-    width: 300px;
-    height: 200px;
-    margin: 20px; 
-    margin-right: 200px; 
-    text-align: left; 
-}
-
-.datasetdropdown{
-    width: 100%;
-    margin: auto;
-    text-align: center; 
-    padding: 20px;
-}
-
-.k-form-field {
-    width: 100%;
-    margin: 5px 0px 5px 0px; 
-  }
 
 [type=submit]{
     margin-top: 20px; 

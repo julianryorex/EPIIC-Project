@@ -1,17 +1,18 @@
 import React from 'react';
 // import Moment from 'react-moment'; 
-import '../main-content/main.css';
-
+import "./form.css";
 class DatasetForm extends React.Component {
 
     constructor(props) {
       super(props);
-      this.state = {dataset: 'AMSR-E',
-                    startDate : '', // eventually use moment.js for dates.
-					endDate : ''};
+      this.state = {
+			dataset: "AMSR-E",
+			startDate: "", // eventually use moment.js for dates.
+			endDate: ""
+		};
 					
       this.commonChange = this.commonChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+	  this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     commonChange(event) {
@@ -58,74 +59,46 @@ class DatasetForm extends React.Component {
       return (
 			<form onSubmit={this.handleSubmit}>
 				<label className="datasetdropdown">
-					<span>Choose Dataset:</span>
+					<span>Choose Dataset:&nbsp;&nbsp;</span>
 					<select
-            			id="dataset"
+						id="dataset"
 						value={this.state.value}
 						onChange={this.commonChange}
 					>
+						<option disabled selected>
+							Dataset
+						</option>
 						<option value="AMSR">AMSR-E</option>
 						<option value="CASA-1">CASA_1km</option>
 						<option value="CASA-10">CASA_10km</option>
 						<option value="CASA-500">CASA_500km</option>
 					</select>
 				</label>
-				<div id="topform">
-					<span>Date 1</span>
-					<input
-						type="text"
-						className="k-textbox"
-						id="startDate"
-						data-parse="date"
-						placeholder="MM/DD/YYYY"
-						pattern="\d{2}\/\d{2}/\d{4}"
-						onChange={this.commonChange}
-						required
-					/>
-					<span>Date 2</span>
-					<input
-						type="text"
-						className="k-textbox"
-						id="endDate"
-						data-parse="date"
-						placeholder="MM/DD/YYYY"
-						pattern="\d{2}\/\d{2}/\d{4}"
-						onChange={this.commonChange}
-						required
-					/>
+
+				<div className="row">
+					<div className="date-form col-xl-12">
+						<span>Date 1:&nbsp;&nbsp;</span>
+						<input
+							type="date"
+							id="startDate"
+							data-parse="date"
+							onChange={this.commonChange}
+							required
+						/>
+					</div>
+					<div className="date-form col-xl-12">
+						<span>Date 2:&nbsp;&nbsp;</span>
+						<input
+							type="date"
+							id="endDate"
+							data-parse="date"
+							onChange={this.commonChange}
+							required
+						/>
+					</div>
 				</div>
-				{/* <div id="formleft">
-					<label className="k-form-field">
-						<span>Upper Left Corner</span>
-						<input className="k-textbox" placeholder="Latitude" />
-						<input className="k-textbox" placeholder="Longitude" />
-					</label>
-					<label className="k-form-field">
-						<span>Lower Right Corner</span>
-						<input className="k-textbox" placeholder="Latitude" />
-						<input className="k-textbox" placeholder="Longitude" />
-					</label>
-				</div>
-				<div id="formright">
-					<label for="Variables">Variables</label>
-					<select id="Variables" className="k-form-field">
-						<option value="oranges">Atmospheric Water Vapor</option>
-						<option value="peaches">Open Water Fraction</option>
-						<option value="bananas">Vegetation Opacity</option>
-					</select>
-					<label for="summarystat">Summary Statistic</label>
-					<select id="summarystat" className="k-form-field">
-						<option value="oranges">Mean</option>
-						<option value="peaches">Std Dev</option>
-						<option value="bananas">Range</option>
-					</select>
-					<label for="summby">Summarize By</label>
-					<select id="summby" className="k-form-field">
-						<option value="oranges">All Years</option>
-						<option value="peaches">Per Year</option>
-					</select>
-				</div> */}
-				<input type="submit" value="Submit" />
+				<button type="submit" value="Submit" className="btn btn-outline-secondary">Submit</button>
+				{/* <input type="submit"  /> */}
 			</form>
 		);
     }
