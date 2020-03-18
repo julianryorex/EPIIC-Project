@@ -3,17 +3,17 @@ import {
 	Map,
 	GoogleApiWrapper,
 	Marker,
-	DrawingManager
+	// DrawingManager
 } from "google-maps-react";
 
 
 export class MapContainer extends React.Component {
 	constructor(props) {
         super(props);
-        const mapStyles = {
-			width: "10%",
-			height: "30%"
-		};
+        // const mapStyles = {
+		// 	width: "10%",
+		// 	height: "30%"
+		// };
 
 		this.state = {
 			stores: [

@@ -1,7 +1,7 @@
 import React from "react";
 import './main.css';
 import DatasetForm from '../form/form.js'
-import { MapContainer } from "../maps/MapContainer";
+// import { MapContainer } from "../maps/MapContainer";
 
 function Main() {
   return (
