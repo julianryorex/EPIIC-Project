@@ -1,7 +1,6 @@
 import React from "react";
 import errorImage from "../../assets/error/error-icon.png"
 import "./error.css"
-import Main from "../main-content/Main"
 class Error extends React.Component {
 
     constructor(props) {
@@ -17,7 +16,7 @@ class Error extends React.Component {
         return (
             <div>
                 <div className="image-div">
-                    <img id="error-image"src={errorImage}></img>
+                    <img alt="404 error message" id="error-image" src={errorImage}></img>
                 </div>
                 <div>
                     <br />Something is wrong here...<br />
