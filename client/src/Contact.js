@@ -6,7 +6,7 @@ function Contact(){
             <h1>Contact Page</h1>
             <p>Under Construction</p>
         </div>
-    )
+    );
 }
 
 export default Contact; 

@@ -1,0 +1,17 @@
+#error-image {
+    width: 30%;
+    height: 30%;
+}
+
+
+.image-div {
+    padding: 2%;
+}
+
+.home-btn {
+    padding: 1%;
+}
+
+#home-btn {
+    text-decoration: none;
+}

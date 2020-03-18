@@ -50,6 +50,11 @@ function Banner() {
 							Contact
 						</NavLink>
 					</li>
+					<li className="text-decoration-none">
+						<NavLink className="nav-item nav-link" to="/Error">
+							Error
+						</NavLink>
+					</li>
 				</div>
 			</div>
 		</nav>
