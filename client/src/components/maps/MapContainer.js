@@ -7,25 +7,20 @@ import {
 } from "google-maps-react";
 
 
+
 export class MapContainer extends React.Component {
 	constructor(props) {
         super(props);
-        // const mapStyles = {
-		// 	width: "10%",
-		// 	height: "30%"
-		// };
-
 		this.state = {
-			stores: [
-				{ lat: 47.49855629475769, lng: -122.14184416996333 },
-				{ latitude: 47.359423, longitude: -122.021071 },
-				{ latitude: 47.2052192687988, longitude: -121.988426208496 },
-				{ latitude: 47.6307081, longitude: -122.1434325 },
-				{ latitude: 47.3084488, longitude: -122.2140121 },
-				{ latitude: 47.5524695, longitude: -122.0425407 }
-			]
+			stores: [],
+			// set to bozeman for now. (change to yellowstone later)
+			startLocation : { lattitude: "45.676998", longitude: "-111.042931" }
 		};
+		 
+		
 	}
+
+
 
 	displayMarkers = () => {
 		return this.state.stores.map((store, index) => {
@@ -45,14 +40,15 @@ export class MapContainer extends React.Component {
 
 	render() {
 		return (
-			<Map
-				google={this.props.google}
-				zoom={8}
-				style={this.mapStyles}
-				initialCenter={{ lat: 47.444, lng: -122.176 }}
-			>
-				{this.displayMarkers()}
-			</Map>
+			<div>
+				<Map
+					google={this.props.google}
+					zoom={9}
+					initialCenter={{ lat: this.state.startLocation.lattitude, lng: this.state.startLocation.longitude }}
+				>
+					{this.displayMarkers()}
+				</Map>
+			</div>
 		);
 	}
 }

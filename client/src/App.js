@@ -10,11 +10,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <div className="container">
+    <div className="App container">
       <BrowserRouter>
-        <div>
+        <header>
           <Header />
+        </header>
+        <div>
             <Switch>
               <Route exact path="/" component={Main}/>
               <Route path="/About" component={About}/>
@@ -23,8 +24,10 @@ function App() {
            </Switch>
         </div> 
       </BrowserRouter>
-      </div>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
+      
     </div>
   );
 }
