@@ -14,3 +14,13 @@
     padding: 1%;
 
 }
+
+#lattitude {
+    padding: 1%;
+    text-align: right;
+}
+
+#longitude {
+    padding: 1%;
+    text-align: left;
+}

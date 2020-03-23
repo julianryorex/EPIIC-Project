@@ -92,6 +92,18 @@ class DatasetForm extends React.Component {
 						/>
 					</div>
 				</div>
+
+				<div className="row">
+				  <div id="lattitude" className="col-md-6">
+					  Lattitude:&nbsp;&nbsp;
+						<input name="lat" type="number" onChange={this.commonChange} required />
+					</div>
+				  <div id="longitude" className="col-md-6">
+						Longitude:&nbsp;&nbsp;
+						<input name="lng" type="number" onChange={this.commonChange} required />
+					</div>
+			  	</div>
+
 				<button
 					type="submit"
 					value="Submit"
@@ -99,7 +111,7 @@ class DatasetForm extends React.Component {
 				>
 					Submit
 				</button>
-				{/* <input type="submit"  /> */}
+				
 			</form>
 		);
     }
