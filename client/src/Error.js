@@ -1,10 +1,14 @@
 import React from 'react'
 import Err from "./components/error/Error.js"
+import './App.css';
+
 
 function ErrorPage() {
     return (
-        <div>
-            <Err />
+        <div id="container">
+            <div id="main">
+                <Err />
+            </div>
         </div>
     );
 }
