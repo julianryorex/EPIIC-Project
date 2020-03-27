@@ -69,7 +69,9 @@ app.get("/", (req, res) => {
     .map(maskL8sr)
     .map(addVariables);
     
-  // Plot a time series of NDVI at a single location.
+  // ui.chart API call only works in code-editor, and not in the JavaScript client libraries
+  /*
+  //Plot a time series of NDVI at a single location.
   var l8Chart = ui.Chart.image.series(filteredLandsat.select('NDVI'), roi)
       .setChartType('ScatterChart')
       .setOptions({
@@ -79,7 +81,7 @@ app.get("/", (req, res) => {
         }},
         lineWidth: 1,
         pointSize: 3,
-      });
-  // This only prints in code-editor    
+      });   
   print(l8Chart);
+  */
 });
