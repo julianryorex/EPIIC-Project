@@ -27,29 +27,34 @@ app.get("/", (req, res) => {
 	};
 
     // Gets the band data
-    getBands(startDate, endDate);
-
+    getBands(startDate, endDate /**, dataSetName */);
 });
 
 function getBands(startDate, endDate /**, dataSetName */){
     ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
     ee.initialize();
+
+    // this dataSetName is a placeholder for now
     var dataSetName = 'NASA/GPM_L3/IMERG_V06';
-    var bandNames = [];
-    var dataSet = ee.ImageCollection(dataSet)
+    var dataSet = ee.ImageCollection(dataSetName)
                         .filter(ee.Filter.date(startDate, endDate))
                         .mosaic();
 
+    // request all the known information about this collection via an AJAX call.
+    var data = dataSet.getInfo();
+
+    // data is really messy, and needs to be cleaned up before it's sent back
     // Iterate through the dataset's bands, and put the id's into an array
-    for (var i in dataset.bands) {
-        bandNames[i] = dataSet.bands[i].id
+    var bandNames = [];
+    for (var i in data.bands) {
+        bandNames.push(data.bands[i].id);
     }
-    
+    // Convert array into JSON string to send back
+    bandNames = JSON.stringify(bandNames);
+
     // Insert command here to send back to front end here
-    /*
     res.json(bandNames);
 	console.log(`Received data in backend and sent bandNames back to frontend. \nRequest was: ${req.originalUrl}`);
-    */
 }
 
 module.exports = app;
