@@ -29,17 +29,15 @@ app.get("/", (req, res) => {
 				// On a failure to initialize
 				(err) => {
 					console.log(err);
-					console.log(
-						`Initialization failed.`);
-				});
+					console.log(`Initialization failed.`);
+				}
+			);
 		},
 		// When the authentication failed.
 		(err) => {
 		console.log(err);
 		console.log('Authentication failed');
-		});
 	});
-
-
+});
 
 module.exports = app;

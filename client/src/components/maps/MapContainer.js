@@ -50,6 +50,7 @@ export class MapContainer extends React.Component {
 		else if (this.state.secondMarker == null) {
 			this.handleLocation(coordindates, 2);
 		}
+		
 
 	}
 

@@ -7,14 +7,15 @@ label{
     margin-top: 20px; 
 }
 
-.footer {
-    width: 100%;
-}
-
 .logo {
     height: 50px;
     width: 50px;
 }
-  
+
+#chart {
+    padding-top: 20px; 
+    margin: auto; 
+}
+
 
   
