@@ -12,7 +12,6 @@ export class MapContainer extends React.Component {
 	constructor(props) {
         super(props);
 		this.state = {
-			stores: [],
 			// set to bozeman for now. (change to yellowstone later)
 			startLocation : { lattitude: "45.676998", longitude: "-111.042931" },
 			firstMarker : null,
@@ -25,21 +24,21 @@ export class MapContainer extends React.Component {
 
 
 
-	displayMarkers = () => {
-		return this.state.stores.map((store, index) => {
-			return (
-				<Marker
-					key={index}
-					id={index}
-					position={{
-						lat: store.latitude,
-						lng: store.longitude
-					}}
-					onClick={() => console.log("You clicked me!")}
-				/>
-			);
-		});
-	};
+	// displayMarkers = () => {
+	// 	return this.state.stores.map((store, index) => {
+	// 		return (
+	// 			<Marker
+	// 				key={index}
+	// 				id={index}
+	// 				position={{
+	// 					lat: store.latitude,
+	// 					lng: store.longitude
+	// 				}}
+	// 				onClick={() => console.log("You clicked me!")}
+	// 			/>
+	// 		);
+	// 	});
+	// };
 
 
 	mapClicked(mapProps, map, clickEvent) {
@@ -50,7 +49,8 @@ export class MapContainer extends React.Component {
 		else if (this.state.secondMarker == null) {
 			this.handleLocation(coordindates, 2);
 		}
-		
+
+		console.log(`Coordinates first: ${this.state.firstMarker.lat} and ${this.state.firstMarker.lng}\nCoordinates second: ${this.state.secondMarker}`);
 
 	}
 
@@ -89,7 +89,7 @@ export class MapContainer extends React.Component {
 					initialCenter={{ lat: this.state.startLocation.lattitude, lng: this.state.startLocation.longitude }}
 					onClick={this.mapClicked}
 				>
-					{this.displayMarkers()}
+					{/* {} */}
 					
 				</Map>
 			</div>
