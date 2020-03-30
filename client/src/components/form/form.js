@@ -1,6 +1,8 @@
 import React from 'react';
 // import Moment from 'react-moment'; 
 import "./form.css";
+import { MapContainer } from "../maps/MapContainer";
+import "../maps/maps.css";
 class DatasetForm extends React.Component {
 
     constructor(props) {
@@ -93,16 +95,41 @@ class DatasetForm extends React.Component {
 					</div>
 				</div>
 
-				<div className="row">
+				{/* <div className="row">
 				  <div id="lattitude" className="col-md-6">
 					  Lattitude:&nbsp;&nbsp;
-						<input name="lat" type="number" onChange={this.commonChange} required />
+						<input id="lat" type="text" onChange={this.commonChange} required />
 					</div>
 				  <div id="longitude" className="col-md-6">
-						Longitude:&nbsp;&nbsp;
-						<input name="lng" type="number" onChange={this.commonChange} required />
+					  Longitude:&nbsp;&nbsp;
+						<input id="lng" type="text" onChange={this.commonChange} required />
 					</div>
 			  	</div>
+				
+			  	<button onClick={this.locateArea} type="button" className="btn btn-outline-secondary" name="find">Find Area</button> */}
+
+
+
+
+
+
+				<div className="col-xl mapContainer">
+					<div id="map">
+						<MapContainer />
+					</div>
+
+				</div>
+				
+
+
+
+
+
+
+
+				<div className="space">
+					{/* additional space for better design */}
+				</div>
 
 				<button
 					type="submit"
