@@ -24,21 +24,7 @@ export class MapContainer extends React.Component {
 
 
 
-	// displayMarkers = () => {
-	// 	return this.state.stores.map((store, index) => {
-	// 		return (
-	// 			<Marker
-	// 				key={index}
-	// 				id={index}
-	// 				position={{
-	// 					lat: store.latitude,
-	// 					lng: store.longitude
-	// 				}}
-	// 				onClick={() => console.log("You clicked me!")}
-	// 			/>
-	// 		);
-	// 	});
-	// };
+	
 
 
 	mapClicked(mapProps, map, clickEvent) {
@@ -50,8 +36,15 @@ export class MapContainer extends React.Component {
 			this.handleLocation(coordindates, 2);
 		}
 
-		console.log(`Coordinates first: ${this.state.firstMarker.lat} and ${this.state.firstMarker.lng}\nCoordinates second: ${this.state.secondMarker}`);
+		if(this.state.firstMarker != null && this.state.secondMarker != null) {
 
+			// alert(`Coordinates first: ${this.state.firstMarker.lat} and ${this.state.firstMarker.lng}\n` + 
+			// 	`Coordinates second: ${this.state.secondMarker.lat} and ${this.state.secondMarker.lng}`);
+		}
+
+		
+		// now update with markers and a rectangle
+		
 	}
 
 
@@ -76,6 +69,37 @@ export class MapContainer extends React.Component {
 		}
 	}
 
+	// displayMarkers = () => {
+	// 	return this.state.stores.map((store, index) => {
+	// 		return (
+	// 			<Marker
+	// 				key={index}
+	// 				id={index}
+	// 				position={{
+	// 					lat: store.latitude,
+	// 					lng: store.longitude
+	// 				}}
+	// 				onClick={() => console.log("You clicked me!")}
+	// 			/>
+	// 		);
+	// 	});
+	// };
+
+
+	drawMarker() {
+		const coordinates_arr = [this.state.firstMarker, this.state.secondMarker];
+		let marker_arr = [];
+		if(this.state.firstMarker != null && this.state.secondMarker != null) {
+			for (let index = 0; index < coordinates_arr.length; index++) {
+				marker_arr.push(<Marker
+					key={index}
+					position={coordinates_arr[index]}
+				/>);
+			}
+			return(marker_arr);
+		}
+	}
+
 
 
 
@@ -89,7 +113,7 @@ export class MapContainer extends React.Component {
 					initialCenter={{ lat: this.state.startLocation.lattitude, lng: this.state.startLocation.longitude }}
 					onClick={this.mapClicked}
 				>
-					{/* {} */}
+					{this.drawMarker()}
 					
 				</Map>
 			</div>
