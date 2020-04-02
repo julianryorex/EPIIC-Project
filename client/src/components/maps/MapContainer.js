@@ -2,8 +2,8 @@ import React from "react";
 import {
 	Map,
 	GoogleApiWrapper,
-	Marker,
-	InfoWindow
+	Marker
+	// InfoWindow
 
 	} from "google-maps-react";
 import { Polyline } from "react-google-maps";
@@ -22,7 +22,7 @@ export class MapContainer extends React.Component {
 		};
 
 		this.mapClicked = this.mapClicked.bind(this);
-		this.onMarkerClick = this.onMarkerClick.bind(this);
+		// this.onMarkerClick = this.onMarkerClick.bind(this);
 	}
 
 
@@ -77,41 +77,15 @@ export class MapContainer extends React.Component {
 			if(coordinates_arr[index] != null) {
 				marker_arr.push(
 				<Marker
-					onClick={() => {this.onMarkerClick()} }
+					onClick={this.onToggle }
 					key={index}
 					position={coordinates_arr[index]}
-				/>
+				>
+				</Marker>
 				);
 			}
 		}
 		return(marker_arr);
-	}
-
-	onMarkerClick(props, marker, e) {
-		this.setState({
-			activeMarker: marker,
-			showingInfoWindow: true
-		});
-		console.log("Marker set in onMarkerClick");
-	}
-
-	drawInfoWindow() {
-		console.log("Inside drawinfoWindow");
-
-
-		return(
-			<InfoWindow
-			marker = {this.state.activeMarker}
-			visible = {this.state.showingInfoWindow}
-			>
-				<div
-					style={{
-						width: 100,
-						height: 100
-					}}
-				>Info window</div>
-			</InfoWindow>
-		);
 	}
 
 	drawArea() {
@@ -159,8 +133,6 @@ export class MapContainer extends React.Component {
 				>
 					{this.drawMarker()}
 					{/* {this.drawArea()} */}
-					{/* {this.drawInfoWindow()} */}
-					{/* {this.sendData()} */}
 					
 				</Map>
 			</div>
