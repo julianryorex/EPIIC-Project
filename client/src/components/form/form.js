@@ -17,8 +17,8 @@ class DatasetForm extends React.Component {
 					
       this.commonChange = this.commonChange.bind(this);
 	  this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
+	}
+	
     commonChange(event) {
       	this.setState({
         	[event.target.id]: event.target.value
@@ -27,13 +27,33 @@ class DatasetForm extends React.Component {
   
     handleSubmit(event) {
 		event.preventDefault(); // prevents page from reloading
-		this.validateForm();
-		this.callAPI();
+		console.log("validation");
+		const valid = this.validateForm();
+		if(valid)
+			this.callAPI();
 	}
 
 	validateForm() {
 		// check for lattitude, longitude,
-		// check for dates and dataset
+
+		if(this.state.dataset == null) {
+			alert('Please choose a dataset.');
+			return false;
+		}
+
+		if(this.state.firstMarker == null || this.state.secondMarker == null) { 
+			alert("Please select two sets of coordinates.");
+			return false;
+		}
+		if(new Date(this.state.startDate) > new Date(this.state.endDate)) {
+			alert('Please select a start date earlier than the end date.');
+			return false;
+		}
+		
+		
+		return true;
+
+	
 	}
 
 	
@@ -96,7 +116,7 @@ class DatasetForm extends React.Component {
 
 				<div className="row">
 					<div className="date-form col-xl-12">
-						<span>Date 1:&nbsp;&nbsp;</span>
+						<span>Start Date:&nbsp;&nbsp;</span>
 						<input
 							id="startDate"
 							type="date"
@@ -106,7 +126,7 @@ class DatasetForm extends React.Component {
 						/>
 					</div>
 					<div className="date-form col-xl-12">
-						<span>Date 2:&nbsp;&nbsp;</span>
+						<span>End Date:&nbsp;&nbsp;</span>
 						<input
 							id="endDate"
 							type="date"

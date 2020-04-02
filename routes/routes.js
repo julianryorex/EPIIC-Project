@@ -15,7 +15,7 @@ router.use("/google-test", googleEarthTest); // use this path from front end to 
 router.use("/get-band-data", getBandData);
 // router.use("/google-earth-time-series", timeSeriesTest);
 
-// http://localhost:5000/api
+// http://localhost:8080/api
 router.get('/', (req, res) => {
     // need an api doc page here
     res.send("Currently in routes.js. Welcome to EPIIC Center's new API! Docs are still in the works...\n");

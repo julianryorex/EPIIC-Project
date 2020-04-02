@@ -22,7 +22,14 @@ export class MapContainer extends React.Component {
 		};
 
 		this.mapClicked = this.mapClicked.bind(this);
+		this.handleMapReady = this.handleMapReady.bind(this);
 		// this.onMarkerClick = this.onMarkerClick.bind(this);
+	}
+
+	handleMapReady(mapProps, map) {
+		map.setOptions({
+			draggableCursor: "pointer",
+		});
 	}
 
 
@@ -130,6 +137,7 @@ export class MapContainer extends React.Component {
 					zoom={9}
 					initialCenter={{ lat: this.state.startLocation.lattitude, lng: this.state.startLocation.longitude }}
 					onClick={this.mapClicked}
+					onReady={this.handleMapReady}
 				>
 					{this.drawMarker()}
 					{/* {this.drawArea()} */}

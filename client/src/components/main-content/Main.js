@@ -13,9 +13,6 @@ function Main() {
 			<div id="form">
 				<DatasetForm />
 			</div>
-			<div className="space">
-				{/* add description for the map here.  */}
-			</div>
 
 			<div>
 				<div id="chart">

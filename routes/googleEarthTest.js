@@ -11,11 +11,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 
 app.post("/", (req, res) => {
 	// validate data from external API calls
-	
 
-
-
-	
 	const data = {
 		startDateChange: req.body.startDate,
 		endDateChange: req.body.endDate,
