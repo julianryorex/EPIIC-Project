@@ -9,8 +9,10 @@ class DatasetForm extends React.Component {
       super(props);
       this.state = {
 			dataset: "AMSR-E",
-			startDate: "", 
-			endDate: ""
+			startDate: "",
+			endDate: "",
+			firstMarker: null,
+			secondMarker: null
 		};
 					
       this.commonChange = this.commonChange.bind(this);
@@ -18,42 +20,60 @@ class DatasetForm extends React.Component {
     }
 
     commonChange(event) {
-      this.setState({
-        [event.target.id]: event.target.value
-      });
+      	this.setState({
+        	[event.target.id]: event.target.value
+	  	});
     }
   
     handleSubmit(event) {
 		event.preventDefault(); // prevents page from reloading
+		this.validateForm();
 		this.callAPI();
 	}
+
+	validateForm() {
+		// check for lattitude, longitude,
+		// check for dates and dataset
+	}
+
 	
 	callAPI() {
-		fetch(
-			`http://localhost:8080/api/google-test?startDate=${this.state.startDate}&endDate=${this.state.endDate}`,
-			{ method: "GET" }
-		)
-			.then(res => res.json())
-			.then(data => {
-				console.log(`Setting new states...`);
-				this.setState({
-					startDate: data.startDate,
-					endDate: data.endDate
-				});
-				console.log(
-					`New changes: '${this.state.startDate}' and '${this.state.endDate}'`
-				);
-			})
-			.then(() => {
-				alert(
-					`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}`
-				);
-			});
+
+		const data = {
+			dataset: this.state.dataset,
+			startDate: this.state.startDate,
+			endDate: this.state.endDate,
+			firstMarker: this.state.firstMarker,
+			secondMarker: this.state.secondMarker
+		};
+
+		const requestOptions = {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(data)
+		};
+
+		fetch(`http://localhost:8080/api/google-test`, requestOptions)
+		.then(res => res.json()) // error handling here
+		.then(data => {
+			
+			console.log("Data in response:");
+			console.log(data);
+		})
+		.then(() => {
+			alert(
+				`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}`
+			);
+		});
 	}
 
 
-    componentDidMount() {
-
+	getLocationData = (marker1, marker2) => { // callback function from MapContainer
+		this.setState({
+			firstMarker: marker1,
+			secondMarker: marker2
+		});
+		console.log("State set");
 	}
 	
   
@@ -78,6 +98,7 @@ class DatasetForm extends React.Component {
 					<div className="date-form col-xl-12">
 						<span>Date 1:&nbsp;&nbsp;</span>
 						<input
+							id="startDate"
 							type="date"
 							data-parse="date"
 							onChange={this.commonChange}
@@ -87,6 +108,7 @@ class DatasetForm extends React.Component {
 					<div className="date-form col-xl-12">
 						<span>Date 2:&nbsp;&nbsp;</span>
 						<input
+							id="endDate"
 							type="date"
 							data-parse="date"
 							onChange={this.commonChange}
@@ -108,24 +130,13 @@ class DatasetForm extends React.Component {
 				
 			  	<button onClick={this.locateArea} type="button" className="btn btn-outline-secondary" name="find">Find Area</button> */}
 
-
-
-
-
-
 				<div className="col-xl mapContainer">
 					<div id="map">
-						<MapContainer />
+						<MapContainer
+							parentCallback={this.getLocationData}
+						/>
 					</div>
-
 				</div>
-				
-
-
-
-
-
-
 
 				<div className="space">
 					{/* additional space for better design */}
@@ -138,7 +149,6 @@ class DatasetForm extends React.Component {
 				>
 					Submit
 				</button>
-				
 			</form>
 		);
     }

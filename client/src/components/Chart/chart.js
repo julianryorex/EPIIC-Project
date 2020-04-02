@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 import { Line } from 'react-chartjs-2'; 
 import '../main-content/main.css';
 

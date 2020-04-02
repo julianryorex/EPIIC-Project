@@ -3,9 +3,10 @@ import {
 	Map,
 	GoogleApiWrapper,
 	Marker,
-	// DrawingManager
-} from "google-maps-react";
+	InfoWindow
 
+	} from "google-maps-react";
+import { Polyline } from "react-google-maps";
 
 
 export class MapContainer extends React.Component {
@@ -15,19 +16,19 @@ export class MapContainer extends React.Component {
 			// set to bozeman for now. (change to yellowstone later)
 			startLocation : { lattitude: "45.676998", longitude: "-111.042931" },
 			firstMarker : null,
-			secondMarker: null
+			secondMarker: null,
+			activeMarker: {},
+			showingInfoWindow: false
 		};
+
 		this.mapClicked = this.mapClicked.bind(this);
-		 
-		
+		this.onMarkerClick = this.onMarkerClick.bind(this);
 	}
 
 
 
-	
-
-
 	mapClicked(mapProps, map, clickEvent) {
+
 		let coordindates = JSON.stringify(clickEvent.latLng);
 		if (this.state.firstMarker == null) { // maybe change to null
 			this.handleLocation(coordindates, 1);
@@ -36,14 +37,13 @@ export class MapContainer extends React.Component {
 			this.handleLocation(coordindates, 2);
 		}
 
+		// if both coordinates are set, we send the data to the parent class form.js for form submission to API.
 		if(this.state.firstMarker != null && this.state.secondMarker != null) {
+			this.props.parentCallback(this.state.firstMarker, this.state.secondMarker);
 
 			// alert(`Coordinates first: ${this.state.firstMarker.lat} and ${this.state.firstMarker.lng}\n` + 
 			// 	`Coordinates second: ${this.state.secondMarker.lat} and ${this.state.secondMarker.lng}`);
 		}
-
-		
-		// now update with markers and a rectangle
 		
 	}
 
@@ -69,34 +69,78 @@ export class MapContainer extends React.Component {
 		}
 	}
 
-	// displayMarkers = () => {
-	// 	return this.state.stores.map((store, index) => {
-	// 		return (
-	// 			<Marker
-	// 				key={index}
-	// 				id={index}
-	// 				position={{
-	// 					lat: store.latitude,
-	// 					lng: store.longitude
-	// 				}}
-	// 				onClick={() => console.log("You clicked me!")}
-	// 			/>
-	// 		);
-	// 	});
-	// };
-
 
 	drawMarker() {
 		const coordinates_arr = [this.state.firstMarker, this.state.secondMarker];
 		let marker_arr = [];
-		if(this.state.firstMarker != null && this.state.secondMarker != null) {
-			for (let index = 0; index < coordinates_arr.length; index++) {
-				marker_arr.push(<Marker
+		for (let index = 0; index < coordinates_arr.length; index++) {
+			if(coordinates_arr[index] != null) {
+				marker_arr.push(
+				<Marker
+					onClick={() => {this.onMarkerClick()} }
 					key={index}
 					position={coordinates_arr[index]}
-				/>);
+				/>
+				);
 			}
-			return(marker_arr);
+		}
+		return(marker_arr);
+	}
+
+	onMarkerClick(props, marker, e) {
+		this.setState({
+			activeMarker: marker,
+			showingInfoWindow: true
+		});
+		console.log("Marker set in onMarkerClick");
+	}
+
+	drawInfoWindow() {
+		console.log("Inside drawinfoWindow");
+
+
+		return(
+			<InfoWindow
+			marker = {this.state.activeMarker}
+			visible = {this.state.showingInfoWindow}
+			>
+				<div
+					style={{
+						width: 100,
+						height: 100
+					}}
+				>Info window</div>
+			</InfoWindow>
+		);
+	}
+
+	drawArea() {
+		if(this.state.firstMarker != null && this.state.secondMarker != null) {
+			console.log("Right before rectangle");
+			console.log(`${this.state.firstMarker.lat} and ${this.state.firstMarker.lng}`);
+			console.log(typeof this.state.firstMarker.lat + " " +  typeof this.state.firstMarker.lng);
+			console.log(this.state.firstMarker);
+			
+
+			let triangleCoords = [
+				{ lat: this.state.firstMarker.lat , lng: this.state.firstMarker.lng },
+				{ lat: this.state.secondMarker.lat , lng: this.state.secondMarker.lng }
+				
+			];
+			console.log("triangleCoords is set.");
+			console.log(triangleCoords);
+			
+			return (
+				<Polyline
+					path={triangleCoords}
+					strokeColor="#0000FF"
+					strokeOpacity={0.8}
+					strokeWeight={2}
+					fillColor="#0000FF"
+					fillOpacity={0.35}
+				/>
+				
+			);
 		}
 	}
 
@@ -114,6 +158,9 @@ export class MapContainer extends React.Component {
 					onClick={this.mapClicked}
 				>
 					{this.drawMarker()}
+					{/* {this.drawArea()} */}
+					{/* {this.drawInfoWindow()} */}
+					{/* {this.sendData()} */}
 					
 				</Map>
 			</div>
@@ -124,9 +171,3 @@ export class MapContainer extends React.Component {
 MapContainer = GoogleApiWrapper({
 	apiKey: "AIzaSyDEZvbIV9rDUxIxtsnsq_xQ5UjnMo0P4-s"
 })(MapContainer);
-
-
-
-// export default GoogleApiWrapper({
-// 	apiKey: "AIzaSyDEZvbIV9rDUxIxtsnsq_xQ5UjnMo0P4-s"
-// })(MapContainer);
