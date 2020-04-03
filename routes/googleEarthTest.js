@@ -18,7 +18,9 @@ app.post("/", (req, res) => {
 		firstMarkerChange: req.body.firstMarker,
 		secondMarkerChange: req.body.secondMarker
 	};
-
+	
+	ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
+    ee.initialize();
 	determinePrecipt(data);
 
 	res.json(data);
@@ -49,7 +51,7 @@ function determinePrecipt(mapData){
 	var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
 					.filter(ee.Filter.date(mapData.startDateChange, mapData.endDateChange))
 					.select('precipitationCal');
-	// Make a composite image out of the filtered set, and mask out anything above a certain amount.
+	// Make a composite image out of the filtered set, and get the median precipitation.
 	var precip = dataset.reduce(ee.Reducer.median());
 
 	// Export the Gtiff, specifying scale and region.
