@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
 var ee = require('@google/earthengine');
-const PRIVATE_KEY = require('./privatekey.json') || "";
+// const PRIVATE_KEY = require('./privatekey.json') || "";
+const PRIVATE_KEY = "";
 
 app.use(express.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
