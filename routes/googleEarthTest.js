@@ -2,12 +2,11 @@ const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
 var ee = require('@google/earthengine');
-
+const PRIVATE_KEY = require('./privatekey.json');
 
 app.use(express.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // support json encoded bodies
-
 
 app.post("/", (req, res) => {
 	// validate data from external API calls
@@ -19,42 +18,55 @@ app.post("/", (req, res) => {
 		firstMarkerChange: req.body.firstMarker,
 		secondMarkerChange: req.body.secondMarker
 	};
+	
+	ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
+    ee.initialize();
+	determinePrecipt(data);
 
 	res.json(data);
 	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);
 	// send this data to google earth engine
-
 });
 
-// Commenting out all this authentication Google stuff to make deploying easier
-/*	
-	// Precipitation Analysis function
-	function determinePrecipt(StartDate, EndDate, xMin, yMin, xMax, yMax){
-		// init Earth Engine
-		ee.initialize();
+// Creating a bounding box function
+function calcBoundingBox(mapData){
+	var xMin = mapData.firstMarkerChange.lng;
+	var yMin = mapData.secondMarkerChange.lat;
+	var xMax = mapData.secondMarkerChange.lng;
+	var yMax = mapData.firstMarkerChange.lat;
+	
+	return ee.Geometry.Rectangle({
+	  coords: [xMin, yMin, xMax, yMax],
+	  geodesic: false
+	});
+  }
 
-		var boundsFilter = ee.Filter.bounds(boundingBox);
-		var boundingBox = ee.Geometry.Rectangle([xMin, yMin, xMax, yMax]);
+// Precipitation Analysis function
+function determinePrecipt(mapData){
+	var boundingBox = calcBoundingBox(mapData);
+	print(boundingBox);
+	var boundsFilter = ee.Filter.bounds(boundingBox);
+	
+	// Init 1st image composite
+	var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
+					.filter(ee.Filter.date(mapData.startDateChange, mapData.endDateChange))
+					.select('precipitationCal');
+	// Make a composite image out of the filtered set, and get the median precipitation.
+	var precip = dataset.reduce(ee.Reducer.median());
 
-		// Init 1st image composite
-		var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
-						.filterBounds(boundingBox)
-						.filter(ee.Filter.date(StartDate, EndDate)
-						.select('precipitationCal');
-						);
+	// Export the Gtiff, specifying scale and region.
+	Export.image.toDrive({
+		image: precip.clip(boundingBox),
+		description: 'Precipitation',
+		scale: 1000,
+		fileDimensions: 2048,
+		region: boundingBox,
+	});
 
-		// Make a composite image out of the filtered set, and mask out anything above a certain amount.
-		var precip = dataset.mosaic();
-		var mask = precip.lt(10);
-		var precip = precip.updateMask(mask);
+	// Takes EE image object's metadata, and JSON's it
+	// We don't do anything with it right now.
+	var precipData = precip.getInfo();
+	precipData = JSON.stringify(bandNames);
+}
 
-		// Export the Gtiff, specifying scale and region.
-		Export.image.toDrive({
-			image: precip,
-			description: 'Precipitation',
-			scale: 1000,
-			region: boundingBox
-		});
-	}
-*/
 module.exports = app;

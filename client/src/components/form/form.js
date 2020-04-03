@@ -1,29 +1,56 @@
 import React from 'react';
-// import Moment from 'react-moment'; 
 import "./form.css";
 import { MapContainer } from "../maps/MapContainer";
 import "../maps/maps.css";
 class DatasetForm extends React.Component {
 
     constructor(props) {
-      super(props);
-      this.state = {
+		super(props);
+		this.state = {
 			dataset: "AMSR-E",
 			startDate: "",
 			endDate: "",
-			firstMarker: null,
-			secondMarker: null
+			firstMarker: "",
+			secondMarker: ""
 		};
+
+		this.mapContainerRef = React.createRef();
 					
-      this.commonChange = this.commonChange.bind(this);
-	  this.handleSubmit = this.handleSubmit.bind(this);
+		this.commonChange = this.commonChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.changeValue = this.changeValue.bind(this);
+		this.clearCoordinates = this.clearCoordinates.bind(this);
+		// this.getLocationValue = this.getLocationValue.bind(this);	
 	}
 	
     commonChange(event) {
       	this.setState({
         	[event.target.id]: event.target.value
-	  	});
-    }
+		  });
+	}
+	
+	changeValue(event) {
+		const stateProp = event.target.name;
+		const stateSubProp = event.target.id;
+		const updateState = stateProp + "." + stateSubProp;
+		event.target.value = "";
+		console.log(updateState);
+		this.setState( {
+			[updateState]: event.target.value
+		});
+		console.log("updatestate:");
+		console.log(this.state[stateProp][stateSubProp]);
+		event.target.value = 0;
+		console.log(event.target.value);
+	}
+
+
+	clearCoordinates = () => {
+		this.mapContainerRef.current.setState({ firstMarker: "", secondMarker: "" });
+		console.log("HELLOO");
+		console.log(this.mapContainerRef.current.state.firstMarker);
+
+	}
   
     handleSubmit(event) {
 		event.preventDefault(); // prevents page from reloading
@@ -34,14 +61,11 @@ class DatasetForm extends React.Component {
 	}
 
 	validateForm() {
-		// check for lattitude, longitude,
-
 		if(this.state.dataset == null) {
 			alert('Please choose a dataset.');
 			return false;
 		}
-
-		if(this.state.firstMarker == null || this.state.secondMarker == null) { 
+		if(this.state.firstMarker === "" || this.state.secondMarker === "") { 
 			alert("Please select two sets of coordinates.");
 			return false;
 		}
@@ -49,11 +73,7 @@ class DatasetForm extends React.Component {
 			alert('Please select a start date earlier than the end date.');
 			return false;
 		}
-		
-		
-		return true;
-
-	
+		return true; // default
 	}
 
 	
@@ -137,22 +157,44 @@ class DatasetForm extends React.Component {
 					</div>
 				</div>
 
-				{/* <div className="row">
+			  <div className="loc-title pad">Top Left Corner</div>
+				<div className="row">
 				  <div id="lattitude" className="col-md-6">
 					  Lattitude:&nbsp;&nbsp;
-						<input id="lat" type="text" onChange={this.commonChange} required />
+						<input id="lat" name="firstMarker" type="text" value={this.state.firstMarker.lat || ""} onInput={e => this.changeValue(e)} required />
 					</div>
 				  <div id="longitude" className="col-md-6">
 					  Longitude:&nbsp;&nbsp;
-						<input id="lng" type="text" onChange={this.commonChange} required />
+						<input id="lng" name="firstMarker" type="text" value={this.state.firstMarker.lng || ""} onInput={e => this.changeValue(e)} required />
 					</div>
 			  	</div>
+
+			  <div className="loc-title pad">Bottom Right Corner</div>
+				<div className="row">
+					
+					<div id="lattitude" className="col-md-6">
+					  Lattitude:&nbsp;&nbsp;
+							<input id="lat" name="secondMarker" type="text" value={this.state.secondMarker.lat || ""} defaultValue={""} onChange={this.changeValue}  required />
+					</div>
+					<div id="longitude" className="col-md-6">
+					  Longitude:&nbsp;&nbsp;
+							<input id="lng" name="secondMarker" type="text" value={this.state.secondMarker.lng || ""} onChange={this.changeValue} required />
+					</div>
+				</div>
+
+				<div className="space"></div>
 				
-			  	<button onClick={this.locateArea} type="button" className="btn btn-outline-secondary" name="find">Find Area</button> */}
+				<button type="button" className="btn btn-outline-secondary" onClick={this.clearCoordinates}>Clear Coordinates</button>
+
+			  	<div className="space"></div>
+				  
+				
+				
 
 				<div className="col-xl mapContainer">
 					<div id="map">
 						<MapContainer
+							ref={this.mapContainerRef}
 							parentCallback={this.getLocationData}
 						/>
 					</div>

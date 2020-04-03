@@ -2,8 +2,8 @@ import React from "react";
 import {
 	Map,
 	GoogleApiWrapper,
-	Marker
-	// InfoWindow
+	Marker,
+	InfoWindow
 
 	} from "google-maps-react";
 import { Polyline } from "react-google-maps";
@@ -20,10 +20,11 @@ export class MapContainer extends React.Component {
 			activeMarker: {},
 			showingInfoWindow: false
 		};
+		
 
 		this.mapClicked = this.mapClicked.bind(this);
 		this.handleMapReady = this.handleMapReady.bind(this);
-		// this.onMarkerClick = this.onMarkerClick.bind(this);
+		this.onMarkerClick = this.onMarkerClick.bind(this);
 	}
 
 	handleMapReady(mapProps, map) {
@@ -47,9 +48,6 @@ export class MapContainer extends React.Component {
 		// if both coordinates are set, we send the data to the parent class form.js for form submission to API.
 		if(this.state.firstMarker != null && this.state.secondMarker != null) {
 			this.props.parentCallback(this.state.firstMarker, this.state.secondMarker);
-
-			// alert(`Coordinates first: ${this.state.firstMarker.lat} and ${this.state.firstMarker.lng}\n` + 
-			// 	`Coordinates second: ${this.state.secondMarker.lat} and ${this.state.secondMarker.lng}`);
 		}
 		
 	}
@@ -84,15 +82,25 @@ export class MapContainer extends React.Component {
 			if(coordinates_arr[index] != null) {
 				marker_arr.push(
 				<Marker
-					onClick={this.onToggle }
+					label={(index+1).toString()}
+					onClick={this.onMarkerClick}
 					key={index}
 					position={coordinates_arr[index]}
 				>
+						<InfoWindow
+							key={index}
+							visible={true}>
+							<div>{"INFOWINDOW!"}</div>
+						</InfoWindow>
 				</Marker>
 				);
 			}
 		}
 		return(marker_arr);
+	}
+
+	onMarkerClick() {
+
 	}
 
 	drawArea() {

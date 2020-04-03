@@ -17,10 +17,17 @@
 
 #lattitude {
     padding: 1%;
-    text-align: right;
 }
 
 #longitude {
     padding: 1%;
-    text-align: left;
+}
+
+.pad {
+    padding: 1%;
+}
+
+.loc-title {
+    font-size: 1.2em;
+    border-bottom: dotted;
 }
