@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 // import { render } from 'react-dom';
-import { Line } from 'react-chartjs-2'; 
+// import { Line } from 'react-chartjs-2'; 
 import '../main-content/main.css';
 import '../../App.css';
 import * as JSC from "jscharting"; 
@@ -9,6 +9,7 @@ import * as JSC from "jscharting";
 export default class Chart extends Component {
 	constructor(props) {
 		super(props);
+	
 		
 
 		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/dev/docs/ee-chart.csv')
@@ -23,14 +24,21 @@ export default class Chart extends Component {
 				console.log(error);
 			});
 			
-
+			
 		function csvToSeries(text){
 			const date = "system:time_start";
 			let dataAsJson = JSC.csv2Json(text);
 			let dataPoints = []; 
+			console.log("Array?");
 			console.log(dataAsJson);
 			dataAsJson.forEach(function (row) {
-				dataPoints.push({x: row[date], y: row.NDVI});
+				console.log(new Date(row[date]).getDate());
+				const newDate = new Date(row[date]);
+				const d = newDate.getDate();
+				const month = newDate.getMonth();
+				const year = newDate.getFullYear();
+				const dateStr = d + "/" + month + "/" + year;
+				dataPoints.push({x: dateStr, y: row.NDVI});
 			});
 			return [
 				{name: 'NDVI', points: dataPoints}
@@ -47,11 +55,17 @@ export default class Chart extends Component {
 			});
 		}
 	}
-	render(){
+	
+	render() {
 		return (
-			<div id="chart" style={{ position: "relative", width: 800, height: 500 }}>
+			<div>
+				<div
+					id="chart"
+					style={{ position: "relative", width: 800, height: 500 }}
+				></div>
+				<div className="space"></div>
 			</div>
-		)
+		);
 	}
 
 }

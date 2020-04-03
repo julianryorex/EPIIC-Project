@@ -3,9 +3,6 @@ import './main.css';
 import DatasetForm from '../form/form.js'
 import "../maps/maps.css";
 import '../../App.css';
-import Chart from '../Chart/Chart';
-import {MapContainer} from '../maps/MapContainer';
-
 
 
 function Main() {
@@ -17,14 +14,7 @@ function Main() {
 				</div>
 
 				<div className="space"></div>
-
-				{/* <div class="col-xl mapContainer">
-					<div id="map">
-						<MapContainer />
-					</div>
-				</div> */}
 				<div className="space"></div>
-				{/* <div id="space"></div> */}
 			</div>
 		</div>
 	);
