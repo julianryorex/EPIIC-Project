@@ -5,7 +5,7 @@
 const express = require("express");
 const app = express();
 const ee = require('@google/earthengine');
-// const PRIVATE_KEY = require('./privatekey.json');
+const PRIVATE_KEY = require('./privatekey.json');
 
 app.get("/", (req, res) => {
     res.send("Inside getBandData.js file.\n");
@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 	const data = {
 		startDate: req.query.startDate + " changed",
 		endDate: req.query.endDate + " changed"
-	};
+    };
 
     // Gets the band data
     getBands(startDate, endDate /**, dataSetName */);

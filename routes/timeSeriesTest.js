@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
   // This field contains UNIX time in milliseconds to get the current date.
   var timeField = 'system:time_start';
   // Initialize 
-  var l8sr = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR");
+  var l8sr = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR").filter(ee.Filter.date('2018-01-01', '2020-01-01'));;
   var roi = ee.Geometry.Point(111,45);
 
 
@@ -77,6 +77,8 @@ app.get("/", (req, res) => {
       .setOptions({
         title: 'Landsat 8 NDVI time series at ROI',
         trendlines: {0: {
+          type: 'exponential',
+          visibleInLegend: true,
           color: 'CC0000'
         }},
         lineWidth: 1,
