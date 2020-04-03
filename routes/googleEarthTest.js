@@ -20,8 +20,10 @@ app.post("/", (req, res) => {
 	};
 	
 	ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
-    ee.initialize();
-	determinePrecipt(data);
+	console.log("Authenticated");
+	ee.initialize();
+	console.log("Initialized");
+	// determinePrecipt(data);
 
 	res.json(data);
 	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);
