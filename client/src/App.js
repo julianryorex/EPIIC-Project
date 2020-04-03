@@ -6,6 +6,8 @@ import Footer from "./components/footer/footer";
 import About from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
+import Chart from "./components/Chart/Chart";
+//import Chart from "./components/Chart/notChart";
 import './App.css';
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
               <Route exact path="/" component={Main}/>
               <Route path="/About" component={About}/>
               <Route path="/Contact" component={Contact}/>
+              <Route path="/Chart" component={Chart}/>
               <Route path="/Error" component={Error} /> {/* placeholder for now*/}
            </Switch>
         </div> 
