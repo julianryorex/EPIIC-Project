@@ -6,7 +6,7 @@ import Footer from "./components/footer/footer";
 import About from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
-import Chart from "./components/Chart/Chart";
+import Chart from "./components/Chart/chart";
 //import Chart from "./components/Chart/notChart";
 import './App.css';
 

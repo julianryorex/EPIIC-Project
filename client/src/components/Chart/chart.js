@@ -4,11 +4,18 @@ import React, { Component } from 'react';
 import '../main-content/main.css';
 import '../../App.css';
 import * as JSC from "jscharting"; 
+import Skeleton from "@yisheng90/react-loading";
 
 
 export default class Chart extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {loading: true};
+		
+	}
+
+	componentDidMount() {
+		let thisChart = this;
 	
 		
 
@@ -18,21 +25,23 @@ export default class Chart extends Component {
 			})
 			.then(function (text) {
 				let series = csvToSeries(text); 
+				
+				thisChart.setState({ loading: false });
 				renderChart(series);
+				
 			})
 			.catch(function (error){
 				console.log(error);
 			});
+		
+			
 			
 			
 		function csvToSeries(text){
 			const date = "system:time_start";
 			let dataAsJson = JSC.csv2Json(text);
 			let dataPoints = []; 
-			console.log("Array?");
-			console.log(dataAsJson);
 			dataAsJson.forEach(function (row) {
-				console.log(new Date(row[date]).getDate());
 				const newDate = new Date(row[date]);
 				const d = newDate.getDate();
 				const month = newDate.getMonth();
@@ -57,15 +66,30 @@ export default class Chart extends Component {
 	}
 	
 	render() {
-		return (
-			<div>
-				<div
-					id="chart"
-					style={{ position: "relative", width: 800, height: 500 }}
-				></div>
-				<div className="space"></div>
+		if(this.state.loading) {
+			console.log("inside loading!");	
+			return (
+			<div style={{padding: "5%"}}>
+				<Skeleton width={window.innerWidth - window.innerWidth * (10/100)} height="3rem" />
+				<Skeleton width={window.innerWidth - window.innerWidth * (20/100)} height="3rem" />
+				<Skeleton width={window.innerWidth - window.innerWidth * (30/100)} height="3rem" />
 			</div>
 		);
+
+		}
+		else {
+			console.log("inside not loading!!");
+			return (
+				<div>
+					<div
+						id="chart"
+						style={{ position: "relative", width: 800, height: 500 }}
+					></div>
+					<div className="space"></div>
+				</div>
+			);
+		}
+		
 	}
 
 }
