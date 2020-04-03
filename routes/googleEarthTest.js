@@ -1,21 +1,23 @@
 const express = require("express");
 const app = express();
+var bodyParser = require("body-parser");
 var ee = require('@google/earthengine');
 
-app.get("/", (req, res) => {
-	if (
-		Object.keys(req.query).length < 2 ||
-		Object.keys(req.query).length > 2) {
-		res.status(400).json({
-			status: 400,
-			message:
-				"GET Request requires two parameters, 'startDate' and 'endDate'"
-		});
-	}
-	
+
+app.use(express.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); // support json encoded bodies
+
+
+app.post("/", (req, res) => {
+	// validate data from external API calls
+
 	const data = {
-		startDate: req.query.startDate + " changed",
-		endDate: req.query.endDate + " changed"
+		startDateChange: req.body.startDate,
+		endDateChange: req.body.endDate,
+		datasetChange: req.body.dataset,
+		firstMarkerChange: req.body.firstMarker,
+		secondMarkerChange: req.body.secondMarker
 	};
 
 	res.json(data);

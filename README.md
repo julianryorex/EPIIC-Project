@@ -13,17 +13,14 @@ Our Product Backlog and Burndown chart are on Google Drive:
 * [Product Backlog](https://docs.google.com/spreadsheets/d/1r663v8wYGnEqELmsFqcDvOgluQDIYd4GUTgDRUXsdOU/edit?usp=sharing)
 * [Burndown Chart](https://drive.google.com/file/d/1Y3G-vfsVTwhT0hvc5Igi2pwMmao0OJRl/view?usp=sharing)
 
-## Overview of Project
+## Overview and Goals
 
-The project consists of rearchitecting the COASTER system. Since it is still in early development, there are many paths we can take to improve the system. We can either:
+The project consists of rearchitecting the COASTER system. At the time, COASTER was a great resource for getting environmental public datasets. However, it was not designed to last and maintenance was never done to the system. This project will take those elements into consideration during the design stage; we are hoping to build a sustainable system that can easily be scalable in the future. 
+**The goal of the project is to recreate a system, similar to COASTER, using newer and more appropriate technologies. The project will consist of:**
 
-* concentrate on rearchitecting the database and how data is stored and processed
-* Expand the current datasets by integrating new public datasets to the COASTER system
-* Revamping the front-end interface of COASTER
-
-## Project Goals
-
-Due to the time length of this project, we have decided to expand the current datasets of COASTER and create a prototype user interface on how we would access this data. (Project Goals may change overtime).
+* creating a system that extracts data from public datasets (such as Google Earth Engine) and make it easily available
+* Create a simple User Interface to choose subsets of the public datasets easily
+* Visualizing the dataset requested right on the UI
 
 ## Project Requirements
 

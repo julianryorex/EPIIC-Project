@@ -58,6 +58,10 @@ Any build related files should live in the build directory. We do not have any f
 
 In the docs directory, there should be all the documentation for this project (including this file). Please add documentation whever possible! The more docs the better!
 
+### Bug Tracking
+
+Many bugs reside in our system. To keep track of these bugs and errors, we are using the bug tracking system on GitHub. If a bug appears, do not hesitate to create an issue with a description of the problem.
+
 ### Testing
 
 All testing related files should exist under the test directory. We are using [Travis CI](https://travis-ci.org/) for continuous integration, so all .yml files should be in test.
