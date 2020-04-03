@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import React, { Component, createContext } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import * as JSC from "jscharting";
-=======
-import React, { Component } from 'react'; 
-// import { render } from 'react-dom';
-import { Line } from 'react-chartjs-2'; 
->>>>>>> 0c10e4199f240903d0e6f247030196cf60f8ac53
 import '../main-content/main.css';
 import '../../App.css';
 
