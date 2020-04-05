@@ -1,56 +1,57 @@
-/*
-Full script can be found here:
-https://code.earthengine.google.com/?scriptPath=users%2Fgibbedboy%2FGPMv6_Test%3AGPMv6%20Testing
-Not sure how to get running on REACT yet.
-*/
-var ee = require('@google/earthengine');
+// Quick and dirty test using node.js built in assert module.
+// Primarily testing the calcBoundingBox function, as the rest of the script runs entirely on EE API calls
 
+const assert = require('assert');
+const getPrecip = require('/routes/getPrecipitation.js');
+const ee = require('@google/earthengine');
 
-// GPM V6 on 2020-1-01, in Bozeman
-var bozemanPoint = ee.Geometry.Point(111, 45);
+// Make a fake mapData object with testing variables
+const mapData = {
+  startDateChange: '2019-01-25',
+  endDateChange: '2019-01-26',
+  datasetChange: 'NASA/GPM_L3/IMERG_V06',
+  firstMarkerChange: {
+    lng: 11,
+    lat: 5
+  },
+  secondMarkerChange: {
+    lng: 10,
+    lat: 4
+  }
+};
 
-// Init 1st image composite (1st Week of Jan, 2019)
-var week1 = ee.Date('2019-01-01').getRange('day');
-var dataset1 = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
-    .filterBounds(ee.Geometry.Point(111, 45))
-    .filter(ee.Filter.date(week1));
-    
-// Init 2nd image composite (2nd Week of Jan, 2020)
-var week2 = ee.Date('2020-01-01').getRange('day');
-var dataset2 = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
-    .filterBounds(ee.Geometry.Point(111, 45))
-    .filter(ee.Filter.date(week2));
+// Actual results
+var actualxMin = getPrecip.calcBoundingBox(mapData).xMin;
+var actualyMin = getPrecip.calcBoundingBox(mapData).yMin;
+var actualxMax = getPrecip.calcBoundingBox(mapData).xMax;
+var actualxMax = getPrecip.calcBoundingBox(mapData).yMax;
 
-// Select the max preciptation
-var precip1 = dataset1.select('precipitationCal');
-var precip2 = dataset2.select('precipitationCal');
-//var mask = precipitation.gt(0.0);
-//var precipitation = precipitation.updateMask(mask);
+// Expected results
+var expectedxMin = 11;
+var expectedyMin = 5;
+var expectedxMax = 10;
+var expectedxMax = 4;
 
-// This doesn't actually work, need to reduce the image collection into a single image first.
-var precipDiff = precip1.subtract(precip2);
+// Test if xMin is what it should be
+assert(
+  actualxMin == expectedxMin,
+  "Did not get the expected value of 11."
+);
 
-// Init Visualization Styling
-/*
-var palette = [
-  'DarkBlue','MediumBlue', 'Blue', 'ForestGreen', 'SpringGreen',
-  'Yellow', 'Orange', 'OrangeRed', 'Red', 'DarkRed'
-];
-*/
-var palette = [
-  'DarkRed', 'Green', 'Dark Blue'
-];
+// Test if yMin is what it should be
+assert(
+  actualyMin == expectedyMin,
+  "Did not get the expected value of 5."
+);
 
-var precipitationVis = {
-  min: -10, 
-  max: 20, 
-  palette: palette, 
-  opacity: .75};
+// Test if xMax is what it should be
+assert(
+  actualxMax == expectedxMax,
+  "Did not get the expected value of 10."
+);
 
-// Add layer to map
-Map.addLayer({
-  eeObject: precipDiff,
-  name: "Precipitation Difference",
-  visParams: precipitationVis
-});
-Map.setCenter(-111, 45, 6);
+// Test if yMax is what it should be
+assert(
+  actualyMax == expectedyMax,
+  "Did not get the expected value of 4."
+);
