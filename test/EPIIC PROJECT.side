@@ -1,0 +1,478 @@
+{
+  "id": "fdce6d65-5ba5-4935-a5b9-29474f4c55de",
+  "version": "2.0",
+  "name": "EPIIC PROJECT",
+  "url": "http://localhost:3000",
+  "tests": [{
+    "id": "ed68a864-3a6c-449b-9c13-8ca54d63513f",
+    "name": "Submit upon entering",
+    "commands": [{
+      "id": "32777a41-87f0-4cbc-bd88-01ebd527b7ef",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ef47eb29-b9fc-44ab-bca6-251f35f425ef",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x777",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "66ee2fb7-9397-44d4-ae3e-d525e67327ac",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(12)",
+      "targets": [
+        ["css=.btn:nth-child(12)", "css:finder"],
+        ["xpath=//button[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/button[2]", "xpath:idRelative"],
+        ["xpath=//form/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4f424c66-0ded-4f90-8dab-ad0aa787a0af",
+    "name": "startDate > endDate",
+    "commands": [{
+      "id": "d24785cc-acc0-470d-a23f-822b2346c3bf",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c4c70249-07d8-48d9-9648-61653a6589d1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x777",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2936c100-86ab-45dc-b27e-2599cb738b84",
+      "comment": "",
+      "command": "click",
+      "target": "id=dataset",
+      "targets": [
+        ["id=dataset", "id"],
+        ["css=#dataset", "css:finder"],
+        ["xpath=//select[@id='dataset']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/label/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffb20e5f-f836-4fce-8624-86e4c1fa2a51",
+      "comment": "",
+      "command": "select",
+      "target": "id=dataset",
+      "targets": [],
+      "value": "label=CASA_1km"
+    }, {
+      "id": "e5b66b67-b4e1-428f-be7a-28f1901d3eb0",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDate",
+      "targets": [
+        ["id=startDate", "id"],
+        ["css=#startDate", "css:finder"],
+        ["xpath=//input[@id='startDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8333ee5a-d343-4391-b4a5-1f640796b12e",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDate",
+      "targets": [
+        ["id=startDate", "id"],
+        ["css=#startDate", "css:finder"],
+        ["xpath=//input[@id='startDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-04-30"
+    }, {
+      "id": "8ae3179f-d39f-48ca-8b10-5149eeda0ca0",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDate",
+      "targets": [
+        ["id=endDate", "id"],
+        ["css=#endDate", "css:finder"],
+        ["xpath=//input[@id='endDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dfebd71b-bd01-4db8-a1c7-c4d24d0ad5d8",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDate",
+      "targets": [
+        ["id=endDate", "id"],
+        ["css=#endDate", "css:finder"],
+        ["xpath=//input[@id='endDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2020-04-01"
+    }, {
+      "id": "b8598e39-3505-4aef-9ac9-fbe5fbaf8484",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gm-style > div:nth-child(1) > div:nth-child(3)",
+      "targets": [
+        ["css=.gm-style > div:nth-child(1) > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='map']/div/div/div/div/div/div/div/div[3]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div/div/div/div/div/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ba96ee6-a860-4e93-8725-bef3b6f7c380",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gm-style > div:nth-child(1) > div:nth-child(3)",
+      "targets": [
+        ["css=.gm-style > div:nth-child(1) > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='map']/div/div/div/div/div/div/div/div[3]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div/div/div/div/div/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e8722b44-3bc8-4133-8884-85b83c27a91a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(12)",
+      "targets": [
+        ["css=.btn:nth-child(12)", "css:finder"],
+        ["xpath=//button[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/button[2]", "xpath:idRelative"],
+        ["xpath=//form/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "34e16767-7d5b-4876-8bb0-d1450ec4937d",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Please select a start date earlier than the end date.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ad4678c2-0d21-46ce-a4bf-0cb6408badef",
+      "comment": "",
+      "command": "click",
+      "target": "css=.row:nth-child(6) > #longitude",
+      "targets": [
+        ["css=.row:nth-child(6) > #longitude", "css:finder"],
+        ["xpath=(//div[@id='longitude'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div[5]/div[2]", "xpath:idRelative"],
+        ["xpath=//div[5]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "290a4e3b-57ed-49c0-bade-da8bff9ae50a",
+    "name": "correct test 2",
+    "commands": [{
+      "id": "ab7de47b-1881-4607-bb43-a16fe5a2e652",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "45eb64aa-829e-4646-b879-9babf034efe1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x777",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "94171b45-500d-47c7-99bd-5238f8e87c01",
+      "comment": "",
+      "command": "click",
+      "target": "id=dataset",
+      "targets": [
+        ["id=dataset", "id"],
+        ["css=#dataset", "css:finder"],
+        ["xpath=//select[@id='dataset']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/label/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8060aee3-065e-4c0d-a8aa-6b9ece19665d",
+      "comment": "",
+      "command": "select",
+      "target": "id=dataset",
+      "targets": [],
+      "value": "label=CASA_1km"
+    }, {
+      "id": "95e87eea-c236-4638-abc8-057c4c9afb01",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDate",
+      "targets": [
+        ["id=startDate", "id"],
+        ["css=#startDate", "css:finder"],
+        ["xpath=//input[@id='startDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9447ec50-6dcc-4040-99de-59dcf944fbd5",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDate",
+      "targets": [
+        ["id=startDate", "id"],
+        ["css=#startDate", "css:finder"],
+        ["xpath=//input[@id='startDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-04-01"
+    }, {
+      "id": "195c22ee-27fa-4b6f-a257-543ea214f97b",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDate",
+      "targets": [
+        ["id=endDate", "id"],
+        ["css=#endDate", "css:finder"],
+        ["xpath=//input[@id='endDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "44251028-a399-4ec5-8dfe-34eca4a0f312",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDate",
+      "targets": [
+        ["id=endDate", "id"],
+        ["css=#endDate", "css:finder"],
+        ["xpath=//input[@id='endDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2020-04-30"
+    }, {
+      "id": "a102d427-c725-40a7-ad4a-cdbc965be4dc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gm-style > div:nth-child(1) > div:nth-child(3)",
+      "targets": [
+        ["css=.gm-style > div:nth-child(1) > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='map']/div/div/div/div/div/div/div/div[3]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div/div/div/div/div/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "93a91315-5831-4a32-b16c-71a8e526775a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gm-style > div:nth-child(1) > div:nth-child(3)",
+      "targets": [
+        ["css=.gm-style > div:nth-child(1) > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='map']/div/div/div/div/div/div/div/div[3]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div/div/div/div/div/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eacd62a9-2e22-40e9-8273-af4acddec1ad",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(12)",
+      "targets": [
+        ["css=.btn:nth-child(12)", "css:finder"],
+        ["xpath=//button[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/button[2]", "xpath:idRelative"],
+        ["xpath=//form/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "515cd6dc-13eb-4652-9e65-c923d153d80d",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "You chose the CASA-1 dataset with a start date of 2020-04-01 and an end date of 2020-04-30. ",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c9718d82-5639-435b-b7f4-cf98255196be",
+      "comment": "",
+      "command": "click",
+      "target": "css=.space:nth-child(7)",
+      "targets": [
+        ["css=.space:nth-child(7)", "css:finder"],
+        ["xpath=//div[@id='form']/form/div[6]", "xpath:idRelative"],
+        ["xpath=//div[6]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "7b4bc5ae-49ac-4518-b946-02edf50fea6c",
+    "name": "correct test",
+    "commands": [{
+      "id": "c21e3740-0426-4caf-9aea-7b5fab10a114",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "99cd535c-dc33-4ae5-91e6-61527434dfbf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x777",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0e1cba5c-c894-4079-a851-3f0dc0911308",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDate",
+      "targets": [
+        ["id=startDate", "id"],
+        ["css=#startDate", "css:finder"],
+        ["xpath=//input[@id='startDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ed7828f-6505-4d2e-bd62-067f2339defa",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDate",
+      "targets": [
+        ["id=startDate", "id"],
+        ["css=#startDate", "css:finder"],
+        ["xpath=//input[@id='startDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2020-04-01"
+    }, {
+      "id": "4452fcb1-670f-4a8f-8752-8f8909ba6b3f",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDate",
+      "targets": [
+        ["id=endDate", "id"],
+        ["css=#endDate", "css:finder"],
+        ["xpath=//input[@id='endDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "10671621-f2a0-4f1a-9410-8f908f2d2e9b",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDate",
+      "targets": [
+        ["id=endDate", "id"],
+        ["css=#endDate", "css:finder"],
+        ["xpath=//input[@id='endDate']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2020-04-30"
+    }, {
+      "id": "85bdd13a-9b57-429e-afa3-0ff634b1057f",
+      "comment": "",
+      "command": "click",
+      "target": "id=dataset",
+      "targets": [
+        ["id=dataset", "id"],
+        ["css=#dataset", "css:finder"],
+        ["xpath=//select[@id='dataset']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/label/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "92f0b961-58d9-4f13-bb92-03cbc19c92dc",
+      "comment": "",
+      "command": "select",
+      "target": "id=dataset",
+      "targets": [],
+      "value": "label=CASA_1km"
+    }, {
+      "id": "27a36dd8-5d9c-476c-abb3-1d00739b35db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gm-style > div:nth-child(1) > div:nth-child(3)",
+      "targets": [
+        ["css=.gm-style > div:nth-child(1) > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='map']/div/div/div/div/div/div/div/div[3]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div/div/div/div/div/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "35438e12-12b3-46de-aa4f-31fb3850078b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gm-style > div:nth-child(1) > div:nth-child(3)",
+      "targets": [
+        ["css=.gm-style > div:nth-child(1) > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='map']/div/div/div/div/div/div/div/div[3]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div/div/div/div/div/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f2be49e7-b88c-4763-85b6-687be774eff1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(12)",
+      "targets": [
+        ["css=.btn:nth-child(12)", "css:finder"],
+        ["xpath=//button[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='form']/form/button[2]", "xpath:idRelative"],
+        ["xpath=//form/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "09eb3f0d-af1b-4d61-bb5f-565d79754597",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "You chose the CASA-1 dataset with a start date of 2020-04-01 and an end date of 2020-04-30. ",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "66cf90dd-f444-4dde-af2e-3ef78abd2545",
+      "comment": "",
+      "command": "click",
+      "target": "css=.date-form:nth-child(2)",
+      "targets": [
+        ["css=.date-form:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='form']/form/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "d02322ab-fd5f-4c72-a4fd-315e33c81c4a",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:3000/"],
+  "plugins": []
+}
