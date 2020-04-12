@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
 var ee = require('@google/earthengine');
-const PRIVATE_KEY = require('./privatekey.json');
+// const PRIVATE_KEY = require('./privatekey.json') || "";
+const PRIVATE_KEY = "";
 
 app.use(express.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,9 +20,11 @@ app.post("/", (req, res) => {
 		secondMarkerChange: req.body.secondMarker
 	};
 	
-	ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
-    ee.initialize();
-	determinePrecipt(data);
+	// ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
+	console.log("Authenticated");
+	// ee.initialize();
+	console.log("Initialized");
+	// determinePrecipt(data);
 
 	res.json(data);
 	console.log(`Received data in backend and sent data back to frontend. \nRequest was: ${req.originalUrl}`);

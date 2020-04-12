@@ -3,7 +3,7 @@ let router = express.Router();
 
 const auth = require('./authenticate');
 const googleEarth = require('./googleEarth');
-const googleEarthTest = require("./googleEarthTest"); // testing
+const googleEarthTest = require("./getPrecipitation"); // testing
 const getBandData = require("./getBandData"); // testing
 const timeSeriesTest = require("./timeSeriesTest"); // testing
 

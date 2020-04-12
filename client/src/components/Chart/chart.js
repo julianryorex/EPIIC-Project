@@ -14,10 +14,9 @@ export default class Chart extends Component {
 		
 	}
 
+
 	componentDidMount() {
 		let thisChart = this;
-	
-		
 
 		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/dev/docs/ee-chart.csv')
 			.then(function (response) {
@@ -34,8 +33,6 @@ export default class Chart extends Component {
 				console.log(error);
 			});
 		
-			
-			
 			
 		function csvToSeries(text){
 			const date = "system:time_start";
@@ -82,7 +79,7 @@ export default class Chart extends Component {
 				series: series
 			});
 		}
-	}
+	} 
 	
 	render() {
 		if(this.state.loading) {
