@@ -17,7 +17,7 @@ app.use('/api', routes);
 
 
 // serve static assets if in production
-if(process.env.NODE_ENV === 'production') {
+if(ENV === 'production') {
     // set static folder
     app.use(express.static('client/build'));
 
@@ -27,10 +27,18 @@ if(process.env.NODE_ENV === 'production') {
     });
 }
 
+app.get('/', (req, res) => {
+    res.write("Connected to EPIIC Center REST API\n");
+    res.write("Please enter a valid route to access this API!\n");
+    res.end();
+});
+
+
 
 app.listen(PORT, () => {
     console.log("Hello");
     console.log(`Server listening on port ${PORT}...`);
+
 });
 
 module.exports = app;

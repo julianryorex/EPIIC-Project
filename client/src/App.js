@@ -10,7 +10,7 @@ import Chart from "./components/Chart/chart";
 //import Chart from "./components/Chart/notChart";
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App container">
       <BrowserRouter>
