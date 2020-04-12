@@ -1,12 +1,9 @@
-import React, { Component, createContext } from 'react';
-import ReactDOM, { render } from 'react-dom';
 import * as JSC from "jscharting";
 import React, { Component } from 'react'; 
 // import { render } from 'react-dom';
 // import { Line } from 'react-chartjs-2'; 
 import '../main-content/main.css';
 import '../../App.css';
-import * as JSC from "jscharting"; 
 import Skeleton from "@yisheng90/react-loading";
 
 
@@ -48,8 +45,9 @@ export default class Chart extends Component {
 				const newDate = new Date(row[date]);
 				const d = newDate.getDate();
 				const month = newDate.getMonth();
+				const adjMonth = month + 1; 
 				const year = newDate.getFullYear();
-				const dateStr = d + "/" + month + "/" + year;
+				const dateStr = adjMonth + "/" + d + "/" + year;
 				dataPoints.push({x: dateStr, y: row.NDVI});
 			});
 			return [
@@ -59,10 +57,28 @@ export default class Chart extends Component {
 
 		function renderChart(series) {
 			JSC.Chart('chart', {
-				title_label_text: 'Time Series Data',
+				type: 'line',
+				title:{
+					label:{
+						text: 'Time Series Data',
+						style_fontSize: 16
+					},
+					position: 'center'
+				},
 				legend_visible: false,
-				defaultSeries_lastPoint_label_text: '<b>%seriesName</b>',
+				yAxis: {
+					label_text: 'Normalized Difference Vegetation Index'
+				},
+				xAxis:{
+					label_text: 'Collected Date',
+					scale: {
+						type: 'time', 
+						interval: { unit: 'year'},
+						range_padding: 0
+					}
+				},
 				xAxis_crosshair_enabled: true, 
+				defaultPoint_tooltip: 'NDVI: <b>%yValue</b>',
 				series: series
 			});
 		}
