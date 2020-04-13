@@ -25,6 +25,7 @@ export class MapContainer extends React.Component {
 		this.mapClicked = this.mapClicked.bind(this);
 		this.handleMapReady = this.handleMapReady.bind(this);
 		this.onMarkerClick = this.onMarkerClick.bind(this);
+		this.clearMarkers = this.clearMarkers.bind(this);
 	}
 
 	handleMapReady(mapProps, map) {
@@ -38,7 +39,7 @@ export class MapContainer extends React.Component {
 	mapClicked(mapProps, map, clickEvent) {
 
 		let coordindates = JSON.stringify(clickEvent.latLng);
-		if (this.state.firstMarker == null) { // maybe change to null
+		if (this.state.firstMarker == null) { 
 			this.handleLocation(coordindates, 1);
 		}
 		else if (this.state.secondMarker == null) {
@@ -76,10 +77,15 @@ export class MapContainer extends React.Component {
 
 
 	drawMarker() {
+		console.log("Current state:");
+		console.log(this.state);
 		const coordinates_arr = [this.state.firstMarker, this.state.secondMarker];
 		let marker_arr = [];
 		for (let index = 0; index < coordinates_arr.length; index++) {
+			// console.log("coordinates_arr[index]");
+			// console.log(coordinates_arr[index] != null);
 			if(coordinates_arr[index] != null) {
+				// console.log("Inside if stmt drawMarker");
 				marker_arr.push(
 				<Marker
 					label={(index+1).toString()}
@@ -133,6 +139,13 @@ export class MapContainer extends React.Component {
 		}
 	}
 
+	clearMarkers = (mapProps, map, clickEvent) => {
+		this.setState({
+			firstMarker: null,
+			secondMarker: null
+		});
+	};
+
 
 
 
@@ -144,6 +157,7 @@ export class MapContainer extends React.Component {
 					google={this.props.google}
 					zoom={9}
 					initialCenter={{ lat: this.state.startLocation.lattitude, lng: this.state.startLocation.longitude }}
+					onRightclick={this.clearMarkers}
 					onClick={this.mapClicked}
 					onReady={this.handleMapReady}
 				>

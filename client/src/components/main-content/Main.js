@@ -7,15 +7,13 @@ import '../../App.css';
 
 function Main() {
 	return (
-		<div id="container">
-			<div id="main">
-				<div id="form">
-					<DatasetForm />
-				</div>
-
-				<div className="space"></div>
-				<div className="space"></div>
+		<div id="main">
+			<div id="form">
+				<DatasetForm />
 			</div>
+
+			<div className="space"></div>
+			<div className="space"></div>
 		</div>
 	);
 }

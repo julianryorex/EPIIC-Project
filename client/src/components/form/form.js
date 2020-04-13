@@ -19,7 +19,7 @@ class DatasetForm extends React.Component {
 		this.commonChange = this.commonChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.changeValue = this.changeValue.bind(this);
-		this.clearCoordinates = this.clearCoordinates.bind(this);
+		// this.clearCoordinates = this.clearCoordinates.bind(this);
 		// this.getLocationValue = this.getLocationValue.bind(this);	
 	}
 	
@@ -42,14 +42,6 @@ class DatasetForm extends React.Component {
 		console.log(this.state[stateProp][stateSubProp]);
 		event.target.value = 0;
 		console.log(event.target.value);
-	}
-
-
-	clearCoordinates = () => {
-		this.mapContainerRef.current.setState({ firstMarker: "", secondMarker: "" });
-		console.log("HELLOO");
-		console.log(this.mapContainerRef.current.state.firstMarker);
-
 	}
   
     handleSubmit(event) {
@@ -163,11 +155,11 @@ class DatasetForm extends React.Component {
 				<div className="row">
 				  <div id="lattitude" className="col-md-6">
 					  Lattitude:&nbsp;&nbsp;
-						<input id="lat" name="firstMarker" type="text" value={this.state.firstMarker.lat || ""} onInput={e => this.changeValue(e)} required />
+						<input id="lat" name="firstMarker" type="text" required />
 					</div>
 				  <div id="longitude" className="col-md-6">
 					  Longitude:&nbsp;&nbsp;
-						<input id="lng" name="firstMarker" type="text" value={this.state.firstMarker.lng || ""} onInput={e => this.changeValue(e)} required />
+						<input id="lng" name="firstMarker" type="text" required />
 					</div>
 			  	</div>
 
@@ -176,18 +168,18 @@ class DatasetForm extends React.Component {
 					
 					<div id="lattitude" className="col-md-6">
 					  Lattitude:&nbsp;&nbsp;
-							<input id="lat" name="secondMarker" type="text" value={this.state.secondMarker.lat || ""} defaultValue={""} onChange={this.changeValue}  required />
+							<input id="lat" name="secondMarker" type="text" required />
 					</div>
 					<div id="longitude" className="col-md-6">
 					  Longitude:&nbsp;&nbsp;
-							<input id="lng" name="secondMarker" type="text" value={this.state.secondMarker.lng || ""} onChange={this.changeValue} required />
+							<input id="lng" name="secondMarker" type="text" required />
 					</div>
 				</div>
 
 				<div className="space"></div>
-				
-				<button type="button" className="btn btn-outline-secondary" onClick={this.clearCoordinates}>Clear Coordinates</button>
 
+				(Right click on the map to clear coordinates.)
+				
 			  	<div className="space"></div>
 				  
 				
