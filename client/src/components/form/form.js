@@ -19,6 +19,7 @@ class DatasetForm extends React.Component {
 		this.commonChange = this.commonChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.changeValue = this.changeValue.bind(this);
+		this.getLocationData = this.getLocationData.bind(this);
 		// this.clearCoordinates = this.clearCoordinates.bind(this);
 		// this.getLocationValue = this.getLocationValue.bind(this);	
 	}
@@ -108,10 +109,22 @@ class DatasetForm extends React.Component {
 			secondMarker: marker2
 		});
 		console.log("State set");
+		console.log(this.state.firstMarker);
+		console.log(this.state.secondMarker);
+
 	}
 	
   
     render() {
+		console.log("render");
+		console.log(this.state.firstMarker);
+		console.log(this.state.secondMarker);
+		const firstLat = typeof this.state.firstMarker === 'undefined' ? 0 : this.state.firstMarker.lat;
+		const firstLng = typeof this.state.firstMarker === 'undefined' ? 0 : this.state.firstMarker.lng;
+		const secondLat = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lat;
+		const secondLng = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lng;
+		
+
       return (
 			<form onSubmit={this.handleSubmit}>
 				<label className="datasetdropdown">
@@ -127,7 +140,6 @@ class DatasetForm extends React.Component {
 						<option value="CASA-500">CASA_500km</option>
 					</select>
 				</label>
-
 				<div className="row">
 					<div className="date-form col-xl-12">
 						<span>Start Date:&nbsp;&nbsp;</span>
@@ -150,41 +162,27 @@ class DatasetForm extends React.Component {
 						/>
 					</div>
 				</div>
-
-			  <div className="loc-title pad">Top Left Corner</div>
-				<div className="row">
-				  <div id="lattitude" className="col-md-6">
-					  Lattitude:&nbsp;&nbsp;
-						<input id="lat" name="firstMarker" type="text" required />
-					</div>
-				  <div id="longitude" className="col-md-6">
-					  Longitude:&nbsp;&nbsp;
-						<input id="lng" name="firstMarker" type="text" required />
-					</div>
-			  	</div>
-
-			  <div className="loc-title pad">Bottom Right Corner</div>
-				<div className="row">
+				
+				<div className="container">
+					<div className="row">
 					
-					<div id="lattitude" className="col-md-6">
-					  Lattitude:&nbsp;&nbsp;
-							<input id="lat" name="secondMarker" type="text" required />
-					</div>
-					<div id="longitude" className="col-md-6">
-					  Longitude:&nbsp;&nbsp;
-							<input id="lng" name="secondMarker" type="text" required />
+						<div id="left-corner" className="col-md-6">
+							<div className="loc-title pad">Top Left Corner</div>
+							<div className="coordinate">Latitude:&nbsp;&nbsp;<span className="coor" id="left-lat">{firstLat}</span></div>
+							<div className="coordinate">Longitude:&nbsp;&nbsp;<span className="coor"id="left-lng">{firstLng}</span></div>
+						</div>
+						<div id="right-corner" className="col-md-6">
+							<div className="loc-title pad">Bottom Right Corner</div>
+							<div className="coordinate">Latitude:&nbsp;&nbsp;<span className="coor" id="right-lat">{secondLat}</span></div>
+							<div className="coordinate">Longitude:&nbsp;&nbsp;<span className="coor" id="right-lng">{secondLng}</span></div>
+						</div>
 					</div>
 				</div>
 
+				
 				<div className="space"></div>
-
 				(Right click on the map to clear coordinates.)
-				
-			  	<div className="space"></div>
-				  
-				
-				
-
+				<div className="space"></div>
 				<div className="col-xl mapContainer">
 					<div id="map">
 						<MapContainer
@@ -193,11 +191,9 @@ class DatasetForm extends React.Component {
 						/>
 					</div>
 				</div>
-
 				<div className="space">
 					{/* additional space for better design */}
 				</div>
-
 				<button
 					type="submit"
 					value="Submit"

@@ -28,6 +28,9 @@
 }
 
 .loc-title {
-    font-size: 1.2em;
-    border-bottom: dotted;
+    font-size: 1.3em;
+}
+
+.coor {
+    font-weight: bold;
 }
