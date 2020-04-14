@@ -9,6 +9,7 @@
 
 const express = require("express");
 const app = express();
+const PRIVATE_KEY = process.env.PRIVATE_KEY || require("../privatekey.json");
 
 app.get("/", (req, res) => {
 	res.send("Inside googleEarth.js file.\n");

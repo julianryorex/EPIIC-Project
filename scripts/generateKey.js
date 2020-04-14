@@ -1,4 +1,7 @@
+// testing out key encryption for Google private key security.
+
 const arrayBufferToHex = require("array-buffer-to-hex");
+const fs = require('fs');
 const crypto = require('crypto');
 const algorithm = "aes-256-cbc";
 const key = crypto.randomBytes(32);
@@ -23,10 +26,29 @@ const decrypt = (text) => {
 }
 
 let privateKeyEnc = encrypt(JSON.stringify(privateKey));
-console.log("Key: " + arrayBufferToHex(key));
-console.log("iv: " + arrayBufferToHex(iv));
-console.log("encrypted: ");
-console.log(privateKeyEnc);
+// console.log("Key: " + arrayBufferToHex(key));
+// console.log("iv: " + privateKeyEnc.iv);
+// console.log("encrypted: ");
+// console.log(privateKeyEnc.encryptedData);
 
-console.log("Decrypt: ");
-console.log(decrypt(privateKeyEnc));
+fs.writeFile("./assets/key.bin", arrayBufferToHex(key), (err) => {
+    if (err) return console.log(err);
+    console.log("key.txt created.");
+});
+
+fs.writeFile("./assets/iv.bin", privateKeyEnc.iv, (err) => {
+	if (err) return console.log(err);
+	console.log("iv.txt created.");
+});
+
+fs.writeFile("./assets/googlePrivateKeyEncrypted.bin", privateKeyEnc.encryptedData, null, (err) => {
+	if (err) return console.log(err);
+	console.log("googlePrivateKeyEncrypted.txt created.");
+});
+
+fs.writeFile("./assets/googlePrivateKeyDecrypted.txt", decrypt(privateKeyEnc), (err) => {
+	if (err) return console.log(err);
+	console.log("googlePrivateKeyDecrypted.txt created.");
+});
+
+

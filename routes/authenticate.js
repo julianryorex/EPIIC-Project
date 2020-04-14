@@ -6,8 +6,7 @@
 const express = require("express");
 const app = express();
 var ee = require('@google/earthengine');
-// const PRIVATE_KEY = require('./privatekey.json') || "";
-const PRIVATE_KEY = "";
+const PRIVATE_KEY = process.env.PRIVATE_KEY || require('../privatekey.json');
 
 app.get("/", (req, res) => {
 	
@@ -21,9 +20,7 @@ app.get("/", (req, res) => {
 				// On a successful initialize
 				() => {
 					console.log('Successfully initialized the EE client library.');
-					app.listen(PORT);
-					console.log(`Listening on port ${PORT}`);
-					res.send("Authenticated and initialized!\n");
+					res.send("Authenticated and initialized!\n");					
 				},
 				// On a failure to initialize
 				(err) => {
