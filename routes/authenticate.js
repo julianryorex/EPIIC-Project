@@ -6,7 +6,9 @@
 const express = require("express");
 const app = express();
 var ee = require('@google/earthengine');
-const PRIVATE_KEY = process.env.PRIVATE_KEY || require('../privatekey.json');
+let PRIVATE_KEY = process.env.PRIVATE_KEY || require('../privatekey.json');
+
+if(typeof PRIVATE_KEY === "string") PRIVATE_KEY = JSON.parse(PRIVATE_KEY);
 
 app.get("/", (req, res) => {
 	

@@ -86,23 +86,23 @@ class DatasetForm extends React.Component {
 			body: JSON.stringify(data)
 		};
 
-		const url = window.location.href;
-		console.log(url);
+		let url;
+		if (process.env.NODE_ENV === "development") url = "http://localhost:8080/";
+		else if (process.env.NODE_ENV === "production") url = window.location.href;
 
-		fetch(`${url}api/google-test`, requestOptions)
-		.then(res => res.json()) // error handling here
-		.then(data => {
-			
-			console.log("Data in response:");
-			console.log(data);
-		})
-		.then(() => {
-			alert(
-				`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. `// +  
-				// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
-				// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
-			);
-		});
+		fetch(`${url}api/get-precipitation`, requestOptions)
+			.then((res) => res.json()) // error handling here
+			.then((data) => {
+				console.log("Data in response:");
+				console.log(data);
+			})
+			.then(() => {
+				alert(
+					`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. ` // +
+					// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
+					// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
+				);
+			});
 	}
 
 
@@ -111,10 +111,6 @@ class DatasetForm extends React.Component {
 			firstMarker: marker1,
 			secondMarker: marker2
 		});
-		console.log("State set");
-		console.log(this.state.firstMarker);
-		console.log(this.state.secondMarker);
-
 	}
 	
   
@@ -123,9 +119,6 @@ class DatasetForm extends React.Component {
 		const firstLng = typeof this.state.firstMarker === 'undefined' ? 0 : this.state.firstMarker.lng;
 		const secondLat = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lat;
 		const secondLng = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lng;
-		console.log("Current mode: ");
-		console.log(process.env.NODE_ENV);
-		
 
       return (
 			<form onSubmit={this.handleSubmit}>
