@@ -86,7 +86,10 @@ class DatasetForm extends React.Component {
 			body: JSON.stringify(data)
 		};
 
-		fetch(`http://localhost:8080/api/google-test`, requestOptions)
+		const url = window.location.href;
+		console.log(url);
+
+		fetch(`${url}/api/google-test`, requestOptions)
 		.then(res => res.json()) // error handling here
 		.then(data => {
 			
@@ -116,13 +119,12 @@ class DatasetForm extends React.Component {
 	
   
     render() {
-		console.log("render");
-		console.log(this.state.firstMarker);
-		console.log(this.state.secondMarker);
 		const firstLat = typeof this.state.firstMarker === 'undefined' ? 0 : this.state.firstMarker.lat;
 		const firstLng = typeof this.state.firstMarker === 'undefined' ? 0 : this.state.firstMarker.lng;
 		const secondLat = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lat;
 		const secondLng = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lng;
+		console.log("Current mode: ");
+		console.log(process.env.NODE_ENV);
 		
 
       return (
