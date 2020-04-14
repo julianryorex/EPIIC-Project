@@ -89,7 +89,7 @@ class DatasetForm extends React.Component {
 		const url = window.location.href;
 		console.log(url);
 
-		fetch(`${url}/api/google-test`, requestOptions)
+		fetch(`${url}api/google-test`, requestOptions)
 		.then(res => res.json()) // error handling here
 		.then(data => {
 			
