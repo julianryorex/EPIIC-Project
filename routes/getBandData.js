@@ -5,7 +5,8 @@
 const express = require("express");
 const app = express();
 const ee = require('@google/earthengine');
-const PRIVATE_KEY = process.env.PRIVATE_KEY || require("../privatekey.json");
+const PRIVATE_KEY = JSON.parse(process.env.PRIVATE_KEY) || require('../privatekey.json');
+
 
 app.get("/", (req, res) => {
     res.send("Inside getBandData.js file.\n");
