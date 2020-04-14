@@ -115,10 +115,10 @@ class DatasetForm extends React.Component {
 	
   
     render() {
-		const firstLat = typeof this.state.firstMarker === 'undefined' ? 0 : this.state.firstMarker.lat;
-		const firstLng = typeof this.state.firstMarker === 'undefined' ? 0 : this.state.firstMarker.lng;
-		const secondLat = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lat;
-		const secondLng = typeof this.state.secondMarker === 'undefined' ? 0 : this.state.secondMarker.lng;
+		const firstLat = typeof this.state.firstMarker === 'undefined' ? "" : this.state.firstMarker.lat;
+		const firstLng = typeof this.state.firstMarker === 'undefined' ? "" : this.state.firstMarker.lng;
+		const secondLat = typeof this.state.secondMarker === 'undefined' ? "" : this.state.secondMarker.lat;
+		const secondLng = typeof this.state.secondMarker === 'undefined' ? "" : this.state.secondMarker.lng;
 
       return (
 			<form onSubmit={this.handleSubmit}>
