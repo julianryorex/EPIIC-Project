@@ -26,6 +26,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "reactstrap": "^8.4.1",
+    "selenium-webdriver": "^4.0.0-alpha.7",
     "serve": "^11.3.0",
     "victory": "^34.1.3"
   },
