@@ -13,8 +13,6 @@ const validInput = (req) => { // return success and msg
 		success: true,
 		msg: ""
 	};
-	console.log("validate:");
-	console.log(req.body.startDate);
 
 	// no parameter check
 	if(!req.body.startDate || !req.body.endDate) {
@@ -133,8 +131,15 @@ app.post("/", async (req, res) => {
 		secondMarkerChange: req.body.secondMarker
 	};
 	
-	let precipData;
-	await getPrecipData();
+	/**
+	 * @todo
+	 * this part needs work with async calls with earth engine API
+	 * since ee is async, we need to somehow send the info once we get the data from ee.
+	 * was thinking to get it done using promises and .then()s but haven't gotten it to work
+	 */
+
+	let precipData = "BASE";
+	precipData = await getPrecipData();
 	console.log("right after precipdata");
 	console.log(precipData);
 	
@@ -145,6 +150,7 @@ app.post("/", async (req, res) => {
 		success: true,
 		data: precipData
 	};
+
 	console.log("precipData:");
 	console.log(precipData);
 
