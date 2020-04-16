@@ -96,14 +96,18 @@ class DatasetForm extends React.Component {
 			.then((data) => {
 				console.log("Data in response:");
 				console.log(data);
-			})
-			.then(() => {
-				alert(
-					`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. ` // +
-					// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
-					// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
-				);
+				if(data.success === false) {
+					alert(`Failed request. ${data.msg}`);
+				}
+				else {
+					alert(
+						`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. ` // +
+						// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
+						// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
+					);
+				}
 			});
+			
 	}
 
 
@@ -115,9 +119,6 @@ class DatasetForm extends React.Component {
 			firstMarker: marker1,
 			secondMarker: marker2
 		});
-		console.log("inside getlocationdata");
-		console.log(this.state.firstMarker);
-		console.log(this.state.secondMarker);
 	}
 	
   
