@@ -62,6 +62,7 @@ Earth Engine already has API calls to handle the nitty gritty of passing these t
         extraScopes     // Extra OAuth scopes to request, usually null
     );
     ```
+
 - A typical service side authentication looks like this:
 
     ```javascript
@@ -96,6 +97,7 @@ Earth Engine already has API calls to handle the nitty gritty of passing these t
     ```
 
 ### Client Side Authentication APIs
+
 - ``ee.data.authenticateViaOauth()``
 
     This is what you initially use to attempt authorization. Definately call this function before doing ``ee.initialize()``.
