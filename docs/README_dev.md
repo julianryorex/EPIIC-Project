@@ -68,6 +68,6 @@ All testing related files should exist under the test directory. We are using [T
 
 Frontend Testing
 
-Seleinum was used to test the frontend of the web application. Within the client folder, there is another folder called selenium-test. Within that folder there is a file called guick_test.js. This file runs a selenium test that performs many tasks on the homepage of the web application such as filling in the date fields, selecting two markers on the google map, and clicking the submit button. To run this test, navigate to the selenium-test folder in a terminal window and enter "node quick_test". The test will then run, and close 10 seconds after the last task. 
+Seleinum was used to test the frontend of the web application. Within the client folder, there is another folder called selenium-test. Within that folder there is a file called quick_test.js. This file runs a selenium test that performs many tasks on the homepage of the web application such as filling in the date fields, selecting two markers on the google map, and clicking the submit button. To run this test, navigate to the selenium-test folder in a terminal window and enter "node quick_test". The test will then run, and close 10 seconds after the last task. 
 
 (more to come...)
