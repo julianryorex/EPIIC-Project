@@ -8,38 +8,15 @@ const ee = require('@google/earthengine');
 const PRIVATE_KEY = process.env.PRIVATE_KEY || require('../privatekey.json');
 
 
-app.get("/", (req, res) => {
-    res.send("Inside getBandData.js file.\n");
-
-    // Simply copypasting Julian's lines from googleEarthTest.js
-    if (
-		Object.keys(req.query).length < 2 ||
-		Object.keys(req.query).length > 2) {
-		res.status(400).json({
-			status: 400,
-			message:
-				"GET Request requires two parameters, 'startDate' and 'endDate'"
-		});
-	}
-	
-	const data = {
-		startDate: req.query.startDate + " changed",
-		endDate: req.query.endDate + " changed"
-    };
-
-    // Gets the band data
-    getBands(startDate, endDate /**, dataSetName */);
-});
-
-function getBands(startDate, endDate /**, dataSetName */){
+const getBands = (startDate, endDate /**, dataSetName */) => {
     ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
     ee.initialize();
 
     // this dataSetName is a placeholder for now
     var dataSetName = 'NASA/GPM_L3/IMERG_V06';
     var dataSet = ee.ImageCollection(dataSetName)
-                        .filter(ee.Filter.date(startDate, endDate))
-                        .mosaic();
+        .filter(ee.Filter.date(startDate, endDate))
+        .mosaic();
 
     // request all the known information about this collection via an AJAX call.
     var data = dataSet.getInfo();
@@ -55,7 +32,36 @@ function getBands(startDate, endDate /**, dataSetName */){
 
     // Insert command here to send back to front end here
     res.json(bandNames);
-	console.log(`Received data in backend and sent bandNames back to frontend. \nRequest was: ${req.originalUrl}`);
-}
+    console.log(`Received data in backend and sent bandNames back to frontend. \nRequest was: ${req.originalUrl}`);
+};
+
+
+app.get("/", (req, res) => {
+    res.send("Inside getBandData.js file.\n");
+
+    if(!req.query.name == "dataset")   { // if no get parameters
+        const responseData = {
+            msg: "Requires a GET parameter: 'dataset'",
+            success: false,
+            bands: null
+        };
+        res.json(responseData);
+        console.log("Bands not requested successfully by user");
+        return;
+    }
+
+    const dataset = req.query.dataset;
+
+    // Gets the band data
+    const bands = getBands(startDate, endDate /**, dataSetName */); // bands should be json
+    const responseData = {
+        msg: "Band request",
+        success: true,
+        bands: ""  // bands
+    };
+    res.json(responseData);
+    console.log("Bands sent successfully");
+});
+
 
 module.exports = app;

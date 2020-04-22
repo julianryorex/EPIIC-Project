@@ -54,12 +54,13 @@ class DatasetForm extends React.Component {
 	}
 
 	validateForm() {
+		console.log("validating...");
 		if(this.state.dataset == null) {
 			alert('Please choose a dataset.');
 			return false;
 		}
 		if(this.state.firstMarker === "" || this.state.secondMarker === "") { 
-			alert("Please select two sets of coordinates.");
+			alert("Please select a set of coordinates.");
 			return false;
 		}
 		if(new Date(this.state.startDate) > new Date(this.state.endDate)) {
@@ -95,18 +96,25 @@ class DatasetForm extends React.Component {
 			.then((data) => {
 				console.log("Data in response:");
 				console.log(data);
-			})
-			.then(() => {
-				alert(
-					`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. ` // +
-					// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
-					// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
-				);
+				if(data.success === false) {
+					alert(`Failed request. ${data.msg}`);
+				}
+				else {
+					alert(
+						`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. ` // +
+						// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
+						// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
+					);
+				}
 			});
+			
 	}
 
 
 	getLocationData = (marker1, marker2) => { // callback function from MapContainer
+		marker1 = (typeof marker1 === 'undefined') ? "" : marker1;
+		marker2 = (typeof marker2 === 'undefined') ? "" : marker2;
+		
 		this.setState({
 			firstMarker: marker1,
 			secondMarker: marker2

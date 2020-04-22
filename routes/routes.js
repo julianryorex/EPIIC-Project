@@ -12,16 +12,14 @@ const timeSeriesTest = require("./timeSeriesTest"); // testing
 router.use("/auth", auth);
 router.use("/google-earth-data", googleEarth);
 router.use("/get-precipitation", getPrecipitation); // use this path from front end to request data from API
-router.use("/get-band-data", getBandData);
+router.use("/get-bands", getBandData);
 // router.use("/google-earth-time-series", timeSeriesTest);
 
 // http://localhost:8080/api
 router.get('/', (req, res) => {
     // need an api doc page here
-    res.send("Currently in routes.js. Welcome to EPIIC Center's new API! Docs are still in the works...\n");
+    res.send("Welcome to EPIIC Center's new API! Docs are still in the works...\n");
 });
-
-
 
 
 module.exports = router;
