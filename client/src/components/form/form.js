@@ -122,6 +122,7 @@ class DatasetForm extends React.Component {
 
       return (
 			<form onSubmit={this.handleSubmit}>
+				<div className="formInputs">
 				<label className="datasetdropdown">
 					<span>Choose Dataset:&nbsp;&nbsp;</span>
 					<select
@@ -176,16 +177,10 @@ class DatasetForm extends React.Component {
 
 				
 				<div className="space"></div>
+				Select latitude and longitude coordinates by clicking on the map.
+				<br></br>
 				(Right click on the map to clear coordinates.)
-				<div className="space"></div>
-				<div className="col-xl mapContainer">
-					<div id="map">
-						<MapContainer
-							ref={this.mapContainerRef}
-							parentCallback={this.getLocationData}
-						/>
-					</div>
-				</div>
+				
 				<div className="space">
 					{/* additional space for better design */}
 				</div>
@@ -196,6 +191,15 @@ class DatasetForm extends React.Component {
 				>
 					Submit
 				</button>
+				</div>
+				<div className="col-xl mapContainer">
+					<div id="map">
+						<MapContainer
+							ref={this.mapContainerRef}
+							parentCallback={this.getLocationData}
+						/>
+					</div>
+				</div>
 			</form>
 		);
     }
