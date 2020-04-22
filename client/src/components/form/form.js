@@ -35,26 +35,20 @@ class DatasetForm extends React.Component {
 		const stateSubProp = event.target.id;
 		const updateState = stateProp + "." + stateSubProp;
 		event.target.value = "";
-		console.log(updateState);
 		this.setState( {
 			[updateState]: event.target.value
 		});
-		console.log("updatestate:");
-		console.log(this.state[stateProp][stateSubProp]);
 		event.target.value = 0;
-		console.log(event.target.value);
 	}
   
     handleSubmit(event) {
 		event.preventDefault(); // prevents page from reloading
-		console.log("validation");
 		const valid = this.validateForm();
 		if(valid)
 			this.callAPI();
 	}
 
 	validateForm() {
-		console.log("validating...");
 		if(this.state.dataset == null) {
 			alert('Please choose a dataset.');
 			return false;
@@ -106,6 +100,10 @@ class DatasetForm extends React.Component {
 						// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
 					);
 				}
+			})
+			.catch((err) => {
+				console.error(err);
+				alert("There is a problem connecting to the server.");
 			});
 			
 	}

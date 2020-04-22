@@ -98,7 +98,31 @@ async function getPrecipData() {
 		console.log("Authenticated");
 		ee.initialize(() => {
 			console.log("Initialized");
-			precipData = determinePrecipt(data);
+			
+			var boundingBox = calcBoundingBox(mapData);
+			print(boundingBox);
+			var boundsFilter = ee.Filter.bounds(boundingBox);
+
+			// Init 1st image composite
+			var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
+				.filter(ee.Filter.date(mapData.startDateChange, mapData.endDateChange))
+				.select('precipitationCal');
+			// Make a composite image out of the filtered set, and get the median precipitation.
+			var precip = dataset.reduce(ee.Reducer.median());
+
+			// Export the Gtiff, specifying scale and region.
+			Export.image.toDrive({
+				image: precip.clip(boundingBox),
+				description: 'Precipitation',
+				scale: 1000,
+				fileDimensions: 2048,
+				region: boundingBox,
+			});
+
+			// Takes EE image object's metadata, and JSON's it
+			// We don't do anything with it right now.
+			var precipData = precip.getInfo();
+			precipData = JSON.stringify(bandNames);
 		});
 	};
 	return precipData;
@@ -161,3 +185,100 @@ app.post("/", async (req, res) => {
 
 
 module.exports = app;
+
+
+// GPM V6 between two chosen dates, in Bozeman
+Map.setCenter(-111, 45, 7);
+
+// Simulate user input
+var data = {
+	startDateChange: '2019-09-01',
+	endDateChange: '2019-09-15',
+	firstMarkerChange: {
+		lng: -111.88195030857673,
+		lat: 46.05295547466941
+	},
+	secondMarkerChange: {
+		lng: -110.21194260288826,
+		lat: 44.67521785714884
+	}
+};
+
+// Creating bounding box function
+function calcBoundingBox(mapData) {
+	// Actual Implementation
+	/*
+	var xMin = mapData.firstMarkerChange.lng;
+	var yMin = mapData.secondMarkerChange.lat;
+	var xMax = mapData.secondMarkerChange.lng;
+	var yMax = mapData.firstMarkerChange.lat;
+	*/
+
+	// Code Editor Implementation
+	var tL = topLeft.toGeoJSON();
+	var bR = bottomRight.toGeoJSON();
+	tL = tL.coordinates;
+	bR = bR.coordinates;
+
+	return ee.Geometry.Rectangle({
+		coords: [tL, bR], // [xMin, yMin, xMax, yMax],
+		geodesic: false
+	});
+}
+
+// Precipitation analysis function
+function determinePrecipt(mapData) {
+	var boundingBox = calcBoundingBox(mapData);
+
+	// Add boundingBox to map
+	Map.addLayer({
+		eeObject: boundingBox,
+		name: 'boundingBox',
+		opacity: 0.2
+	});
+
+	// Init 1st image composite
+	var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
+		.filter(ee.Filter.date(mapData.startDateChange, mapData.endDateChange))
+		.select('precipitationCal');
+	// Make a composite image out of the filtered set
+	var precip = dataset.reduce(ee.Reducer.median());
+
+	// Init Visualization Styling
+	var colors = [
+		'000096', '0064ff', '00b4ff', '33db80', '9beb4a',
+		'ffeb00', 'ffb300', 'ff6400', 'eb1e00', 'af0000'
+	];
+	var precipVis = {
+		min: 0,
+		max: .01,
+		palette: colors,
+		opacity: .75
+	};
+
+	var precipJPG = precip.visualize({
+		bands: 'precipitationCal_median',
+		min: 0,
+		max: .01,
+		palette: colors,
+		opacity: .75
+	});
+
+	// Export the Gtiff, specifying scale and region.
+	Export.image.toDrive({
+		image: precipJPG.clip(boundingBox),
+		description: 'Precipitation',
+		scale: 1000,
+		fileDimensions: 2048,
+		region: boundingBox,
+	});
+
+	// Add layer to map
+	Map.addLayer({
+		eeObject: precip.clip(boundingBox),
+		name: "Precipitation",
+		visParams: precipVis
+	});
+}
+
+determinePrecipt(data);
