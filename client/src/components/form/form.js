@@ -19,9 +19,7 @@ class DatasetForm extends React.Component {
 		this.commonChange = this.commonChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.changeValue = this.changeValue.bind(this);
-		this.getLocationData = this.getLocationData.bind(this);
-		// this.clearCoordinates = this.clearCoordinates.bind(this);
-		// this.getLocationValue = this.getLocationValue.bind(this);	
+		this.getLocationData = this.getLocationData.bind(this);	
 	}
 	
     commonChange(event) {
@@ -66,7 +64,6 @@ class DatasetForm extends React.Component {
 
 	
 	callAPI() {
-
 		const data = {
 			dataset: this.state.dataset,
 			startDate: this.state.startDate,
@@ -94,10 +91,9 @@ class DatasetForm extends React.Component {
 					alert(`Failed request. ${data.msg}`);
 				}
 				else {
+					console.log(data);
 					alert(
-						`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. ` // +
-						// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
-						// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
+						`The request has been successfully processed.`
 					);
 				}
 			})
@@ -105,7 +101,6 @@ class DatasetForm extends React.Component {
 				console.error(err);
 				alert("There is a problem connecting to the server.");
 			});
-			
 	}
 
 
