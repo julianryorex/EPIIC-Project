@@ -59,11 +59,11 @@ The main backend file is `app.js`; everything will be run through there. For sca
 
 Here is a Component Diagram of the current Web Application. One one use case has been implemented and more are in the works.
 
-![Component Diagram](./assets/componentDiagram.jpg)
+![Component Diagram](./assets/componentDiagram.png)
 
 In order to understand a basic use case, a sequence diagram is attached below. Descriptions of design choices can also be found below.
 
-![Sequence Diagram](./assets/sequenceDiagram.jpg)
+![Sequence Diagram](./assets/sequenceDiagram.png)
 
 ### Documentation
 
