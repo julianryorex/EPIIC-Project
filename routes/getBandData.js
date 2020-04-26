@@ -1,7 +1,3 @@
-/**
-    This route is responsible for getting band data from a dataset, and returning it as a .json
- */
-
 const express = require("express");
 const app = express();
 const ee = require('@google/earthengine');
@@ -37,8 +33,6 @@ const getBands = (startDate, endDate /**, dataSetName */) => {
 
 
 app.get("/", (req, res) => {
-    res.send("Inside getBandData.js file.\n");
-
     if(!req.query.name == "dataset")   { // if no get parameters
         const responseData = {
             msg: "Requires a GET parameter: 'dataset'",

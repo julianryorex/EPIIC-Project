@@ -1,4 +1,4 @@
-/*
+/** @author Norman
 Gets a very rough reading of NDVI (Normalized Difference Vegetation Index), plots it out, and graphs out a linear line to show us a trend. 
 Haven't figured out how to export the graph yet.
 
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   var roi = ee.Geometry.Point(111,45);
 
 
-  /* 
+  /** 
   Function to cloud mask from the pixel_qa band of Landsat 8 SR data.
   Clouds can give us very inaccurate readings of NDVI because we're reading clouds not vegetation.
   So we mask out clouds, and only take data if we have clear skies. 
@@ -69,21 +69,4 @@ app.get("/", (req, res) => {
     .map(maskL8sr)
     .map(addVariables);
     
-  // ui.chart API call only works in code-editor, and not in the JavaScript client libraries
-  /*
-  //Plot a time series of NDVI at a single location.
-  var l8Chart = ui.Chart.image.series(filteredLandsat.select('NDVI'), roi)
-      .setChartType('ScatterChart')
-      .setOptions({
-        title: 'Landsat 8 NDVI time series at ROI',
-        trendlines: {0: {
-          type: 'exponential',
-          visibleInLegend: true,
-          color: 'CC0000'
-        }},
-        lineWidth: 1,
-        pointSize: 3,
-      });   
-  print(l8Chart);
-  */
 });
