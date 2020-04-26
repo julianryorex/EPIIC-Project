@@ -4,9 +4,9 @@ Welcome to EPIIC Center's API Homepage!
 
 Here are the currently available API calls:
 
-|   api/auth
-|   api/get-precipitation
-|   api/get-bands
+**|**   api/auth
+**|**   api/get-precipitation
+**|**   api/get-bands
 
 ## api/auth
 

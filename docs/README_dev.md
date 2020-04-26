@@ -141,3 +141,22 @@ The **Test Steps** will guide the developer in how to achieve this test, along w
 Finally, the developer should mention the **Expected Results** of the tests and record their **Actual Results**, along with whether the test **Passed/Failed**.
 
 Whenever we push out a major release, all of these tests should be run. Automating this heavy lifting job could be a very uselful feature implemented in a future sprint.
+
+### Limitations of the Project
+
+Upon finishing the last sprint for this project, we have discovered numerous limitations that come with the chosen technologies as well as the Google Earth Engine API and Google Maps API.
+
+#### Google Maps API
+
+To retrieve the desired coordinates from the user, we implemented the Google Maps API; the user simply clicks on the map and those locations transcript to coordinates. The user clicks twice on the map so that we can capture the top left corner and the bottom right corner of the RASTER file bounds.
+
+Since our frontend was built using React, we decided to use a 3rd party library which is a wrapper of the Google Maps API using React. This implementation should **not** be done for the final production build as many Maps API features do not work well with this 3rd party library. We recommend using vanilla javascript as all the Maps API Docs are in JS and all features work with vanilla JS.
+
+#### Google Earth Engine API
+
+We are using the Earth Engine API to query our public datasets. One major decision we made was to use a service account instead of a client account. This means that YERC has a single account that queries all requests to the API, given the parameters by the user.
+
+This decision was made as we wanted to keep this application server-side based instead of client-side based. However, we realized during the implementation phase that a lot of Earth Engine functions only function in a client-side based application, meaning that it will not run in the Node.js environment (any function that does not start with `ee.` is client based).
+One major function that we planned to use was `Export.toDrive()`.
+
+This is something to think about when developing the production version of EPIIC Center.
