@@ -35,7 +35,7 @@ _Additional Information:_
 
 ## Data Transformation
 
-**Goal**
+**Goal:**
 Transform the acquired data to a readable/storable format by users/databases respectively. (Format that suits Amphora and YERC's EPIIC Center).
 
 **Requirements:**

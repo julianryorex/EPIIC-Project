@@ -26,6 +26,7 @@ Takes data from NASA's Global Precipitation Measurement (GPM) v6 between two dat
     - Does what it says on the tin, and exports our image as a geoTIFF to a Google Drive.
     - ``scale``: this is how many square meters represent a single pixel.
     - ``fileDimensions``: sets the max size for any one image to this many pixels wide and tall.
+    - **Note:** This function only works client-side, meaning in the browser. The `Export` function will not work server-side such as Node.js.
 
 # **getBandData.js**
 Takes in two arguements of start date, and end date, along with a dataset's name, and returns a JSON of all that dataset's bands.
