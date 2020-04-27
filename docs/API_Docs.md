@@ -50,4 +50,4 @@ curl -d '{"dataset":"AMSR-E","startDate":"2020-04-01","endDate":"2020-04-22","fi
 
 ## api/get-bands
 
-Feature still in development.
+Feature still in development..
