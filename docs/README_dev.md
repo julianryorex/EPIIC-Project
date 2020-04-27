@@ -29,14 +29,44 @@ This will startup the frontend environment and will compile and run all the java
 
 ### Frontend
 
-Our frontend files are all located inside the client directory. Inside you will find an images directory with all necessary images and ressources for the web app. If you have run through the "Getting Started" step above and installed all dependencies, you should also see a node_modules directory. This is listed in the .gitignore file so it will not be part of any commit.
-Under, you shall find a public and src directory. Public possesses the index.html file (the markdown for the website) and the src is where all the React lives in. The layout of the src directory should not change, unless new directories are put in place. All new components should live in the components folder, with an additional component folder and a capitalized component.js file inside it. Please respect this format for clarity.
+All frontend files are stored at the client directory. Here is a quick visual overview of the frontend structure (some directories/files are ommitted):
+
+```
+client
+└───public
+└───selenium-test
+└───src
+    └───assets
+        └───...
+    └───components
+        └───chart
+            └───chart.js
+        └───form
+            └───form.js
+        └───maps
+        └───...
+    └───App.js
+    └───...
+└───.gitignore
+└───package.json
+└───package-lock.js
+└───README.md
+docs
+...
+```
+
+If you have run through the **Start Contributing** step above and installed all dependencies, you should also see a `node_modules` directory (it is a very large directory). This directory is listed in the `.gitignore` file so it will not be part of any commit.
+
+Under exists a `public/` and `src/` directory. Public possesses the `index.html` file (the markdown for the website) and the `src` directory is where all React files lives in. 
+
+The layout of the `src/` directory should not change, unless new directories are put in place. All new components should live in the `components/` folder, with an additional `component` directory and a capitalized `<Component_name>.js` file inside it. All `.css` files related to the `component` file should also live in the directory of the component. Please respect this format for clarity.
 
 ### Backend
 
 All backend files are stored at the root directory. Here is a quick visual overview of the backend structure:
 
 ```
+client
 docs
 scripts
 test
@@ -48,8 +78,8 @@ package.json
 package-lock.json
 routes
 └───authenticate.js
-└───googleEarth.js
-└───googleEarthTest.js
+└───getBandData.js
+└───getPrecipitation.js
 └───routes.js
 ```
 
