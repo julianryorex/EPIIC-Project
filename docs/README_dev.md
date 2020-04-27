@@ -149,11 +149,17 @@ These should eventually be called automatically by our CI, [Travis CI](https://t
 
 #### Frontend Testing
 
-Seleinum was used to test the frontend of the web application. Located in `client/selenium-test`, there exists a file called `quick_test.js`.
+Seleinum was used to test the frontend of the web application. Located in `client/selenium-test`, there exists a file `quick_test.js`.
 
 This file runs a selenium test that performs many tasks on the homepage of the web application such as filling in the date fields, selecting two markers on the google map, and clicking the submit button.
 
 To run this test, navigate to the selenium-test folder in a terminal window and enter `node quick_test`. The test will then run, and close 10 seconds after the last task.
+
+**Note:** If a developer experiences a **ChromeDriver** related error when runing this script, run the following command.
+
+`npm install -g chromedriver`
+
+This installs the ChromeDriver package at a global level. If the developer does not want to install this at a global level, refer to this [link](https://stackoverflow.com/questions/36410283/node-js-complaining-that-the-chromedriver-could-not-be-found-on-the-current-pat).
 
 #### REST API Testing
 
