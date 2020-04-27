@@ -1,4 +1,4 @@
-# *EPIIC Center* for Yellowstone Ecological Research Center (YERC)
+# EPIIC Center for Yellowstone Ecological Research Center (YERC)
 
 ## Introduction
 
