@@ -7,7 +7,6 @@ import About from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
 import Chart from "./components/Chart/chart";
-//import Chart from "./components/Chart/notChart";
 import './App.css';
 
 const App = () => {

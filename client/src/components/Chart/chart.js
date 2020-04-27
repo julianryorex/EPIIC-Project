@@ -1,7 +1,5 @@
 import * as JSC from "jscharting";
 import React, { Component } from 'react'; 
-// import { render } from 'react-dom';
-// import { Line } from 'react-chartjs-2'; 
 import '../main-content/main.css';
 import '../../App.css';
 import Skeleton from "@yisheng90/react-loading";
@@ -14,13 +12,8 @@ export default class Chart extends Component {
 		
 	}
 
-
 	componentDidMount() {
 		let thisChart = this;
-		// let url;
-		// if (process.env.NODE_ENV === "development") url = "http://localhost:8080/";
-		// else if (process.env.NODE_ENV === "production") url = window.location.href;
-		// console.log(url);
 
 		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/master/docs/ee-chart.csv')
 		
