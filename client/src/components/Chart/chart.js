@@ -22,7 +22,8 @@ export default class Chart extends Component {
 		// else if (process.env.NODE_ENV === "production") url = window.location.href;
 		// console.log(url);
 
-		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/dev/docs/ee-chart.csv')
+		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/master/docs/ee-chart.csv')
+		
 			.then(function (response) {
 				return response.text();
 			})
