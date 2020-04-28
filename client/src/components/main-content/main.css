@@ -2,6 +2,10 @@ label{
     margin: 0px; 
 }
 
+.form{
+    display: flex; 
+    flex-wrap: wrap;
+}
 
 [type=submit]{
     margin-top: 20px; 
@@ -14,7 +18,20 @@ label{
 
 #chart {
     padding-top: 20px; 
-    margin: auto; 
+    margin: auto;  
+    position: relative; 
+    width: 800px; 
+    height: 500px; 
+}
+
+@media screen and (max-width: 1100px){
+	#chart{
+        width: 350px;
+        height: 500px; 
+    }
+    .chartContainer{
+        height: 650px; 
+    }
 }
 
 .space {

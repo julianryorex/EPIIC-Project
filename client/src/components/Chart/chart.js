@@ -94,10 +94,9 @@ export default class Chart extends Component {
 		else {
 			console.log("inside not loading!!");
 			return (
-				<div>
+				<div className="chartContainer">
 					<div
 						id="chart"
-						style={{ position: "relative", width: 800, height: 500 }}
 					></div>
 					<div className="space"></div>
 				</div>
