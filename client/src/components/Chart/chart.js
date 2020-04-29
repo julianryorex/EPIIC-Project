@@ -1,7 +1,5 @@
 import * as JSC from "jscharting";
 import React, { Component } from 'react'; 
-// import { render } from 'react-dom';
-// import { Line } from 'react-chartjs-2'; 
 import '../main-content/main.css';
 import '../../App.css';
 import Skeleton from "@yisheng90/react-loading";
@@ -14,11 +12,11 @@ export default class Chart extends Component {
 		
 	}
 
-
 	componentDidMount() {
 		let thisChart = this;
 
-		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/dev/docs/ee-chart.csv')
+		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/master/docs/ee-chart.csv')
+		
 			.then(function (response) {
 				return response.text();
 			})
@@ -96,10 +94,9 @@ export default class Chart extends Component {
 		else {
 			console.log("inside not loading!!");
 			return (
-				<div>
+				<div className="chartContainer">
 					<div
 						id="chart"
-						style={{ position: "relative", width: 800, height: 500 }}
 					></div>
 					<div className="space"></div>
 				</div>

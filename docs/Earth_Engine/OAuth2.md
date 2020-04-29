@@ -40,8 +40,6 @@ The authorization sequence begins when your application redirects a browser to a
 
 The result is an access token, which the client should validate before including it in a Google API request. When the token expires, the application repeats the process.
 
-![Token Flow Diagram](https://developers.google.com/accounts/images/tokenflow.png)
-
 Earth Engine already has API calls to handle the nitty gritty of passing these tokens around, by allowing us to interact directly with the OAuth endpoints. Ideally we won't have to deal with redirecting, scopes, and handling server responses.
 
 ## Earth Engine API
@@ -100,7 +98,7 @@ Earth Engine already has API calls to handle the nitty gritty of passing these t
 
 - ``ee.data.authenticateViaOauth()``
 
-    This is what you initially use to attempt authorization. Definately call this function before doing ``ee.initialize()``.
+    This is what you initially use to attempt authorization. Call this function before doing ``ee.initialize()``.
 
     ```javascript
     ee.data.authenticateViaOauth(
@@ -114,7 +112,7 @@ Earth Engine already has API calls to handle the nitty gritty of passing these t
 
 - ``ee.data.authenticateViaPopup()``
 
-    This is almost always what you call for in ``onImmediateFailed``. It pops up a login screen for a user to enter in credentials. 
+    This is almost always what you call for in ``onImmediateFailed``. It pops up a login screen for a user to enter in credentials.
 
     ```javascript
     ee.data.authenticateViaPopup(

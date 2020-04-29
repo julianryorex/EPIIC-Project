@@ -5,7 +5,6 @@ import {
 	Marker
 	}
  from "google-maps-react";
-// import { Rectangle } from "react-google-maps";
 
 
 export class MapContainer extends React.Component {

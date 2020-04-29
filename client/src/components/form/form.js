@@ -19,9 +19,7 @@ class DatasetForm extends React.Component {
 		this.commonChange = this.commonChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.changeValue = this.changeValue.bind(this);
-		this.getLocationData = this.getLocationData.bind(this);
-		// this.clearCoordinates = this.clearCoordinates.bind(this);
-		// this.getLocationValue = this.getLocationValue.bind(this);	
+		this.getLocationData = this.getLocationData.bind(this);	
 	}
 	
     commonChange(event) {
@@ -35,26 +33,20 @@ class DatasetForm extends React.Component {
 		const stateSubProp = event.target.id;
 		const updateState = stateProp + "." + stateSubProp;
 		event.target.value = "";
-		console.log(updateState);
 		this.setState( {
 			[updateState]: event.target.value
 		});
-		console.log("updatestate:");
-		console.log(this.state[stateProp][stateSubProp]);
 		event.target.value = 0;
-		console.log(event.target.value);
 	}
   
     handleSubmit(event) {
 		event.preventDefault(); // prevents page from reloading
-		console.log("validation");
 		const valid = this.validateForm();
 		if(valid)
 			this.callAPI();
 	}
 
 	validateForm() {
-		console.log("validating...");
 		if(this.state.dataset == null) {
 			alert('Please choose a dataset.');
 			return false;
@@ -72,7 +64,6 @@ class DatasetForm extends React.Component {
 
 	
 	callAPI() {
-
 		const data = {
 			dataset: this.state.dataset,
 			startDate: this.state.startDate,
@@ -100,14 +91,16 @@ class DatasetForm extends React.Component {
 					alert(`Failed request. ${data.msg}`);
 				}
 				else {
+					console.log(data);
 					alert(
-						`You chose the ${this.state.dataset} dataset with a start date of ${this.state.startDate} and an end date of ${this.state.endDate}. ` // +
-						// `The lattitude of the first point is ${this.state.firstMarker.lat} and longitude is ${this.state.firstMarker.lng}. ` +
-						// `The lattitude of the second point is ${this.state.secondMarker.lat} and longitude is ${this.state.secondMarker.lng}.`
+						`The request has been successfully processed.`
 					);
 				}
+			})
+			.catch((err) => {
+				console.error(err);
+				alert("There is a problem connecting to the server.");
 			});
-			
 	}
 
 
@@ -130,6 +123,8 @@ class DatasetForm extends React.Component {
 
       return (
 			<form onSubmit={this.handleSubmit}>
+				<div class="row">
+				<div className="col formInputs">
 				<label className="datasetdropdown">
 					<span>Choose Dataset:&nbsp;&nbsp;</span>
 					<select
@@ -184,16 +179,10 @@ class DatasetForm extends React.Component {
 
 				
 				<div className="space"></div>
+				Select latitude and longitude coordinates by clicking on the map.
+				<br></br>
 				(Right click on the map to clear coordinates.)
-				<div className="space"></div>
-				<div className="col-xl mapContainer">
-					<div id="map">
-						<MapContainer
-							ref={this.mapContainerRef}
-							parentCallback={this.getLocationData}
-						/>
-					</div>
-				</div>
+				
 				<div className="space">
 					{/* additional space for better design */}
 				</div>
@@ -204,6 +193,16 @@ class DatasetForm extends React.Component {
 				>
 					Submit
 				</button>
+				</div>
+				<div className="col mapContainer">
+					<div className="map">
+						<MapContainer
+							ref={this.mapContainerRef}
+							parentCallback={this.getLocationData}
+						/>
+					</div>
+				</div>
+				</div>
 			</form>
 		);
     }

@@ -1,25 +1,23 @@
 const express = require("express");
+const path = require('path');
 let router = express.Router();
 
 const auth = require('./authenticate');
-const googleEarth = require('./googleEarth');
-const getPrecipitation = require("./getPrecipitation"); // testing
-const getBandData = require("./getBandData"); // testing
-const timeSeriesTest = require("./timeSeriesTest"); // testing
+const getPrecipitation = require("./getPrecipitation");
+const getBandData = require("./getBandData");
 
+/** unfinished feature @Norman
+const timeSeriesTest = require("./timeSeriesTest");
+router.use("/google-earth-time-series", timeSeriesTest);
+*/
 
 // routes to the various paths
 router.use("/auth", auth);
-router.use("/google-earth-data", googleEarth);
-router.use("/get-precipitation", getPrecipitation); // use this path from front end to request data from API
+router.use("/get-precipitation", getPrecipitation);
 router.use("/get-bands", getBandData);
-// router.use("/google-earth-time-series", timeSeriesTest);
 
-// http://localhost:8080/api
 router.get('/', (req, res) => {
-    // need an api doc page here
-    res.send("Welcome to EPIIC Center's new API! Docs are still in the works...\n");
+    res.sendFile(path.resolve('docs/API_Docs.md'));
 });
-
 
 module.exports = router;

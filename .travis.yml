@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 13.5.0
 
-cache: npm # we can take this off sometimes to see if it builds without the cache
+cache: npm
 
 branches:
   only:
@@ -15,9 +15,4 @@ script:
   - npm run build
   - cd .. && npm install
 
-
-# deploy:
-#   -
-# we will eventually have a deploy hook so that it pushes everything to production
-# if: branch = master # only want to deploy if we are pushing to master and not dev
 
