@@ -11,7 +11,7 @@ driver.manage().window().maximize();
 
 (async function(){
     await driver.manage().setTimeouts( { implicit: 10000 } );
-    await driver.get('https://epiic-center.herokuapp.com/');
+    await driver.get('http://localhost:3000/');
 
     //not entering Start Date to get notification
 
