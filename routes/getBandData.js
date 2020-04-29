@@ -23,12 +23,9 @@ const getBands = (startDate, endDate /**, dataSetName */) => {
     for (var i in data.bands) {
         bandNames.push(data.bands[i].id);
     }
-    // Convert array into JSON string to send back
-    bandNames = JSON.stringify(bandNames);
 
-    // Insert command here to send back to front end here
-    res.json(bandNames);
-    console.log(`Received data in backend and sent bandNames back to frontend. \nRequest was: ${req.originalUrl}`);
+    // Convert array into JSON string to send back
+    return bandNames = JSON.stringify(bandNames);
 };
 
 
@@ -51,7 +48,7 @@ app.get("/", (req, res) => {
     const responseData = {
         msg: "Band request",
         success: true,
-        bands: ""  // bands
+        bands: bands
     };
     res.json(responseData);
     console.log("Bands sent successfully");
