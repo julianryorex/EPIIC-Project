@@ -15,7 +15,7 @@ export default class Chart extends Component {
 	componentDidMount() {
 		let thisChart = this;
 
-		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/master/docs/ee-chart.csv')
+		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/master/docs/assets/ee-chart.csv')
 		
 			.then(function (response) {
 				return response.text();
