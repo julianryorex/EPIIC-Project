@@ -83,6 +83,7 @@ app.post("/", (req, res) => {
 		res.json(responseData);
 		return;
 	}
+	console.log("Was valid input");
 
 	const mapData = {
 		startDateChange: req.body.startDate,
@@ -92,7 +93,7 @@ app.post("/", (req, res) => {
 		secondMarkerChange: req.body.secondMarker
     };
 
-    
+    console.log("Authenticating");
     ee.data.authenticateViaPrivateKey(PRIVATE_KEY, () => {
 		
 		ee.initialize(null, null, () => {
