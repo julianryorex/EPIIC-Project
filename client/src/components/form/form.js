@@ -85,7 +85,7 @@ class DatasetForm extends React.Component {
 		console.log(`${url}api/get-precipitation`);
 
 		fetch(`${url}api/get-precipitation`, requestOptions)
-			.then((res) => res.json())
+			.then((res) => res.text())
 			.then((data) => {
 				console.log("Data in response:");
 				console.log(data);
