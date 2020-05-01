@@ -134,7 +134,7 @@ app.post("/", (req, res) => {
 
             console.log("Sending response.");
             
-            res.send(JSON.stringify(responseData));
+            res.json(responseData);
 		},
 				// On a failure to initialize
 		(err) => {

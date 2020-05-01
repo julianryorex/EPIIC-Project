@@ -82,6 +82,8 @@ class DatasetForm extends React.Component {
 		if (process.env.NODE_ENV === "development") url = "http://localhost:8080/";
 		else if (process.env.NODE_ENV === "production") url = window.location.href;
 
+		console.log(`${url}api/get-precipitation`);
+
 		fetch(`${url}api/get-precipitation`, requestOptions)
 			.then((res) => res.json()) // error handling here
 			.then((data) => {
