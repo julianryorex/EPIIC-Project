@@ -79,6 +79,7 @@ app.post("/", (req, res) => {
 			success: valid.success,
 			data: null
 		};
+		console.log("not valid input");
 		res.json(responseData);
 		return;
 	}

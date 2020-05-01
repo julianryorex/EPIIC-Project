@@ -123,7 +123,7 @@ class DatasetForm extends React.Component {
 
       return (
 			<form onSubmit={this.handleSubmit}>
-				<div class="row">
+				<div className="row">
 				<div className="col formInputs">
 				<label className="datasetdropdown">
 					<span>Choose Dataset:&nbsp;&nbsp;</span>
