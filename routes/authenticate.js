@@ -4,6 +4,8 @@ var ee = require('@google/earthengine');
 let PRIVATE_KEY = process.env.PRIVATE_KEY || require('../privatekey.json');
 
 app.get("/", (req, res) => {
+	console.log('inside authenticate');
+	
 	ee.data.authenticateViaPrivateKey(PRIVATE_KEY, () => {
 		console.log('Authentication succeeded!');
 		ee.initialize(null, null, () => {
