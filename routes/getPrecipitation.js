@@ -94,98 +94,65 @@ app.post("/", (req, res) => {
     };
 
 	console.log("Authenticating");
+    ee.data.authenticateViaPrivateKey(PRIVATE_KEY, () => {
 
-	ee.data.authenticateViaPrivateKey(
-		PRIVATE_KEY,
-		() => {
-			console.log("Authentication succeeded!");
-			ee.initialize(
-				null,
-				null,
-				() => {
-					// On a successful initialize
-					console.log(
-						"Successfully initialized the EE client library."
-					);
-					res.send("Authenticated and initialized!\n");
-				},
-				// On a failure to initialize
-				(err) => {
-					res.send("initialization failed...!\n");
-					console.log(err);
-				}
-			);
-		},
-		// When the authentication failed.
-		(err) => {
-			console.log(err);
-			res.send("Authentication failed...!\n");
-		}
-	);
-
-
-
-
-
-    // ee.data.authenticateViaPrivateKey(PRIVATE_KEY, () => {
-
-	// 	console.log("Authenticated.");
+		console.log("Authenticated.");
 		
-	// 	ee.initialize(null, null, () => {
-    //         console.log('Successfully initialized the EE client library.');
-    //         var boundingBox = calcBoundingBox(mapData);
-    //         var boundsFilter = ee.Filter.bounds(boundingBox);
-    //         console.log("bounding boxes processed");
+		ee.initialize(null, null, () => {
+            console.log('Successfully initialized the EE client library.');
+            var boundingBox = calcBoundingBox(mapData);
+            var boundsFilter = ee.Filter.bounds(boundingBox);
+            console.log("bounding boxes processed");
             
 
-    //         var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
-    //         .filter(ee.Filter.date(mapData.startDateChange, mapData.endDateChange))
-    //         .select('precipitationCal');
-    //         // Make a composite image out of the filtered set, and get the median precipitation.
-    //         var precip = dataset.reduce(ee.Reducer.median());
+            var dataset = ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
+            .filter(ee.Filter.date(mapData.startDateChange, mapData.endDateChange))
+            .select('precipitationCal');
+            // Make a composite image out of the filtered set, and get the median precipitation.
+            var precip = dataset.reduce(ee.Reducer.median());
 
-    //         console.log("Dataset retrieved and reduced / filtered.");
+            console.log("Dataset retrieved and reduced / filtered.");
 
-	// 		/**
-	// 		 * @author Julian
-	// 		 * @note to devs
-	// 		 * Supposed to Export image to Google Drive, but only works client side.
-	// 		 * Left it here just in case another solution arises.
+			/**
+			 * @author Julian
+			 * @note to devs
+			 * Supposed to Export image to Google Drive, but only works client side.
+			 * Left it here just in case another solution arises.
 			 
-    //         Export.image.toDrive({
-	// 			image: precip.clip(boundingBox),
-	// 			description: "Precipitation",
-	// 			scale: 1000,
-	// 			fileDimensions: 2048,
-	// 			region: boundingBox,
-	// 		});
-	// 		console.log("File exported to drive.");
-	// 		*/
+            Export.image.toDrive({
+				image: precip.clip(boundingBox),
+				description: "Precipitation",
+				scale: 1000,
+				fileDimensions: 2048,
+				region: boundingBox,
+			});
+			console.log("File exported to drive.");
+			*/
 
-    //         const responseData = {
-	// 			msg: "Precipitation Data Request",
-	// 			success: true,
-	// 			data: precip
-	// 		};
+            const responseData = {
+				msg: "Precipitation Data Request",
+				success: true,
+				data: precip
+			};
 
-    //         console.log("Sending response.");
+            console.log("Sending response.");
             
-    //         res.json(responseData);
-	// 	},
-	// 			// On a failure to initialize
-	// 	(err) => {
-	// 		res.json({msg: "Initialization failed", success: false, data: err});
-	// 		console.log(err);
-	// 		console.log(`Initialization failed.`);
-	// 	});
-	// },
-	// // When the authentication failed.
-	// (err) => {
+            res.json(responseData);
+		},
+				// On a failure to initialize
+		(err) => {
+			res.json({msg: "Initialization failed", success: false, data: err});
+			console.log(err);
+			console.log(`Initialization failed.`);
+		});
+	},
+	// When the authentication failed.
+	(err) => {
 		
-	// 	console.log(err);
-	// 	console.log('Authentication failed');
-	// 	res.json({ msg: "Authentication failed", success: false, data: err });
-    // });  
+		console.log(err);
+		console.log('Authentication failed');
+		res.json({ msg: "Authentication failed", success: false, data: err });
+    });  
 });
 
 module.exports = app;

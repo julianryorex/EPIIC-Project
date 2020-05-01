@@ -85,24 +85,22 @@ class DatasetForm extends React.Component {
 		console.log(`${url}api/get-precipitation`);
 
 		fetch(`${url}api/get-precipitation`, requestOptions)
-			.then((res) => res.text())
+			.then((res) => res.json())
 			.then((data) => {
-				console.log("Data in response:");
-				console.log(data);
-				// if(data.success === false) {
-				// 	alert(`Failed request. ${data.msg}`);
-				// }
-				// else {
-				// 	console.log(data);
-				// 	alert(
-				// 		`The request has been successfully processed.`
-				// 	);
-				// }
+				if(data.success === false) {
+					alert(`Failed request. ${data.msg}`);
+				}
+				else {
+					console.log(data);
+					alert(
+						`The request has been successfully processed.`
+					);
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+				alert("There is a problem connecting to the server.");
 			});
-			// .catch((err) => {
-			// 	console.log(err);
-			// 	alert("There is a problem connecting to the server.");
-			// });
 	}
 
 
