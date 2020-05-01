@@ -95,6 +95,8 @@ app.post("/", (req, res) => {
 
     console.log("Authenticating");
     ee.data.authenticateViaPrivateKey(PRIVATE_KEY, () => {
+
+		console.log("Authenticated.");
 		
 		ee.initialize(null, null, () => {
             console.log('Successfully initialized the EE client library.');
@@ -139,7 +141,7 @@ app.post("/", (req, res) => {
 		},
 				// On a failure to initialize
 		(err) => {
-			res.json({msg: "Initialization failed", success: false, error: err});
+			res.json({msg: "Initialization failed", success: false, data: err});
 			console.log(err);
 			console.log(`Initialization failed.`);
 		});
@@ -149,7 +151,7 @@ app.post("/", (req, res) => {
 		
 		console.log(err);
 		console.log('Authentication failed');
-		res.json({ msg: "Authentication failed", success: false, error: err });
+		res.json({ msg: "Authentication failed", success: false, data: err });
     });  
 });
 
