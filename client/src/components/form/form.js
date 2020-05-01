@@ -98,11 +98,11 @@ class DatasetForm extends React.Component {
 						`The request has been successfully processed.`
 					);
 				}
-			})
-			.catch((err) => {
-				console.log(err);
-				alert("There is a problem connecting to the server.");
 			});
+			// .catch((err) => {
+			// 	console.log(err);
+			// 	alert("There is a problem connecting to the server.");
+			// });
 	}
 
 

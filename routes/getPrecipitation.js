@@ -138,16 +138,17 @@ app.post("/", (req, res) => {
 		},
 				// On a failure to initialize
 		(err) => {
-			res.send("initialization failed...!\n");
+			res.json({msg: "Initialization failed", success: false, error: err});
 			console.log(err);
 			console.log(`Initialization failed.`);
 		});
 	},
 	// When the authentication failed.
 	(err) => {
+		
 		console.log(err);
 		console.log('Authentication failed');
-		res.send("Authentication failed...!\n");
+		res.json({ msg: "Authentication failed", success: false, error: err });
     });  
 });
 
