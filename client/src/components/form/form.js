@@ -123,7 +123,8 @@ class DatasetForm extends React.Component {
 
       return (
 			<form onSubmit={this.handleSubmit}>
-				<div className="formInputs">
+				<div class="row">
+				<div className="col formInputs">
 				<label className="datasetdropdown">
 					<span>Choose Dataset:&nbsp;&nbsp;</span>
 					<select
@@ -193,13 +194,14 @@ class DatasetForm extends React.Component {
 					Submit
 				</button>
 				</div>
-				<div className="col-xl mapContainer">
-					<div id="map">
+				<div className="col mapContainer">
+					<div className="map">
 						<MapContainer
 							ref={this.mapContainerRef}
 							parentCallback={this.getLocationData}
 						/>
 					</div>
+				</div>
 				</div>
 			</form>
 		);

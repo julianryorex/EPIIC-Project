@@ -15,7 +15,7 @@ export default class Chart extends Component {
 	componentDidMount() {
 		let thisChart = this;
 
-		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/master/docs/ee-chart.csv')
+		fetch('https://raw.githubusercontent.com/julianryorex/EPIIC-Project/master/docs/assets/ee-chart.csv')
 		
 			.then(function (response) {
 				return response.text();
@@ -94,10 +94,9 @@ export default class Chart extends Component {
 		else {
 			console.log("inside not loading!!");
 			return (
-				<div>
+				<div className="chartContainer">
 					<div
 						id="chart"
-						style={{ position: "relative", width: 800, height: 500 }}
 					></div>
 					<div className="space"></div>
 				</div>

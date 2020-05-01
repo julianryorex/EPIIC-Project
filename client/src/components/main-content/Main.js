@@ -8,7 +8,7 @@ import '../../App.css';
 function Main() {
 	return (
 		<div id="main">
-			<div id="form">
+			<div className="form">
 				<DatasetForm />
 			</div>
 

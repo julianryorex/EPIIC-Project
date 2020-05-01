@@ -4,55 +4,55 @@ const ee = require('@google/earthengine');
 const PRIVATE_KEY = process.env.PRIVATE_KEY || require('../privatekey.json');
 
 
-const getBands = (startDate, endDate /**, dataSetName */) => {
-    ee.data.authenticateViaPrivateKey(PRIVATE_KEY);
-    ee.initialize();
+const validInput = (req) => {
 
-    // this dataSetName is a placeholder for now
-    var dataSetName = 'NASA/GPM_L3/IMERG_V06';
-    var dataSet = ee.ImageCollection(dataSetName)
-        .filter(ee.Filter.date(startDate, endDate))
-        .mosaic();
+    let responseData = {
+        msg: "",
+        success: false,
+        bands: null
+    };
 
-    // request all the known information about this collection via an AJAX call.
-    var data = dataSet.getInfo();
-
-    // data is really messy, and needs to be cleaned up before it's sent back
-    // Iterate through the dataset's bands, and put the id's into an array
-    var bandNames = [];
-    for (var i in data.bands) {
-        bandNames.push(data.bands[i].id);
-    }
-    // Convert array into JSON string to send back
-    bandNames = JSON.stringify(bandNames);
-
-    // Insert command here to send back to front end here
-    res.json(bandNames);
-    console.log(`Received data in backend and sent bandNames back to frontend. \nRequest was: ${req.originalUrl}`);
 };
 
 
 app.get("/", (req, res) => {
-    if(!req.query.name == "dataset")   { // if no get parameters
+
+    if (!validInput(req).success) {
         const responseData = {
-            msg: "Requires a GET parameter: 'dataset'",
-            success: false,
-            bands: null
+            msg: valid.msg,
+            success: valid.success,
+            data: null
         };
         res.json(responseData);
-        console.log("Bands not requested successfully by user");
         return;
     }
 
     const dataset = req.query.dataset;
 
-    // Gets the band data
-    const bands = getBands(startDate, endDate /**, dataSetName */); // bands should be json
+    ee.data.authenticateViaPrivateKey(PRIVATE_KEY, () => {
+        let bandNames = [];
+        ee.initialize(() => {
+            console.log("Successfully initialized the EE client library in getBands.js");
+            const dataSetName = 'NASA/GPM_L3/IMERG_V06';
+            const dataSet = ee.ImageCollection(dataSetName)
+                .filter(ee.Filter.date(startDate, endDate))
+                .mosaic();
+            // request all the known information about this collection via an AJAX call.
+            const data = dataSet.getInfo();
+
+            for (let i in data.bands) {
+                bandNames.push(data.bands[i].id);
+            }
+            console.log("Pushed all bands to badnNames JSON");
+        });
+    });
+
     const responseData = {
-        msg: "Band request",
+        msg: `Band request for the ${dataset} dataset`,
         success: true,
-        bands: ""  // bands
+        bands: JSON.stringify(bandsnames)
     };
+
     res.json(responseData);
     console.log("Bands sent successfully");
 });

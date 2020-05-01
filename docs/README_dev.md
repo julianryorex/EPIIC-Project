@@ -149,7 +149,7 @@ These should eventually be called automatically by our CI, [Travis CI](https://t
 
 #### Frontend Testing
 
-Seleinum was used to test the frontend of the web application. Located in `client/selenium-test`, there exists a file `quick_test.js`.
+Selenium was used to test the frontend of the web application. Located in `client/selenium-test`, there exists a file `quick_test.js`.
 
 This file runs a selenium test that performs many tasks on the homepage of the web application such as filling in the date fields, selecting two markers on the google map, and clicking the submit button.
 
