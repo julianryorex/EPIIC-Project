@@ -12,7 +12,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@google/earthengine": "^0.1.217",
+		"@google/earthengine": "^0.1.185",
 		"array-buffer-to-hex": "^1.0.0",
 		"body-parser": "^1.19.0",
 		"concurrently": "^5.1.0",
